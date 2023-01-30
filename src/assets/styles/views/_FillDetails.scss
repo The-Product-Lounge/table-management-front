@@ -1,0 +1,235 @@
+body {
+  background-color: #f2f2f2;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+label,
+input {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-size: 12px;
+}
+
+input[type='text'],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Add styles for the table number and user list */
+#tableNumber {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.userList {
+  font-size: 16px;
+}
+
+.user-item {
+  border: 1px;
+  border-color: #dfdfdf;
+  background-color: white;
+  padding: 6px;
+  display: flex;
+  width: 235px;
+  height: 67px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-image {
+  height: 50px;
+  width: 50px;
+  align-self: center;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.user-name {
+  align-self: center;
+}
+
+#message {
+  margin-bottom: 24px;
+  font-weight: 500;
+  color: #333;
+}
+#Buttons {
+  width: 100%;
+  height: 100%;
+}
+#submitButton {
+  font-size: 16px;
+  bottom: 30px;
+  margin: 0px 0px 0px 0px;
+  width: 100px;
+  display: block;
+  padding: 12px 0;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#submitButton:hover {
+  background-color: #444;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#submitButton:active {
+  background-color: #222;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#TableInfo {
+  font-size: 14px;
+  padding: 10px 16px;
+  margin: 10px 10px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 110px;
+  color: rgba(1, 1, 1, 1);
+  position: relative;
+}
+
+#Form-container {
+  background-color: #ffffff;
+  padding: 32px;
+  margin: 0 10px;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(1, 1, 1, 1);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /*   height: 400px; */
+  margin-top: 16vh;
+}
+
+#tableNumberContainer {
+  align-items: flex-start;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  posision: fixed;
+}
+
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+  --max-card-height: 300px;
+  --max-card-width: calc(var(--max-card-height) / 1.5);
+}
+
+#table-info-container {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 16px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: white;
+  margin: 12px;
+  max-height: var(--max-card-height);
+  max-width: var(--max-card-width);
+}
+
+#table-info-container::before {
+  content: '';
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+#table-info-container::after {
+  position: absolute;
+  content: '';
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
