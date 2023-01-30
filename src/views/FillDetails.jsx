@@ -1,26 +1,37 @@
 export const FillDetails = () => {
   return (
-    <div id="Form-container">
-      <form id="form">
-        <label htmlFor="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name.." />
-        <label htmlFor="profilePicture">Profile Picture</label>
-        <input type="file" id="profilePicture" name="profilePicture" />
-        <label htmlFor="portfolioStage">Portfolio Stage</label>
-        <select id="portfolioStage" name="portfolioStage">
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Advanced">Advanced</option>
-          <option value="Expert">Expert</option>
-        </select>
-      </form>
-      <button
-        type="submit"
-        id="submitButton"
-        onclick="addUser(document.getElementById('name').value, document.getElementById('profilePicture').value, document.getElementById('portfolioStage').value); return false;"
-      >
-        Submit
-      </button>
+    <div className='fill-details'>
+      <section className='welcome'>
+        <h1>
+          <span>Welcome</span>
+          <br />
+          To The Event!
+        </h1>
+      </section>
+
+      <div className='form-container'>
+        <form className='form'>
+          <input type='file' id='profilePicture' name='profilePicture' />
+          <input type='text' name='firstName' placeholder='First Name' />
+          <input type='text' name='lastName' placeholder='Last Name' />
+          <select name='portfolioStage'>
+            <option value='' disabled selected>
+              Portfolio stage
+            </option>
+            <option value='beginner'>Beginner</option>
+            <option value='intermediate'>Intermediate</option>
+            <option value='advanced'>Advanced</option>
+            <option value='expert'>Expert</option>
+          </select>
+          <button
+            type='submit'
+            id='submitButton'
+            onclick="addUser(document.getElementById('name').value, document.getElementById('profilePicture').value, document.getElementById('portfolioStage').value); return false;"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: poppins-regular;
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: 30px;
+}
+
+p {
+  margin: 0;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  border-style: none;
+  border-color: Transparent;
+  background-color: inherit;
+  overflow: auto;
+  resize: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+    Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  color: #1c2a4b;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
