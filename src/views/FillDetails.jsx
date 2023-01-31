@@ -1,4 +1,7 @@
+import { TextField } from '@material-ui/core'
 import { useRef, useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import logo from '../assets/imgs/logo@2x.png'
 
 export const FillDetails = () => {
   const [userDetails, setUserDetails] = useState({
@@ -21,10 +24,25 @@ export const FillDetails = () => {
     )
   }
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiInputLabel-root': {
+        fontSize: 14,
+        color: '#9899A6',
+        fontFamily: 'poppins-regular',
+        borderRadius: '20px',
+      },
+    },
+  }))
+
+  const classes = useStyles()
   return (
     <div className="fill-details">
       <div className="main-content">
         <section className="welcome">
+          <div className="logo-container">
+            <img src={logo} alt="logo" />
+          </div>
           <h1>
             <span>Welcome</span>
             <br />
@@ -48,20 +66,46 @@ export const FillDetails = () => {
               {userDetails.imgUrl && <img src={userDetails.imgUrl} alt="" />}
               <div className="pencil"></div>
             </div>
-            <input
+            {/* <input
               type="text"
               value={userDetails.firstName}
               name="firstName"
               onChange={handleChange}
               placeholder="First Name"
+            /> */}
+            <TextField
+              className={classes.root}
+              label="First Name"
+              variant="outlined"
+              inputProps={{
+                style: {
+                  height: '48px',
+                  padding: '0px 16px',
+                  color: '#28293D',
+                },
+              }}
+              fullWidth="100%"
             />
-            <input
+            <TextField
+              className={classes.root}
+              label="Last Name"
+              variant="outlined"
+              inputProps={{
+                style: {
+                  height: '48px',
+                  padding: '0px 16px',
+                  color: '#28293D',
+                },
+              }}
+              fullWidth="100%"
+            />
+            {/* <input
               type="text"
               value={userDetails.lastName}
               name="lastName"
               onChange={handleChange}
               placeholder="Last Name"
-            />
+            /> */}
             <select
               value={userDetails.portfolioStage}
               onChange={handleChange}

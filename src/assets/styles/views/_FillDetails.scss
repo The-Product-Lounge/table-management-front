@@ -8,90 +8,111 @@
   // background-image: url('../../imgs/bgimage.svg');
   background: #fafafa url('../../imgs/bgimage.svg') 0% 0% no-repeat padding-box;
 
-  .welcome {
-    text-align: center;
-    h1 {
-      line-height: 33px;
-      font-size: 22px;
-      color: #28293f;
-      font-weight: 400;
-      span {
-        font-family: poppins-semi-bold;
-      }
-    }
-  }
-
-  .form-container {
+  .main-content {
     width: 345px;
-    height: 445px;
-    border: #ebebeb 0.5px solid;
-    border-radius: 16px;
-    padding: 36px 24px;
-    display: flex;
-    background-color: white;
+    position: relative;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      gap: 24px;
+    .welcome {
+      text-align: center;
 
-      .profile-image {
-        height: 74px;
-        width: 74px;
-        position: relative;
-        background-image: url('../../imgs/user.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: #fcfcfc;
-        border-radius: 50%;
-        border: 1px solid #e0e0e0;
+      .logo-container {
+        position: absolute;
+        background-color: white;
+        border: 0.5px solid #ebebeb;
+        border-radius: 6px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         img {
-          border-radius: 50%;
-          height: 100%;
+          width: 15px;
         }
+      }
+      h1 {
+        line-height: 33px;
+        font-size: 22px;
+        color: #28293f;
+        font-weight: 400;
+        span {
+          font-family: poppins-semi-bold;
+        }
+      }
+    }
 
-        .pencil {
-          background-image: url('../../imgs/pencil.svg');
+    .form-container {
+      height: 445px;
+      border: #ebebeb 0.5px solid;
+      border-radius: 16px;
+      padding: 36px 24px;
+      display: flex;
+      background-color: white;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+
+        .profile-image {
+          height: 74px;
+          width: 74px;
+          position: relative;
+          background-image: url('../../imgs/user.svg');
           background-repeat: no-repeat;
           background-position: center;
-          background-color: white;
-          box-shadow: 0px 4px 8px #60617029;
-          height: 20px;
-          width: 20px;
-          position: absolute;
+          background-color: #fcfcfc;
           border-radius: 50%;
-          top: 0;
-          right: 0;
+          border: 1px solid #e0e0e0;
+
+          img {
+            border-radius: 50%;
+            height: 100%;
+          }
+
+          .pencil {
+            background-image: url('../../imgs/pencil.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+            box-shadow: 0px 4px 8px #60617029;
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+          }
         }
-      }
 
-      input {
-        @include main-input;
-      }
+        input {
+          // @include main-input;
+          width: 100%;
+        }
 
-      select {
-        @include main-input;
-        // appearance: none;
-      }
+        select {
+          // @include main-input;
+          // appearance: none;
+        }
 
-      .submit-btn {
-        height: 48px;
-        background-color: #1c1c28;
-        color: white;
-        width: 207px;
-        border: 1px solid #ebebeb;
-        border-radius: 8px;
-        font-family: poppins-regular;
-        font-size: 14px;
+        .submit-btn {
+          height: 48px;
+          background-color: #1c1c28;
+          color: white;
+          width: 207px;
+          border: 1px solid #ebebeb;
+          border-radius: 8px;
+          font-family: poppins-regular;
+          font-size: 14px;
 
-        &:disabled {
-          background-color: #e4e4eb;
-          color: #9899a7;
-          cursor: not-allowed;
+          &:disabled {
+            background-color: #e4e4eb;
+            color: #9899a7;
+            cursor: not-allowed;
+          }
         }
       }
     }
