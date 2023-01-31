@@ -5,6 +5,9 @@ const initialState = {
 export function tableReducer(state = initialState, action) {
 
     switch (action.type) {
+        case 'SET_TABLE':
+            state = { ...state, table: action.table }
+            break
         default:
             return state
     }
