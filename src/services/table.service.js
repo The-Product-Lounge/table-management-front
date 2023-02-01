@@ -5,18 +5,29 @@ const STORAGE_KEY_TABLE = 'table'
 
 export const tableService = {
     joinTable,
+    getById,
     getTableFromStorage
 }
 
 async function joinTable(user) {
     try {
         const table = await httpService.post(BASE_URL + 'join-table', user)
-        if(table) _putTableInStorage(table)
+        if (table) _putTableInStorage(table)
         return table
     } catch (err) {
         console.error(err)
         throw err
-    } 
+    }
+}
+
+async function getById(tableId) {
+    try {
+        const table = await httpService.get(BASE_URL + tableId)
+        return table
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
 }
 
 function getTableFromStorage() {

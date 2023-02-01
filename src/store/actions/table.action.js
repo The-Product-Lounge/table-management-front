@@ -14,3 +14,16 @@ export function joinTable(user) {
         }
     }
 }
+
+export function getTable(tableId) {
+    return async (dispatch) => {
+        try {
+            const table = await tableService.getById(tableId)
+            dispatch({ type: 'SET_TABLE', table: { ...table } })
+          }
+          catch (err) {
+            console.log(`cannot get table:`, err)
+            throw err
+          }
+    }
+}
