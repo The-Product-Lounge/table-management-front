@@ -2,14 +2,14 @@ export const cloudinaryService = {
   uploadImg,
 }
 
-async function uploadImg(ev) {
+async function uploadImg(img) {
   // Defining our variables
-  const CLOUD_NAME = 'frello'
-  const UPLOAD_PRESET = 'ptc1bbby'
+  const CLOUD_NAME = 'dxzuklp8l'
+  const UPLOAD_PRESET = 'xrytcgrn'
   const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
   const FORM_DATA = new FormData()
   // Building the request body
-  FORM_DATA.append('file', ev.target.files[0])
+  FORM_DATA.append('file', img)
   FORM_DATA.append('upload_preset', UPLOAD_PRESET)
   // Sending a post method request to Cloudniarys' API
   try {

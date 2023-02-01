@@ -1,23 +1,30 @@
 import { TextField } from "@material-ui/core"
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import logo from "../assets/imgs/logo@2x.png"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { joinTable } from "../store/actions/table.action"
 import { useEffect } from "react"
+import { cloudinaryService } from "../services/cloudinary.service"
 
 export const FillDetails = () => {
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
     portfolioStage: "",
-    imgUrl: "",
   })
+  const [img, setImg] = useState(null)
   const inputImageRef = useRef()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const getImgUrl = () => {
+    return img ? URL.createObjectURL(img) : null
+  }
+
   const table = useSelector((state) => state.tableModule.table)
+  const imgUrl = useMemo(() => getImgUrl(), [img])
 
   useEffect(() => {
     if (table) navigate(`table/${table._id}`)
@@ -36,14 +43,15 @@ export const FillDetails = () => {
   }
 
   const onUploadImg = (ev) => {
-    var url = URL.createObjectURL(ev.target.files[0])
-    setUserDetails((prevState) => ({ ...prevState, imgUrl: url }))
+    setImg(ev.target.files[0])
   }
 
   const onSubmit = async (ev) => {
     ev.preventDefault()
+    const user = {...userDetails}
     try {
-      await dispatch(joinTable(userDetails))
+      user.imgUrl = img ? await cloudinaryService.uploadImg(img) : null
+      dispatch(joinTable(user))
     } catch (err) {
       console.error(err)
     }
@@ -89,7 +97,7 @@ export const FillDetails = () => {
               className='profile-image'
               onClick={() => inputImageRef.current.click()}
             >
-              {userDetails.imgUrl && <img src={userDetails.imgUrl} alt='' />}
+              {img && <img src={imgUrl} alt='' />}
               <div className='pencil'></div>
             </div>
             {/* <input

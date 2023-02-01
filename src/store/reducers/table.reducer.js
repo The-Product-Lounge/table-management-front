@@ -1,5 +1,7 @@
+import { tableService } from "../../services/table.service"
+
 const initialState = {
-    table: null
+    table: tableService.getTableFromStorage()
 }
 
 export function tableReducer(state = initialState, action) {
