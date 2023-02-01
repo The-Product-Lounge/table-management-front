@@ -13,9 +13,17 @@ export const Table = () => {
   }, [])
 
   if(!table) return
-  return <div>
+  return <div className="table">
+    <h1>Table #{table.tableNumber}</h1>
+    <h2>Portfolio stage: {table.portfolioStage}</h2>
+    <h2>Users:</h2>
     {
-      JSON.stringify(table)
+      table.users.map(user => {
+        return <div>
+          <h3>{user.firstName} {user.lastName}</h3>
+          <img style={{width:'46px', borderRadius:'50%'}} src={user.imgUrl} />
+        </div>
+      })
     }
   </div>
 }
