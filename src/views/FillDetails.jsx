@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core"
 import { useMemo, useRef, useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import {     } from "@material-ui/core/styles"
 import logo from "../assets/imgs/logo@2x.png"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -19,12 +19,10 @@ export const FillDetails = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const getImgUrl = () => {
-    return img ? URL.createObjectURL(img) : null
-  }
-
   const table = useSelector((state) => state.tableModule.table)
-  const imgUrl = useMemo(() => getImgUrl(), [img])
+  const imgUrl = useMemo(() => {
+    return img ? URL.createObjectURL(img) : null
+  }, [img])
 
   useEffect(() => {
     if (table) navigate(`table/${table._id}`)
@@ -48,7 +46,7 @@ export const FillDetails = () => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault()
-    const user = {...userDetails}
+    const user = { ...userDetails }
     try {
       user.imgUrl = img ? await cloudinaryService.uploadImg(img) : null
       dispatch(joinTable(user))
@@ -57,13 +55,15 @@ export const FillDetails = () => {
     }
   }
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(({
     root: {
       "& .MuiInputLabel-root": {
-        fontSize: 14,
-        color: "#9899A6",
-        fontFamily: "poppins-regular",
-        borderRadius: "20px",
+        "& fieldset": {
+          fontSize: 14,
+          color: "#9899A6",
+          fontFamily: "poppins-regular",
+          borderRadius: "50px",
+        },
       },
     },
   }))
