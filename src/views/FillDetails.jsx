@@ -1,4 +1,5 @@
-import { TextField } from '@material-ui/core'
+// TODO: if this line below is not commented, placeholder of first and last name will be blue when focused
+// import { TextField } from '@material-ui/core'
 import { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { joinTable } from '../store/actions/table.action'
 import { useEffect } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
+import { Box, MenuItem, TextField } from '@mui/material'
 
 export const FillDetails = () => {
   const [userDetails, setUserDetails] = useState({
@@ -56,21 +58,39 @@ export const FillDetails = () => {
   }
 
   const useStyles = makeStyles({
+    customBox: {
+      // backgroundColor: 'red',
+      fontFamily: 'poppins-regular',
+      height: '48px',
+      border: '1px solid #EBEBEB',
+    },
+    customTextField: {
+      // borderRadius: 10,
+      border: '1px solid #EBEBEB',
+      fontFamily: 'poppins-regular',
+    },
+
     root: {
+      '& label.Mui-focused': {
+        color: '#1C1C29',
+      },
       [`& fieldset`]: {
         borderRadius: 8,
         border: '1px solid #EBEBEB',
       },
+
       '& .MuiInputLabel-root': {
         fontSize: 14,
         color: '#9899A6',
         fontFamily: 'poppins-regular',
       },
       '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        border: '1px solid #EBEBEB',
+        border: '1px solid #1C1C29',
+        color: '#9899A6',
       },
       '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-        border: '1px solid #EBEBEB',
+        border: '1px solid #1C1C29',
+        color: 'black',
       },
     },
   })
@@ -107,13 +127,6 @@ export const FillDetails = () => {
               {img && <img src={imgUrl} alt="" />}
               <div className="pencil"></div>
             </div>
-            {/* <input
-              type="text"
-              value={userDetails.firstName}
-              name="firstName"
-              onChange={handleChange}
-              placeholder="First Name"
-            /> */}
             <TextField
               className={classes.root}
               value={userDetails.firstName}
@@ -126,6 +139,8 @@ export const FillDetails = () => {
                   height: '48px',
                   padding: '0px 16px',
                   color: '#28293D',
+                  fontFamily: 'poppins-regular',
+                  fontSize: '14px',
                 },
               }}
               fullWidth="100%"
@@ -142,30 +157,37 @@ export const FillDetails = () => {
                   height: '48px',
                   padding: '0px 16px',
                   color: '#28293D',
+                  fontFamily: 'poppins-regular',
+                  fontSize: '14px',
                 },
               }}
               fullWidth="100%"
             />
-            {/* <input
-              type="text"
-              value={userDetails.lastName}
-              name="lastName"
-              onChange={handleChange}
-              placeholder="Last Name"
-            /> */}
-            <select
-              value={userDetails.portfolioStage}
-              onChange={handleChange}
-              name="portfolioStage"
-            >
-              <option value="" disabled>
-                Portfolio stage
-              </option>
-              <option value="Brainstorming">Brainstorming</option>
-              <option value="Planning & Research">Planning & Research</option>
-              <option value="Design & Composition">Design & Composition</option>
-              <option value="Refinement">Refinement</option>
-            </select>
+            <Box width="100%" className={classes.customBox}>
+              <TextField
+                className={classes.customTextField}
+                select
+                value={userDetails.portfolioStage}
+                onChange={handleChange}
+                name="portfolioStage"
+                label="Portfolio stage"
+                placeholder="Portfolio stage"
+                fullWidth
+              >
+                <MenuItem value="" disabled>
+                  Portfolio stage
+                </MenuItem>
+                <MenuItem value="Brainstorming">Brainstorming</MenuItem>
+                <MenuItem value="Planning & Research">
+                  Planning & Research
+                </MenuItem>
+                <MenuItem value="Design & Composition">
+                  Design & Composition
+                </MenuItem>
+                <MenuItem value="Refinement">Refinement</MenuItem>
+              </TextField>
+            </Box>
+
             <button
               disabled={isButtonDisabled()}
               type="submit"
