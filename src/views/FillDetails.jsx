@@ -1,5 +1,3 @@
-// TODO: if this line below is not commented, placeholder of first and last name will be blue when focused
-// import { TextField } from '@material-ui/core'
 import { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
@@ -59,15 +57,7 @@ export const FillDetails = () => {
 
   const useStyles = makeStyles({
     customBox: {
-      // backgroundColor: 'red',
-      fontFamily: 'poppins-regular',
       height: '48px',
-      border: '1px solid #EBEBEB',
-    },
-    customTextField: {
-      // borderRadius: 10,
-      border: '1px solid #EBEBEB',
-      fontFamily: 'poppins-regular',
     },
 
     root: {
@@ -77,6 +67,7 @@ export const FillDetails = () => {
       [`& fieldset`]: {
         borderRadius: 8,
         border: '1px solid #EBEBEB',
+        height: '53px',
       },
 
       '& .MuiInputLabel-root': {
@@ -165,7 +156,7 @@ export const FillDetails = () => {
             />
             <Box width="100%" className={classes.customBox}>
               <TextField
-                className={classes.customTextField}
+                className={classes.root}
                 select
                 value={userDetails.portfolioStage}
                 onChange={handleChange}
