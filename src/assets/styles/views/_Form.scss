@@ -1,11 +1,9 @@
-.fill-details {
+.form {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   padding-top: 48px;
   align-items: center;
-  // background-image: url('../../imgs/bgimage.svg');
   background: #fafafa url('../../imgs/bgimage.svg') 0% 0% no-repeat padding-box;
 
   .main-content {
