@@ -22,11 +22,13 @@ export const TableView = () => {
         <h1>{table.tableNumber}</h1>
         {[...Array(tableParticipants)].map((undefined, i) => (
           <div className={`chair _${i + 1}`} key={`chair _${i + 1}`}>
-            <img
-              src={table?.users[i]?.imgUrl ? table.users[i].imgUrl : null}
-              alt=''
-              className='profile-img'
-            />
+            {table.users[i] && (
+              <img
+                src={table.users[i].imgUrl}
+                alt=''
+                className='profile-img'
+              />
+            )}
             <img src={emptyChair} className='empty-chair' />
           </div>
         ))}
@@ -40,12 +42,16 @@ export const TableView = () => {
           {table.users.map((user) => (
             <div className='user-preview'>
               <img
-                src={user.imgUrl ? user.imgUrl : null}
+                src={user.imgUrl}
                 alt=''
                 className='profile-img'
+                loading='lazy'
               />
-              <div className="user-details">
-                <p><span className="first-name">{user.firstName}</span> {user.lastName}</p>
+              <div className='user-details'>
+                <p>
+                  <span className='first-name'>{user.firstName}</span>{" "}
+                  {user.lastName}
+                </p>
               </div>
             </div>
           ))}

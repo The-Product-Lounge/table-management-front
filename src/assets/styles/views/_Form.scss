@@ -1,10 +1,8 @@
 .form {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 44px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 44px 24px;
   align-items: center;
   background: #fafafa url('../../imgs/bgimage.svg') 0% 0% no-repeat padding-box;
 
@@ -63,7 +61,6 @@
           height: 74px;
           width: 74px;
           position: relative;
-          background-image: url('../../imgs/user.svg');
           background-repeat: no-repeat;
           background-position: center;
           background-color: #fcfcfc;
@@ -74,6 +71,7 @@
           img {
             border-radius: 50%;
             height: 100%;
+            object-fit: cover;
           }
 
           .pencil {
