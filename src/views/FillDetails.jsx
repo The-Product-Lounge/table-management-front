@@ -135,7 +135,7 @@ export const FillDetails = () => {
                   fontSize: "14px",
                 },
               }}
-              fullWidth='100%'
+              fullWidth={true}
             />
             <TextField
               className={classes.root}
@@ -153,7 +153,7 @@ export const FillDetails = () => {
                   fontSize: "14px",
                 },
               }}
-              fullWidth='100%'
+              fullWidth={true}
             />
             <Box width='100%' className={classes.customBox}>
               <TextField
@@ -161,10 +161,10 @@ export const FillDetails = () => {
                 select
                 value={userDetails.portfolioStage}
                 onChange={handleChange}
-                name='portfolioStage'
-                label='Portfolio stage'
-                placeholder='Portfolio stage'
-                fullWidth
+                name="portfolioStage"
+                label="Portfolio stage"
+                placeholder="Portfolio stage"
+                fullWidth={true}
               >
                 <MenuItem value='' disabled>
                   Portfolio stage
