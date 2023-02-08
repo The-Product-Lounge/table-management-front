@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
+import infoCircle from '../assets/imgs/infocircle.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { joinTable } from '../store/actions/table.action'
@@ -187,6 +188,10 @@ export const Form = () => {
               Lets go!
             </button>
           </form>
+        </div>
+        <div className="event-info">
+          <img src={infoCircle} alt="" />
+          <p>Event Info</p>
         </div>
       </div>
     </div>
