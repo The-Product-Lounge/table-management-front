@@ -6,7 +6,7 @@
   padding-top: 48px;
   align-items: center;
   // background-image: url('../../imgs/bgimage.svg');
-  background: #fafafa url('../../imgs/bgimage.svg') 0% 0% no-repeat padding-box;
+  background: #fafafa url("../../imgs/bgimage.svg") 0% 0% no-repeat padding-box;
 
   .main-content {
     width: 345px;
@@ -14,6 +14,7 @@
 
     .welcome {
       text-align: center;
+      margin-bottom: 34px;
 
       .logo-container {
         position: absolute;
@@ -42,17 +43,18 @@
     }
 
     .form-container {
-      height: 445px;
+      height: 444px;
       border: #ebebeb 0.5px solid;
       border-radius: 16px;
-      padding: 36px 24px;
+      padding: 34px 24px;
       display: flex;
+      justify-content: stretch;
       background-color: white;
 
       form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        // justify-content: space-between;
         align-items: center;
         width: 100%;
         gap: 24px;
@@ -61,20 +63,22 @@
           height: 74px;
           width: 74px;
           position: relative;
-          background-image: url('../../imgs/user.svg');
+          background-image: url("../../imgs/user.svg");
           background-repeat: no-repeat;
           background-position: center;
           background-color: #fcfcfc;
           border-radius: 50%;
           border: 1px solid #e0e0e0;
+          margin-bottom: 2px;
 
           img {
             border-radius: 50%;
             height: 100%;
+            object-fit: cover;
           }
 
           .pencil {
-            background-image: url('../../imgs/pencil.svg');
+            background-image: url("../../imgs/pencil.svg");
             background-repeat: no-repeat;
             background-position: center;
             background-color: white;
@@ -107,6 +111,7 @@
           border-radius: 8px;
           font-family: poppins-regular;
           font-size: 14px;
+          margin-top: 8px;
 
           &:disabled {
             background-color: #e4e4eb;
@@ -114,6 +119,23 @@
             cursor: not-allowed;
           }
         }
+      }
+      margin-bottom: 27px;
+    }
+    .event-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      gap: 12px;
+      color: #555770;
+      font-family: poppins-medium;
+      img {
+        height: 19.5px;
+        width: 19.5px;
+      }
+      p {
+        letter-spacing: -3;
       }
     }
   }
