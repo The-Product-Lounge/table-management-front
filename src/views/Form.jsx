@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
 import { Box, MenuItem, TextField } from '@mui/material'
 
-export const Form = () => {
+export const FillDetails = () => {
   const [userDetails, setUserDetails] = useState({
     firstName: '',
     lastName: '',
@@ -88,7 +88,7 @@ export const Form = () => {
 
   const classes = useStyles()
   return (
-    <div className="form">
+    <div className="fill-details">
       <div className="main-content">
         <section className="welcome">
           <div className="logo-container">
@@ -102,7 +102,7 @@ export const Form = () => {
         </section>
 
         <div className="form-container">
-          <form onSubmit={onSubmit}>
+          <form className="form" onSubmit={onSubmit}>
             <input
               style={{ display: 'none' }}
               type="file"
