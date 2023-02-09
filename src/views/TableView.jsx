@@ -1,17 +1,22 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getTable } from "../store/actions/table.action"
 import emptyChair from "../assets/imgs/empty-chair.svg"
 
 export const TableView = () => {
   const table = useSelector((state) => state.tableModule.table)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const params = useParams()
 
   useEffect(() => {
-    if (!table) dispatch(getTable(params.tableId))
+      dispatch(getTable(params.tableId))
   }, [])
+
+  useEffect(() => {
+    if(!table) navigate('/')
+}, [table])
 
   if (!table) return
   let tableParticipants = 4
@@ -23,11 +28,7 @@ export const TableView = () => {
         {[...Array(tableParticipants)].map((undefined, i) => (
           <div className={`chair _${i + 1}`} key={`chair _${i + 1}`}>
             {table.users[i] && (
-              <img
-                src={table.users[i].imgUrl}
-                alt=''
-                className='profile-img'
-              />
+              <img src={table.users[i].imgUrl} alt='' className='profile-img' />
             )}
             <img src={emptyChair} className='empty-chair' />
           </div>
