@@ -7,10 +7,10 @@ export const tableService = {
   joinTable,
   getById,
   getTableFromStorage,
-  query,
+  getTables,
 }
 
-async function query() {
+async function getTables() {
   return httpService.get(BASE_URL)
 }
 

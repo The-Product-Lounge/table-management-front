@@ -1,18 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import clearEvent from '../assets/imgs/clear-event.svg'
 import closePage from '../assets/imgs/close-event-info.svg'
 import { loadTables } from '../store/actions/table.action'
+import { tableService } from '../services/table.service'
 
 export const EventInfo = () => {
-  const tables = useSelector((state) => state.tableModule.tables)
-
+  const [tables, setTables] = useState([])
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const getTables = async () => {
+    const tablesFromDB = await tableService.getTables()
+    setTables(tablesFromDB)
+  }
+
   useEffect(() => {
-    dispatch(loadTables())
+    getTables()
   }, [])
 
   const onRemoveLounger = (ev) => {}

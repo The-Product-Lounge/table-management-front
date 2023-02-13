@@ -15,20 +15,6 @@ export function joinTable(user) {
   }
 }
 
-export function loadTables() {
-  return async (dispatch) => {
-    try {
-      const tables = await tableService.query()
-      dispatch({
-        type: 'SET_TABLES',
-        tables: [...tables],
-      })
-    } catch (err) {
-      console.log('Cannot load tables', err)
-    }
-  }
-}
-
 export function getTable(tableId) {
   return async (dispatch) => {
     try {
