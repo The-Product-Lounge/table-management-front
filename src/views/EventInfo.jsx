@@ -5,11 +5,12 @@ import clearEvent from '../assets/imgs/clear-event.svg'
 import closePage from '../assets/imgs/close-event-info.svg'
 import { loadTables } from '../store/actions/table.action'
 import { tableService } from '../services/table.service'
+import { TableList } from '../cmps/TableList'
 
 export const EventInfo = () => {
   const [tables, setTables] = useState([])
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
   const getTables = async () => {
     const tablesFromDB = await tableService.getTables()
@@ -20,11 +21,11 @@ export const EventInfo = () => {
     getTables()
   }, [])
 
-  const onRemoveLounger = (ev) => {}
+  // const onRemoveLounger = (ev) => {}
 
-  const onClearEvent = async (ev) => {
-    // TODO: A method to clear event details
-  }
+  // const onClearEvent = async (ev) => {
+  //   // TODO: A method to clear event details
+  // }
 
   return (
     <div className="event-info">
@@ -37,6 +38,7 @@ export const EventInfo = () => {
           </Link>
         </div>
       </header>
+      <TableList tables={tables} />
     </div>
   )
 }
