@@ -9,6 +9,10 @@
 @import 'setup/mixins';
 
 //CMPS
+@import 'cmps/table-list';
+@import 'cmps/table-preview';
+@import 'cmps/user-list';
+@import 'cmps/user-preview';
 
 //VIEWS
 @import 'views/Form';
