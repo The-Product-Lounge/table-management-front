@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="61.5" height="59.403" viewBox="0 0 61.5 59.403">
+  <g id="Empty_chair" data-name="Empty chair" transform="translate(-16.5 -202.299)">
+    <g id="Chair" transform="translate(24 204.5)" fill="#f0f0f0" stroke="#dedede" stroke-width="1">
+      <rect width="54" height="54" rx="12" stroke="none"/>
+      <rect x="0.5" y="0.5" width="53" height="53" rx="11.5" fill="none"/>
+    </g>
+    <path id="Backrest" d="M6,1C4.333,2.289,1,5.949,1,10.28m0,0c0,4.331,0,11.6,0,17.013M1,10.28V27.293m0,0V49.72C1,54.051,4.333,57.711,6,59" transform="translate(16 202)" fill="none" stroke="#e0e0e0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

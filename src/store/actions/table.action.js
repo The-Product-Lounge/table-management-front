@@ -23,6 +23,7 @@ export function getTable(tableId) {
           }
           catch (err) {
             console.log(`cannot get table:`, err)
+            dispatch({ type: 'SET_TABLE', table: null })
             throw err
           }
     }
