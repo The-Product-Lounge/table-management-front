@@ -12,7 +12,9 @@ export const UserPreview = ({ user }) => {
         <p>
           <span className="first-name">{user.firstName}</span> {user.lastName}
         </p>
-        {!isLocationTableView && <img src={tableMemberMenu} />}
+        {!isLocationTableView && (
+          <img src={tableMemberMenu} alt="Table member menu" />
+        )}
       </div>
     </section>
   )

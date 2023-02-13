@@ -2,13 +2,13 @@ import { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
 import infoCircle from '../assets/imgs/infocircle.svg'
-import userIcon from '../assets/imgs/user-icon.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { joinTable } from '../store/actions/table.action'
 import { useEffect } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
 import { Box, MenuItem, TextField } from '@mui/material'
+import { utilService } from '../services/util.service'
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -22,11 +22,9 @@ export const Form = () => {
   const navigate = useNavigate()
 
   const table = useSelector((state) => state.tableModule.table)
-  const defaultUserImg = useMemo(
-    () =>
-      'http://res.cloudinary.com/table-management/image/upload/v1675882239/owrihwaxfhqlg1oneqxr.png',
-    []
-  )
+  const defaultUserImg =
+    'http://res.cloudinary.com/table-management/image/upload/v1675882239/owrihwaxfhqlg1oneqxr.png'
+
   const imgUrl = useMemo(() => {
     return img ? URL.createObjectURL(img) : defaultUserImg
   }, [img])
@@ -58,7 +56,7 @@ export const Form = () => {
       user.imgUrl = img
         ? await cloudinaryService.uploadImg(img)
         : defaultUserImg
-      dispatch(joinTable(user))
+      dispatch(joinTable({ ...user, id: utilService.makeId() }))
     } catch (err) {
       console.error(err)
     }

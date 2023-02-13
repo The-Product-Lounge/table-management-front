@@ -8,10 +8,15 @@ export const tableService = {
   getById,
   getTableFromStorage,
   getTables,
+  clearTables,
 }
 
 async function getTables() {
   return httpService.get(BASE_URL)
+}
+
+async function clearTables() {
+  return httpService.delete(BASE_URL + 'delete-tables')
 }
 
 async function joinTable(user) {
@@ -31,6 +36,7 @@ async function getById(tableId) {
     return table
   } catch (err) {
     console.error(err)
+    _deleteTableFromStorage()
     throw err
   }
 }
@@ -41,4 +47,8 @@ function getTableFromStorage() {
 
 function _putTableInStorage(table) {
   sessionStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
+}
+
+function _deleteTableFromStorage() {
+  sessionStorage.removeItem(STORAGE_KEY_TABLE)
 }

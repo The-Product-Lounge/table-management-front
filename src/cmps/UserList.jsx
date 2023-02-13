@@ -4,7 +4,7 @@ export const UserList = ({ users }) => {
   return (
     <section className="user-list">
       {users.map((user) => {
-        return <UserPreview user={user} key={user.imgUrl} />
+        return <UserPreview user={user} key={user.id} />
       })}
     </section>
   )
