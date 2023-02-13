@@ -1,12 +1,6 @@
-import { useMemo, useRef, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import logo from '../assets/imgs/logo@2x.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { joinTable } from '../store/actions/table.action'
 import { useEffect } from 'react'
-import { cloudinaryService } from '../services/cloudinary.service'
-import { Box, MenuItem, TextField } from '@mui/material'
 
 export const EventInfo = () => {
   const dispatch = useDispatch()
