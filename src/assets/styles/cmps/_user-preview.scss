@@ -1,0 +1,22 @@
+.user-preview {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    padding: 0 4px;
+    gap: 16px;
+    font-size: 14px;
+    color: #28293d;
+
+    .first-name {
+      font-family: poppins-semi-bold;
+    }
+
+    .profile-img {
+      height: 40px;
+      width: 40px;
+      border: 1px solid #ebebeb;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }

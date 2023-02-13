@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { getTable } from "../store/actions/table.action"
 import emptyChair from "../assets/imgs/empty-chair.svg"
+import { TablePreview } from "../cmps/TablePreview"
 
 export const TableView = () => {
   const table = useSelector((state) => state.tableModule.table)
@@ -11,12 +12,12 @@ export const TableView = () => {
   const params = useParams()
 
   useEffect(() => {
-      dispatch(getTable(params.tableId))
+    dispatch(getTable(params.tableId))
   }, [])
 
   useEffect(() => {
-    if(!table) navigate('/')
-}, [table])
+    if (!table) navigate("/")
+  }, [table])
 
   if (!table) return
   let tableParticipants = 4
@@ -34,30 +35,7 @@ export const TableView = () => {
           </div>
         ))}
       </div>
-      <div className='at-your-table'>
-        <div className='title'>
-          <p>Loungers At Your Table</p>
-          <p>4/{table.users.length}</p>
-        </div>
-        <div className='users'>
-          {table.users.map((user) => (
-            <div className='user-preview'>
-              <img
-                src={user.imgUrl}
-                alt=''
-                className='profile-img'
-                loading='lazy'
-              />
-              <div className='user-details'>
-                <p>
-                  <span className='first-name'>{user.firstName}</span>{" "}
-                  {user.lastName}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <TablePreview table={table} />
     </div>
   )
 }
