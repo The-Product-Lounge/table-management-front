@@ -10,7 +10,7 @@ export const TablePreview = ({ table }) => {
 
   const onRemoveLounger = (userId) => {
     const tableCopy = structuredClone(table)
-    tableCopy.users = tableCopy.users.filter((user) => user.id != userId)
+    tableCopy.users = tableCopy.users.filter((user) => user.id !== userId)
     dispatch(updateTables(tableCopy))
   }
 
