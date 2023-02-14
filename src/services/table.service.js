@@ -9,6 +9,7 @@ export const tableService = {
   getTableFromStorage,
   getTables,
   clearTables,
+  updateTable,
 }
 
 async function getTables() {
@@ -27,6 +28,12 @@ async function joinTable(user) {
   } catch (err) {
     console.error(err)
     throw err
+  }
+}
+
+async function updateTable(table) {
+  if (table._id) {
+    return httpService.put(BASE_URL + table._id, table)
   }
 }
 

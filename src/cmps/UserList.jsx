@@ -1,10 +1,16 @@
 import { UserPreview } from './UserPreview'
 
-export const UserList = ({ users }) => {
+export const UserList = ({ users, onRemoveLounger }) => {
   return (
     <section className="user-list">
       {users.map((user) => {
-        return <UserPreview user={user} key={user.id} />
+        return (
+          <UserPreview
+            onRemoveLounger={onRemoveLounger}
+            user={user}
+            key={user.id}
+          />
+        )
       })}
     </section>
   )

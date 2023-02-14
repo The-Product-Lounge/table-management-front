@@ -18,9 +18,15 @@
       font-family: poppins-semi-bold;
     }
 
-    img {
+    .member-menu {
       width: 24px;
       height: 24px;
+
+      &:hover {
+        background: #f3f3f3;
+        border-radius: 12px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -30,5 +36,31 @@
     border: 1px solid #ebebeb;
     border-radius: 8px;
     object-fit: cover;
+  }
+}
+
+.react-tooltip {
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  .tooltip-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .remove-lounger {
+      height: 15px;
+      width: 15px;
+      margin-right: 9px;
+    }
+
+    span {
+      font-size: 14px;
+    }
   }
 }

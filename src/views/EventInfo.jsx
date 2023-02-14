@@ -3,32 +3,23 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import clearEvent from '../assets/imgs/clear-event.svg'
 import closePage from '../assets/imgs/close-event-info.svg'
-import { loadTables } from '../store/actions/table.action'
+import { clearTables, getTables } from '../store/actions/table.action'
 import { tableService } from '../services/table.service'
 import { TableList } from '../cmps/TableList'
 import { ClearModal } from '../cmps/ClearModal'
 
 export const EventInfo = () => {
-  const [tables, setTables] = useState([])
+  const tables = useSelector((state) => state.tableModule.tables)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
-  const getTables = async () => {
-    const tablesFromDB = await tableService.getTables()
-    setTables(tablesFromDB)
-  }
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getTables()
+    dispatch(getTables())
   }, [])
-
-  // const onRemoveLounger = (ev) => {}
 
   const onClearEvent = async () => {
     try {
-      await tableService.clearTables()
-      setTables([])
+      dispatch(clearTables())
     } catch (err) {
       console.log('Cannot empty tables', err)
     } finally {

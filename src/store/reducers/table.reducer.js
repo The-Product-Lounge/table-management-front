@@ -6,9 +6,21 @@ const initialState = {
 }
 
 export function tableReducer(state = initialState, action) {
+  let tables
   switch (action.type) {
     case 'SET_TABLE':
       state = { ...state, table: action.table }
+      break
+
+    case 'SET_TABLES':
+      state = { ...state, tables: action.tables }
+      break
+
+    case 'UPDATE_TABLES':
+      tables = state.tables.map((table) =>
+        table._id === action.table._id ? action.table : table
+      )
+      state = { ...state, tables }
       break
 
     default:
