@@ -10,6 +10,7 @@ export const tableService = {
   getTables,
   clearTables,
   updateTable,
+  removeTable
 }
 
 async function getTables() {
@@ -36,13 +37,16 @@ async function updateTable(table) {
     return httpService.put(BASE_URL + table._id, table)
   }
 }
+async function removeTable(tableId) {
+  return httpService.delete(BASE_URL + tableId)
+}
 
 async function getById(tableId) {
   try {
     const table = await httpService.get(BASE_URL + tableId)
     return table
   } catch (err) {
-    console.error(err)
+    console.log(err)
     _deleteTableFromStorage()
     throw err
   }
