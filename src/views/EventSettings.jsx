@@ -7,7 +7,7 @@ import { clearTables, getTables } from '../store/actions/table.action'
 import { TableList } from '../cmps/TableList'
 import { ClearModal } from '../cmps/ClearModal'
 
-export const EventInfo = () => {
+export const EventSettings = () => {
   const tables = useSelector((state) => state.tableModule.tables)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ export const EventInfo = () => {
   }
 
   return (
-    <div className="event-info">
+    <div className="event-settings">
       <header>
         <div className="header-container">
           <img
@@ -40,7 +40,7 @@ export const EventInfo = () => {
             className="clear-event"
             alt="clear event"
           />
-          <h1>Event Info</h1>
+          <h1>Event Settings</h1>
           <Link to="/">
             <img src={closePage} className="close-page" alt="close page" />
           </Link>

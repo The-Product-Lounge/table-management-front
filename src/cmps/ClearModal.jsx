@@ -7,11 +7,11 @@ export const ClearModal = ({ onToggleModal, onClearEvent }) => {
       >
         <h2>Are you sure?</h2>
         <p>Are you sure you want to clear the event details?</p>
-        <button onClick={onToggleModal} className="white">
-          No, Cancel
-        </button>
         <button onClick={onClearEvent} className="red">
           Yes, Clear
+        </button>
+        <button onClick={onToggleModal} className="white">
+          No, Cancel
         </button>
       </section>
     </div>

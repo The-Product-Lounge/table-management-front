@@ -68,6 +68,10 @@
           border: 1px solid #e0e0e0;
           margin-bottom: 4px;
 
+          &:hover {
+            cursor: pointer;
+          }
+
           img {
             border-radius: 50%;
             height: 100%;
@@ -113,16 +117,17 @@
       }
     }
 
-    .event-info-link {
+    .event-settings-link {
       display: flex;
-      gap: 11.25px;
+      gap: 6px;
       align-items: center;
       justify-content: center;
       color: #555770;
       font-family: poppins-medium;
+      font-size: 14px;
       img {
-        height: 19.5px;
-        width: 19.5px;
+        height: 24px;
+        width: 24px;
       }
     }
   }
