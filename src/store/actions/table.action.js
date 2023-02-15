@@ -66,3 +66,14 @@ export function clearTables() {
     }
   }
 }
+
+export function removeTable(tableId) {
+  return async (dispatch) => {
+    try {
+      await tableService.removeTable(tableId)
+      dispatch({ type: 'REMOVE_TABLE', tableId })
+    } catch (err) {
+      throw err
+    }
+  }
+}

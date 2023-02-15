@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { updateTables } from '../store/actions/table.action'
+import { removeTable, updateTables } from '../store/actions/table.action'
 import { UserList } from './UserList'
 
 export const TablePreview = ({ table }) => {
@@ -10,9 +10,9 @@ export const TablePreview = ({ table }) => {
 
   const onRemoveLounger = (userId) => {
     const tableCopy = structuredClone(table)
-    console.log(table)
     tableCopy.users = tableCopy.users.filter((user) => user.id !== userId)
-    dispatch(updateTables(tableCopy))
+    if(!tableCopy.users.length) dispatch(removeTable(tableCopy._id))
+    else dispatch(updateTables(tableCopy))
   }
 
   return (
