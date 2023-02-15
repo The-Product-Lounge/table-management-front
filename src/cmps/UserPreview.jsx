@@ -17,14 +17,14 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
         </p>
         {!isLocationTableView && (
           <img
-            id={`tooptip-${user.id}`}
+            id={`tooltip-${user.id}`}
             className="member-menu"
             src={tableMemberMenu}
             alt="Table member menu"
           />
         )}
         <Tooltip
-          anchorId={`tooptip-${user.id}`}
+          anchorId={`tooltip-${user.id}`}
           place="left"
           events={['click']}
           style={{

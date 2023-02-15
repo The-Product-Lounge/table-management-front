@@ -3,12 +3,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
 import eventSettings from '../assets/imgs/event-settings.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { joinTable } from '../store/actions/table.action'
 import { useEffect } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
 import { Box, MenuItem, TextField } from '@mui/material'
 import { utilService } from '../services/util.service'
+import { PasswordModal } from '../cmps/PasswordModal'
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -16,6 +17,7 @@ export const Form = () => {
     lastName: '',
     portfolioStage: '',
   })
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [img, setImg] = useState(null)
   const inputImageRef = useRef()
   const dispatch = useDispatch()
@@ -60,6 +62,10 @@ export const Form = () => {
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const onToggleModal = () => {
+    setIsModalOpen((prevState) => !prevState)
   }
 
   const useStyles = makeStyles({
@@ -195,13 +201,14 @@ export const Form = () => {
             </button>
           </form>
         </div>
-        <Link to="/event-settings">
-          <div className="event-settings-link">
-            <img src={eventSettings} alt="" />
-            <p>Event Settings</p>
-          </div>
-        </Link>
+        <div className="event-settings-link" onClick={onToggleModal}>
+          <img src={eventSettings} alt="" />
+          <p>Event Settings</p>
+        </div>
       </div>
+      {isModalOpen && (
+        <PasswordModal classes={classes} onToggleModal={onToggleModal} />
+      )}
     </div>
   )
 }
