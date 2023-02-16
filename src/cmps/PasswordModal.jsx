@@ -1,10 +1,10 @@
-import { VisibilityOff } from '@mui/icons-material'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import lock from '../assets/imgs/lock.svg'
 import openEye from '../assets/imgs/open-eye.svg'
 import redError from '../assets/imgs/red-error.svg'
+import closedEye from '../assets/imgs/closed-eye.svg'
 
 export const PasswordModal = ({ onToggleModal, classes }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -31,6 +31,10 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
     } else {
       setWrongPassword(true)
     }
+  }
+
+  const isButtonDisabled = () => {
+    return !passwordInput
   }
 
   return (
@@ -75,9 +79,9 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
                     onMouseDown={handleMouseDownPassword}
                   >
                     {showPassword ? (
-                      <img src={openEye} alt="open eye" />
+                      <img src={closedEye} alt="closed eye" />
                     ) : (
-                      <VisibilityOff />
+                      <img src={openEye} alt="open eye" />
                     )}
                   </IconButton>
                 </InputAdornment>
@@ -94,7 +98,13 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
             }}
             fullWidth={true}
           />
-          <button className="modal-btn black">Open sesami!</button>
+          <button
+            disabled={isButtonDisabled()}
+            type="submit"
+            className="modal-btn black"
+          >
+            Open sesami!
+          </button>
         </form>
         <button onClick={onToggleModal} className="modal-btn white">
           Cancel

@@ -25,11 +25,8 @@ export function tableReducer(state = initialState, action) {
 
     case 'REMOVE_TABLE':
       tables = state.tables.filter((table) => {
-        console.log(table._id, action.tableId)
         return table._id !== action.tableId
-      }
-      )
-      console.log(tables)
+      })
       state = { ...state, tables }
       break
 
