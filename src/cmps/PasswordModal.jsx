@@ -1,5 +1,5 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import lock from '../assets/imgs/lock.svg'
 import openEye from '../assets/imgs/open-eye.svg'
@@ -11,6 +11,7 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
   const [passwordInput, setPasswordInput] = useState('')
   const [wrongPassword, setWrongPassword] = useState(false)
   const navigate = useNavigate()
+  const inputRef = useRef(null)
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
@@ -29,7 +30,9 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
     if (passwordInput === process.env.REACT_APP_ADMIN_PASSWORD) {
       navigate('/event-settings')
     } else {
+      console.log('aaa')
       setWrongPassword(true)
+      inputRef.current.blur()
     }
   }
 
@@ -64,6 +67,7 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
             variant="outlined"
             value={passwordInput}
             onChange={handleChange}
+            inputRef={inputRef}
             InputProps={{
               style: {
                 height: '48px',
