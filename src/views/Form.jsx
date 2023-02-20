@@ -10,6 +10,7 @@ import { cloudinaryService } from '../services/cloudinary.service'
 import { Box, MenuItem, TextField } from '@mui/material'
 import { utilService } from '../services/util.service'
 import { PasswordModal } from '../cmps/PasswordModal'
+import { setUser } from '../store/actions/user.action'
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -53,12 +54,14 @@ export const Form = () => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault()
-    const user = { ...userDetails }
+    const user = { ...userDetails, id: utilService.makeId() }
     try {
       user.imgUrl = img
         ? await cloudinaryService.uploadImg(img)
         : defaultUserImg
-      dispatch(joinTable({ ...user, id: utilService.makeId() }))
+
+      dispatch(joinTable({ ...user }))
+      dispatch(setUser(user))
     } catch (err) {
       console.error(err)
     }

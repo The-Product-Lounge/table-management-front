@@ -4,9 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getTable } from '../store/actions/table.action'
 import emptyChair from '../assets/imgs/empty-chair.svg'
 import { TablePreview } from '../cmps/TablePreview'
+import { tableService } from '../services/table.service'
 
 export const TableView = () => {
   const table = useSelector((state) => state.tableModule.table)
+  const user = useSelector((state) => state.userModule.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams()
@@ -16,8 +18,17 @@ export const TableView = () => {
   }, [dispatch, params.tableId])
 
   useEffect(() => {
-    if (!table) navigate('/')
-  }, [table, navigate])
+    if (!table) {
+      navigate('/')
+    } else if (
+      !user ||
+      !table?.users?.find((userInTable) => userInTable.id === user.id)
+    ) {
+      tableService.deleteTableFromStorage()
+      dispatch({ type: 'CLEAR_TABLE', action: null })
+      // navigate('/')
+    }
+  }, [table, navigate, dispatch, user])
 
   if (!table) return
   let tableParticipants = 4

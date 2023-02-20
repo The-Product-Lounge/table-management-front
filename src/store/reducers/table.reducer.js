@@ -2,7 +2,7 @@ import { tableService } from '../../services/table.service'
 
 const initialState = {
   tables: [],
-  table: tableService.getTableFromStorage(),
+  table: null,
 }
 
 export function tableReducer(state = initialState, action) {
@@ -14,6 +14,10 @@ export function tableReducer(state = initialState, action) {
 
     case 'SET_TABLES':
       state = { ...state, tables: action.tables }
+      break
+
+    case 'CLEAR_TABLE':
+      state = { ...state, table: null }
       break
 
     case 'UPDATE_TABLES':
