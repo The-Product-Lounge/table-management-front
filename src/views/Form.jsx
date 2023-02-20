@@ -33,6 +33,7 @@ export const Form = () => {
   }, [img])
 
   useEffect(() => {
+    console.log(table);
     if (table) navigate(`table/${table._id}`)
   }, [table, navigate])
 

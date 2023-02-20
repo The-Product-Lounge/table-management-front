@@ -36,6 +36,7 @@ export function getTable(tableId) {
       dispatch({ type: 'SET_TABLE', table: { ...table } })
     } catch (err) {
       console.log(`cannot get table:`, err)
+      tableService.deleteTableFromStorage()
       dispatch({ type: 'SET_TABLE', table: null })
       throw err
     }

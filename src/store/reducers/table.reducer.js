@@ -16,10 +16,6 @@ export function tableReducer(state = initialState, action) {
       state = { ...state, tables: action.tables }
       break
 
-    case 'CLEAR_TABLE':
-      state = { ...state, table: null }
-      break
-
     case 'UPDATE_TABLES':
       tables = state.tables.map((table) =>
         table._id === action.table._id ? action.table : table

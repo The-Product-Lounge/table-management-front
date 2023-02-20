@@ -46,10 +46,9 @@ async function removeTable(tableId) {
 async function getById(tableId) {
   try {
     const table = await httpService.get(BASE_URL + tableId)
+    if(!table) throw new Error
     return table
   } catch (err) {
-    console.log(err)
-    deleteTableFromStorage()
     throw err
   }
 }
