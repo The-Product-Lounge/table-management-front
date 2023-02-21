@@ -26,7 +26,7 @@ export const Form = () => {
 
   const table = useSelector((state) => state.tableModule.table)
   const defaultUserImg =
-    'http://res.cloudinary.com/table-management/image/upload/v1675882239/owrihwaxfhqlg1oneqxr.png'
+    'https://res.cloudinary.com/table-management/image/upload/v1676989866/fk2uawnjgmj3tww02f4z.png'
 
   const imgUrl = useMemo(() => {
     return img ? URL.createObjectURL(img) : defaultUserImg

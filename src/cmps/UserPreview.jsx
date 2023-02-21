@@ -10,7 +10,9 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
 
   return (
     <section className="user-preview">
-      <img src={user.imgUrl} alt="" className="profile-img" loading="lazy" />
+      <div className="profile-img-container">
+        <img src={user.imgUrl} alt="" className="profile-img" loading="lazy" />
+      </div>
       <div className="user-details">
         <p>
           <span className="first-name">{user.firstName}</span> {user.lastName}
