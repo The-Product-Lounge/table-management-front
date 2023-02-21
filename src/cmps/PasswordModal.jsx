@@ -30,7 +30,6 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
     if (passwordInput === process.env.REACT_APP_ADMIN_PASSWORD) {
       navigate('/event-settings')
     } else {
-      console.log('aaa')
       setWrongPassword(true)
       inputRef.current.blur()
     }
