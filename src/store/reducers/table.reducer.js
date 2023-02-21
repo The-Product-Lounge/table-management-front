@@ -1,5 +1,3 @@
-import { tableService } from '../../services/table.service'
-
 const initialState = {
   tables: [],
   table: null,
