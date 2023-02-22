@@ -85,8 +85,16 @@ export const Form = () => {
         border: '1px solid #EBEBEB',
         height: '53px',
       },
-
+      '& svg.MuiSvgIcon-root': {
+        top: 'calc(50% - 0.6em)',
+      },
+      '& div.MuiInputBase-root': {
+        fontFamily: 'poppins-regular',
+        color: '#28293D',
+        fontSize: '14px',
+      },
       '& .MuiInputLabel-root': {
+        lineHeight: 'unset',
         fontSize: 14,
         color: '#9899A6',
         fontFamily: 'poppins-regular',
