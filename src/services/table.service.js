@@ -54,13 +54,13 @@ async function getById(tableId) {
 }
 
 function getTableFromStorage() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_TABLE)) || null
+  return JSON.parse(localStorage.getItem(STORAGE_KEY_TABLE)) || null
 }
 
 function putTableInStorage(table) {
-  sessionStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
+  localStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
 }
 
 function deleteTableFromStorage() {
-  sessionStorage.removeItem(STORAGE_KEY_TABLE)
+  localStorage.removeItem(STORAGE_KEY_TABLE)
 }
