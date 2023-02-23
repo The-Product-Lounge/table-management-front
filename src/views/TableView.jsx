@@ -5,6 +5,7 @@ import { getTable } from '../store/actions/table.action'
 import emptyChair from '../assets/imgs/empty-chair.svg'
 import { TablePreview } from '../cmps/TablePreview'
 import { tableService } from '../services/table.service'
+import { logoutUser } from '../store/actions/user.action'
 
 export const TableView = () => {
   const table = useSelector((state) => state.tableModule.table)
@@ -18,6 +19,7 @@ export const TableView = () => {
       try {
         await dispatch(getTable(params.tableId))
       } catch (err) {
+        dispatch(logoutUser())
         navigate('/')
       }
     })()
@@ -29,7 +31,7 @@ export const TableView = () => {
       (!user ||
         !table?.users?.find((userInTable) => userInTable.id === user.id))
     ) {
-      tableService.deleteTableFromStorage()
+      tableService.removeTableFromStorage()
       dispatch({ type: 'SET_TABLE', table: null })
       navigate('/')
     }
