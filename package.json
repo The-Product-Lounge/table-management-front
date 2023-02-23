@@ -19,6 +19,7 @@
     "react-tooltip": "^5.7.5",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "rive-react": "^3.0.36",
     "sass": "^1.57.1",
     "web-vitals": "^2.1.4"
   },

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { React, useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import logo from '../assets/imgs/logo@2x.png'
 import eventSettings from '../assets/imgs/event-settings.svg'
@@ -11,6 +11,7 @@ import { Box, MenuItem, TextField, Typography } from '@mui/material'
 import { utilService } from '../services/util.service'
 import { PasswordModal } from '../cmps/PasswordModal'
 import { setUser } from '../store/actions/user.action'
+import { Loader } from '../cmps/Loader'
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -18,6 +19,7 @@ export const Form = () => {
     lastName: '',
     portfolioStage: '',
   })
+  const [isLoading, setIsLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [img, setImg] = useState(null)
   const inputImageRef = useRef()
@@ -54,6 +56,7 @@ export const Form = () => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault()
+    setIsLoading(true)
     const user = { ...userDetails, id: utilService.makeId() }
     try {
       user.imgUrl = img
@@ -131,126 +134,133 @@ export const Form = () => {
 
   const classes = useStyles()
   return (
-    <div className="form">
-      <div className="main-content">
-        <section className="welcome">
-          <div className="logo-container">
-            <img src={logo} alt="logo" />
-          </div>
-          <h1>
-            <span>Welcome</span>
-            <br />
-            To The Event!
-          </h1>
-        </section>
+    <section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="form">
+          <div className="main-content">
+            <section className="welcome">
+              <div className="logo-container">
+                <img src={logo} alt="logo" />
+              </div>
+              <h1>
+                <span>Welcome</span>
+                <br />
+                To The Event!
+              </h1>
+            </section>
 
-        <div className="form-container">
-          <form onSubmit={onSubmit}>
-            <input
-              style={{ display: 'none' }}
-              type="file"
-              id="profilePicture"
-              name="profilePicture"
-              ref={inputImageRef}
-              onChange={onUploadImg}
-            />
-            <div
-              className="profile-image"
-              onClick={() => inputImageRef.current.click()}
-            >
-              <img src={imgUrl} alt="" />
-              <div className="pencil"></div>
-            </div>
-            <TextField
-              className={classes.root}
-              value={userDetails.firstName}
-              name="firstName"
-              onChange={handleChange}
-              label="First Name"
-              variant="outlined"
-              inputProps={{
-                style: {
-                  height: '48px',
-                  padding: '0px 16px',
-                  color: '#28293D',
-                  fontFamily: 'poppins-regular',
-                  fontSize: '14px',
-                },
-              }}
-              fullWidth={true}
-            />
-            <TextField
-              className={classes.root}
-              value={userDetails.lastName}
-              name="lastName"
-              onChange={handleChange}
-              label="Last Name"
-              variant="outlined"
-              inputProps={{
-                style: {
-                  height: '48px',
-                  padding: '0px 16px',
-                  color: '#28293D',
-                  fontFamily: 'poppins-regular',
-                  fontSize: '14px',
-                },
-              }}
-              fullWidth={true}
-            />
-            <Box width="100%" className={classes.customBox}>
-              <TextField
-                className={classes.root}
-                select
-                value={userDetails.portfolioStage}
-                onChange={handleChange}
-                name="portfolioStage"
-                label="Portfolio stage"
-                placeholder="Portfolio stage"
-                fullWidth={true}
-              >
-                <MenuItem value="" disabled>
-                  Portfolio stage
-                </MenuItem>
-                {menuItems.map((item) => (
-                  <MenuItem
-                    key={item.value}
-                    value={item.value}
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      'p.MuiTypography-body2': {
-                        display:
-                          userDetails.portfolioStage === item.value && 'block',
-                      },
-                    }}
+            <div className="form-container">
+              <form onSubmit={onSubmit}>
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  id="profilePicture"
+                  name="profilePicture"
+                  ref={inputImageRef}
+                  onChange={onUploadImg}
+                />
+                <div
+                  className="profile-image"
+                  onClick={() => inputImageRef.current.click()}
+                >
+                  <img src={imgUrl} alt="" />
+                  <div className="pencil"></div>
+                </div>
+                <TextField
+                  className={classes.root}
+                  value={userDetails.firstName}
+                  name="firstName"
+                  onChange={handleChange}
+                  label="First Name"
+                  variant="outlined"
+                  inputProps={{
+                    style: {
+                      height: '48px',
+                      padding: '0px 16px',
+                      color: '#28293D',
+                      fontFamily: 'poppins-regular',
+                      fontSize: '14px',
+                    },
+                  }}
+                  fullWidth={true}
+                />
+                <TextField
+                  className={classes.root}
+                  value={userDetails.lastName}
+                  name="lastName"
+                  onChange={handleChange}
+                  label="Last Name"
+                  variant="outlined"
+                  inputProps={{
+                    style: {
+                      height: '48px',
+                      padding: '0px 16px',
+                      color: '#28293D',
+                      fontFamily: 'poppins-regular',
+                      fontSize: '14px',
+                    },
+                  }}
+                  fullWidth={true}
+                />
+                <Box width="100%" className={classes.customBox}>
+                  <TextField
+                    className={classes.root}
+                    select
+                    value={userDetails.portfolioStage}
+                    onChange={handleChange}
+                    name="portfolioStage"
+                    label="Portfolio stage"
+                    placeholder="Portfolio stage"
+                    fullWidth={true}
                   >
-                    {item.value}
-                    <Typography variant="body2" color="textSecondary">
-                      {item.text}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
+                    <MenuItem value="" disabled>
+                      Portfolio stage
+                    </MenuItem>
+                    {menuItems.map((item) => (
+                      <MenuItem
+                        key={item.value}
+                        value={item.value}
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          'p.MuiTypography-body2': {
+                            display:
+                              userDetails.portfolioStage === item.value &&
+                              'block',
+                          },
+                        }}
+                      >
+                        {item.value}
+                        <Typography variant="body2" color="textSecondary">
+                          {item.text}
+                        </Typography>
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Box>
 
-            <button
-              disabled={isButtonDisabled()}
-              type="submit"
-              className="submit-btn"
-            >
-              Lets go!
-            </button>
-          </form>
+                <button
+                  disabled={isButtonDisabled()}
+                  type="submit"
+                  className="submit-btn"
+                >
+                  Lets go!
+                </button>
+              </form>
+            </div>
+            <div className="event-settings-link" onClick={onToggleModal}>
+              <img src={eventSettings} alt="" />
+              <p>Event Settings</p>
+            </div>
+          </div>
+          {isModalOpen && (
+            <PasswordModal classes={classes} onToggleModal={onToggleModal} />
+          )}
         </div>
-        <div className="event-settings-link" onClick={onToggleModal}>
-          <img src={eventSettings} alt="" />
-          <p>Event Settings</p>
-        </div>
-      </div>
-      {isModalOpen && (
-        <PasswordModal classes={classes} onToggleModal={onToggleModal} />
       )}
-    </div>
+    </section>
   )
 }

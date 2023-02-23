@@ -6,6 +6,7 @@
   align-items: center;
   background: #fafafa url('../../imgs/bgimage.svg') no-repeat fixed center;
 
+  // The description text will disappear when portfolio stage is selected
   p.MuiTypography-body2 {
     display: none;
   }
