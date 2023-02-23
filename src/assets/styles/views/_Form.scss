@@ -6,6 +6,10 @@
   align-items: center;
   background: #fafafa url('../../imgs/bgimage.svg') no-repeat fixed center;
 
+  p.MuiTypography-body2 {
+    display: none;
+  }
+
   .main-content {
     width: 345px;
     position: relative;

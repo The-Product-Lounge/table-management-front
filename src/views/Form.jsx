@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { joinTable } from '../store/actions/table.action'
 import { useEffect } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
-import { Box, MenuItem, TextField } from '@mui/material'
+import { Box, MenuItem, TextField, Typography } from '@mui/material'
 import { utilService } from '../services/util.service'
 import { PasswordModal } from '../cmps/PasswordModal'
 import { setUser } from '../store/actions/user.action'
@@ -70,6 +70,25 @@ export const Form = () => {
   const onToggleModal = () => {
     setIsModalOpen((prevState) => !prevState)
   }
+
+  const menuItems = [
+    {
+      value: 'Brainstorming',
+      text: 'Early idea discussions and exploration',
+    },
+    {
+      value: 'Planning & Research',
+      text: 'Defining goals and user research',
+    },
+    {
+      value: 'Design & Composition',
+      text: 'Organizing and structuring of the design',
+    },
+    {
+      value: 'Refinement',
+      text: 'Polishing and perfecting the final project',
+    },
+  ]
 
   const useStyles = makeStyles({
     customBox: {
@@ -192,14 +211,26 @@ export const Form = () => {
                 <MenuItem value="" disabled>
                   Portfolio stage
                 </MenuItem>
-                <MenuItem value="Brainstorming">Brainstorming</MenuItem>
-                <MenuItem value="Planning & Research">
-                  Planning & Research
-                </MenuItem>
-                <MenuItem value="Design & Composition">
-                  Design & Composition
-                </MenuItem>
-                <MenuItem value="Refinement">Refinement</MenuItem>
+                {menuItems.map((item) => (
+                  <MenuItem
+                    key={item.value}
+                    value={item.value}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start',
+                      'p.MuiTypography-body2': {
+                        display:
+                          userDetails.portfolioStage === item.value && 'block',
+                      },
+                    }}
+                  >
+                    {item.value}
+                    <Typography variant="body2" color="textSecondary">
+                      {item.text}
+                    </Typography>
+                  </MenuItem>
+                ))}
               </TextField>
             </Box>
 
