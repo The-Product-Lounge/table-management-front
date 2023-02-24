@@ -29,7 +29,7 @@ export const TableView = () => {
       (!user ||
         !table?.users?.find((userInTable) => userInTable.id === user.id))
     ) {
-      tableService.deleteTableFromStorage()
+      tableService.removeTableFromStorage()
       dispatch({ type: 'SET_TABLE', table: null })
       navigate('/')
     }

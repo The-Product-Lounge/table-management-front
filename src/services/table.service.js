@@ -12,7 +12,7 @@ export const tableService = {
   updateTable,
   removeTable,
   putTableInStorage,
-  deleteTableFromStorage,
+  removeTableFromStorage,
 }
 
 async function getTables() {
@@ -61,6 +61,6 @@ function putTableInStorage(table) {
   localStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
 }
 
-function deleteTableFromStorage() {
+function removeTableFromStorage() {
   localStorage.removeItem(STORAGE_KEY_TABLE)
 }

@@ -1,15 +1,14 @@
+import { tableService } from "../../services/table.service"
+
 const initialState = {
   tables: [],
-  table: null,
+  table: tableService.getTableFromStorage(),
 }
 
 export function tableReducer(state = initialState, action) {
   let tables
   switch (action.type) {
-    case 'SET_TABLE':
-      state = { ...state, table: action.table }
-      break
-
+    //TABLES
     case 'SET_TABLES':
       state = { ...state, tables: action.tables }
       break
@@ -26,6 +25,11 @@ export function tableReducer(state = initialState, action) {
         return table._id !== action.tableId
       })
       state = { ...state, tables }
+      break
+
+    //TABLE
+    case 'SET_TABLE':
+      state = { ...state, table: action.table }
       break
 
     default:

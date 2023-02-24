@@ -14,8 +14,18 @@
     justify-content: space-between;
     width: 100%;
 
-    .first-name {
-      font-family: poppins-semi-bold;
+    .user-name-and-you {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      .first-name {
+        font-family: poppins-semi-bold;
+      }
+
+      .you {
+        font-size: 12px;
+        color: #777781;
+      }
     }
 
     .member-menu {
