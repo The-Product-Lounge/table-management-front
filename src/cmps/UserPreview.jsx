@@ -20,7 +20,7 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
           <p>
             <span className='first-name'>{user.firstName}</span> {user.lastName}
           </p>
-          {(userFromState.id === user.id && isLocationTableView) && <p className="you">You</p>}
+          {( userFromState?.id === user.id && isLocationTableView) && <p className="you">You</p>}
         </div>
         {!isLocationTableView && (
           <img
