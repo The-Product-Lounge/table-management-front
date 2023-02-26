@@ -27,7 +27,7 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
 
   const onCheckPassword = (event) => {
     event.preventDefault()
-    if (passwordInput === 'TPL!1995') {
+    if (passwordInput === process.env.REACT_APP_ADMIN_PASSWORD) {
       navigate('/event-settings')
     } else {
       setWrongPassword(true)
