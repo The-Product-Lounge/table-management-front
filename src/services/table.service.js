@@ -20,7 +20,7 @@ async function getTables() {
 }
 
 async function clearTables() {
-  return httpService.delete(BASE_URL + 'delete-tables')
+  return httpService.delete(BASE_URL)
 }
 
 async function joinTable(user) {
