@@ -6,14 +6,16 @@ import closePage from '../assets/imgs/close-event-info.svg'
 import { clearTables, getTables } from '../store/actions/table.action'
 import { TableList } from '../cmps/TableList'
 import { ClearModal } from '../cmps/ClearModal'
+import { Loader } from '../cmps/Loader'
 
 export const EventSettings = () => {
   const tables = useSelector((state) => state.tableModule.tables)
+  const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTables())
+    dispatch(getTables()).then(() => setIsLoading(false))
   }, [dispatch])
 
   const onClearEvent = async () => {
@@ -28,6 +30,10 @@ export const EventSettings = () => {
 
   const onToggleModal = () => {
     setIsModalOpen((prevState) => !prevState)
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (

@@ -1,12 +1,13 @@
 import Axios from 'axios'
 
 const BASE_URL =
-  process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3030/'
+  process.env.NODE_ENV === 'production'
+    ? 'https://myseat-8221.onrender.com/'
+    : 'http://localhost:3030/'
 
 var axios = Axios.create({
   withCredentials: true,
 })
-
 export const httpService = {
   get(endpoint, data) {
     return ajax(endpoint, 'GET', data)

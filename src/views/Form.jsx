@@ -215,9 +215,6 @@ export const Form = () => {
                     placeholder="Portfolio stage"
                     fullWidth={true}
                   >
-                    <MenuItem value="" disabled>
-                      Portfolio stage
-                    </MenuItem>
                     {menuItems.map((item) => (
                       <MenuItem
                         key={item.value}
