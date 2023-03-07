@@ -2,8 +2,8 @@ import Axios from 'axios'
 
 const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://myseat-8221.onrender.com/'
-    : 'http://localhost:3030/'
+    ? 'https://myseat-8221.onrender.com/api/'
+    : 'http://localhost:3030/api/'
 
 var axios = Axios.create({
   withCredentials: true,
