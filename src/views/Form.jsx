@@ -28,8 +28,6 @@ export const Form = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const tableId = tableService.getTableIdFromStorage()
-
   const defaultUserImg =
     "https://res.cloudinary.com/table-management/image/upload/v1676989866/fk2uawnjgmj3tww02f4z.png"
 
@@ -38,6 +36,7 @@ export const Form = () => {
   }, [img])
 
   useEffect(() => {
+    const tableId = tableService.getTableIdFromStorage()
     if (tableId) navigate(`table/${tableId}`)
   }, [])
 
@@ -60,6 +59,8 @@ export const Form = () => {
   const onSubmit = async (ev) => {
     ev.preventDefault()
     setIsLoading(true)
+
+    //set up the user object and call the joinTable api
     const user = { ...userDetails, id: utilService.makeId() }
     try {
       user.imgUrl = img
@@ -67,6 +68,8 @@ export const Form = () => {
         : defaultUserImg
 
       await tableService.joinTable(user)
+
+      //sign up for the uuid ref
       const uuidRef = ref(database, `/uuids/${user.id}`)
       onValue(uuidRef, (snapshot) => {
         const tableId = snapshot.val()
@@ -75,8 +78,11 @@ export const Form = () => {
           navigate(`table/${tableId}`)
         }
       })
+
+      //dispatch the user
       dispatch(setUser(user))
     } catch (err) {
+      setIsLoading(false)
       console.error(err)
     }
   }

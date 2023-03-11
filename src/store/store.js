@@ -5,11 +5,9 @@ import {
   compose,
 } from 'redux'
 import thunk from 'redux-thunk'
-import { tableReducer } from './reducers/table.reducer'
 import { userReducer } from './reducers/user.reducer'
 
 const rootReducer = combineReducers({
-  tableModule: tableReducer,
   userModule: userReducer,
 })
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import clearEvent from "../assets/imgs/clear-event.svg"
 import closePage from "../assets/imgs/close-event-info.svg"
-import { clearTables, getTables } from "../store/actions/table.action"
 import { TableList } from "../cmps/TableList"
 import { ClearModal } from "../cmps/ClearModal"
 import { Loader } from "../cmps/Loader"
@@ -15,7 +14,6 @@ export const EventSettings = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [tables, setTables] = useState(null)
-  const dispatch = useDispatch()
 
   useEffect(() => {
     const tablesRef = ref(database, `/tables`)

@@ -1,33 +1,33 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { getTable } from "../store/actions/table.action"
 import emptyChair from "../assets/imgs/empty-chair.svg"
 import { TablePreview } from "../cmps/TablePreview"
 import { tableService } from "../services/table.service"
-import { onValue, ref } from "firebase/database"
+import { off, onValue, ref } from "firebase/database"
 import { database } from "../firebase-setup/firebase"
 
 export const TableView = () => {
   const [table, setTable] = useState(null)
   const user = useSelector((state) => state.userModule.user)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams()
 
   useEffect(() => {
     const tableRef = ref(database, `/tables/${params.tableId}`)
-    onValue(tableRef, (snapshot) => {
+    const listener = onValue(tableRef, (snapshot) => {
       const table = snapshot.val()
       if (
         !table ||
         !user ||
-        !table?.users?.find((userInTable) => userInTable.id === user.id)
+        !table.users?.find((userInTable) => userInTable.id === user.id)
       ) {
         tableService.removeTableIdFromStorage()
         navigate("/")
       } else setTable(table)
     })
+
+    return () => off(tableRef, "value", listener)
   }, [])
 
   if (!table) return
