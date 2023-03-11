@@ -1,11 +1,11 @@
-import { TablePreview } from './TablePreview'
+import { TablePreview } from "./TablePreview"
 
 export const TableList = ({ tables }) => {
   return (
-    <section className="table-list">
-      {tables.map((table) => {
-        return <TablePreview table={table} key={table._id} />
-      })}
+    <section className='table-list'>
+      {Object.entries(tables).map(([id, table]) => (
+        <TablePreview table={table} tableId={id} key={id} />
+      ))}
     </section>
   )
 }

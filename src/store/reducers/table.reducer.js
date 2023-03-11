@@ -2,7 +2,7 @@ import { tableService } from "../../services/table.service"
 
 const initialState = {
   tables: [],
-  table: tableService.getTableFromStorage(),
+  // table: tableService.getTableFromStorage(),
 }
 
 export function tableReducer(state = initialState, action) {

@@ -1,18 +1,18 @@
 import { httpService } from './http.service.js'
 
 const BASE_URL = `table/`
-const STORAGE_KEY_TABLE = 'table'
+const STORAGE_KEY_TABLE = 'tableId'
 
 export const tableService = {
   joinTable,
   getById,
-  getTableFromStorage,
+  getTableIdFromStorage,
   getTables,
   clearTables,
   updateTable,
   removeTable,
-  putTableInStorage,
-  removeTableFromStorage,
+  putTableIdInStorage,
+  removeTableIdFromStorage,
 }
 
 async function getTables() {
@@ -25,9 +25,7 @@ async function clearTables() {
 
 async function joinTable(user) {
   try {
-    const table = await httpService.post(BASE_URL + 'join-table', user)
-    if (table) putTableInStorage(table)
-    return table
+    await httpService.post(BASE_URL + 'join-table', user)
   } catch (err) {
     console.error(err)
     throw err
@@ -35,9 +33,7 @@ async function joinTable(user) {
 }
 
 async function updateTable(table) {
-  if (table._id) {
-    return httpService.put(BASE_URL + table._id, table)
-  }
+  return httpService.put(BASE_URL + table._id, table)
 }
 async function removeTable(tableId) {
   return httpService.delete(BASE_URL + tableId)
@@ -53,14 +49,14 @@ async function getById(tableId) {
   }
 }
 
-function getTableFromStorage() {
+function getTableIdFromStorage() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY_TABLE)) || null
 }
 
-function putTableInStorage(table) {
+function putTableIdInStorage(table) {
   localStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
 }
 
-function removeTableFromStorage() {
+function removeTableIdFromStorage() {
   localStorage.removeItem(STORAGE_KEY_TABLE)
 }
