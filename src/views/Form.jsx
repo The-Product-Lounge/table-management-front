@@ -14,6 +14,7 @@ import { Loader } from "../cmps/Loader"
 import { database } from "../firebase-setup/firebase"
 import { onValue, ref } from "firebase/database"
 import { tableService } from "../services/table.service"
+import { storageService } from "../services/local-storage.service"
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -21,7 +22,7 @@ export const Form = () => {
     lastName: "",
     portfolioStage: "",
   })
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [img, setImg] = useState(null)
   const inputImageRef = useRef()
@@ -36,8 +37,9 @@ export const Form = () => {
   }, [img])
 
   useEffect(() => {
-    const tableId = tableService.getTableIdFromStorage()
+    const tableId = storageService.getFromStorage("tableId")
     if (tableId) navigate(`table/${tableId}`)
+    return
   }, [])
 
   const handleChange = ({ target: { name, value } }) => {
@@ -74,7 +76,7 @@ export const Form = () => {
       onValue(uuidRef, (snapshot) => {
         const tableId = snapshot.val()
         if (tableId) {
-          tableService.putTableIdInStorage(tableId)
+          storageService.PutInStorage('tableId', tableId)
           navigate(`table/${tableId}`)
         }
       })
@@ -153,7 +155,7 @@ export const Form = () => {
   return (
     <section>
       {isLoading ? (
-        <Loader />
+        <Loader massage="Finding you a table, please don't refresh this page" />
       ) : (
         <div className='form'>
           <div className='main-content'>

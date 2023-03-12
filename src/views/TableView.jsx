@@ -3,9 +3,9 @@ import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import emptyChair from "../assets/imgs/empty-chair.svg"
 import { TablePreview } from "../cmps/TablePreview"
-import { tableService } from "../services/table.service"
 import { off, onValue, ref } from "firebase/database"
 import { database } from "../firebase-setup/firebase"
+import { storageService } from "../services/local-storage.service"
 
 export const TableView = () => {
   const [table, setTable] = useState(null)
@@ -22,7 +22,7 @@ export const TableView = () => {
         !user ||
         !table.users?.find((userInTable) => userInTable.id === user.id)
       ) {
-        tableService.removeTableIdFromStorage()
+        storageService.removeFromStorage('tableId')
         navigate("/")
       } else setTable(table)
     })

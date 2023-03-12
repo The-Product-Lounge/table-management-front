@@ -5,19 +5,10 @@ const STORAGE_KEY_TABLE = 'tableId'
 
 export const tableService = {
   joinTable,
-  // getById,
-  getTableIdFromStorage,
-  // getTables,
   clearTables,
   updateTable,
   removeTable,
-  putTableIdInStorage,
-  removeTableIdFromStorage,
 }
-
-// async function getTables() {
-//   return httpService.get(BASE_URL)
-// }
 
 async function clearTables() {
   return httpService.delete(BASE_URL + 'delete-tables')
@@ -37,26 +28,4 @@ async function updateTable(table) {
 }
 async function removeTable(tableId) {
   return httpService.delete(BASE_URL + tableId)
-}
-
-// async function getById(tableId) {
-//   try {
-//     const table = await httpService.get(BASE_URL + tableId)
-//     if (!table) throw new Error()
-//     return table
-//   } catch (err) {
-//     throw err
-//   }
-// }
-
-function getTableIdFromStorage() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY_TABLE)) || null
-}
-
-function putTableIdInStorage(table) {
-  localStorage.setItem(STORAGE_KEY_TABLE, JSON.stringify(table))
-}
-
-function removeTableIdFromStorage() {
-  localStorage.removeItem(STORAGE_KEY_TABLE)
 }
