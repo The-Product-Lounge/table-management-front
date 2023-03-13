@@ -1,4 +1,5 @@
 import { httpService } from './http.service.js'
+import { storageService } from './local-storage.service.js'
 
 const BASE_URL = `table/`
 const STORAGE_KEY_TABLE = 'tableId'
@@ -8,6 +9,9 @@ export const tableService = {
   clearTables,
   updateTable,
   removeTable,
+  getTableIdFromStorage,
+  setTableIdInStorage,
+  removeTableIdFromStorage
 }
 
 async function clearTables() {
@@ -16,7 +20,7 @@ async function clearTables() {
 
 async function joinTable(user) {
   try {
-    await httpService.post(BASE_URL + 'join-table', user)
+    return await httpService.post(BASE_URL + 'join-table', user)
   } catch (err) {
     console.error(err)
     throw err
@@ -28,4 +32,16 @@ async function updateTable(table) {
 }
 async function removeTable(tableId) {
   return httpService.delete(BASE_URL + tableId)
+}
+
+function getTableIdFromStorage() {
+  return storageService.getFromStorage(STORAGE_KEY_TABLE)
+}
+
+function setTableIdInStorage(tableId) {
+  if(tableId) storageService.PutInStorage(STORAGE_KEY_TABLE, tableId)
+}
+
+function removeTableIdFromStorage() {
+  storageService.removeFromStorage(STORAGE_KEY_TABLE)
 }

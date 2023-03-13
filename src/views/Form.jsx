@@ -7,14 +7,12 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { cloudinaryService } from "../services/cloudinary.service"
 import { Box, MenuItem, TextField, Typography } from "@mui/material"
-import { utilService } from "../services/util.service"
 import { PasswordModal } from "../cmps/PasswordModal"
 import { setUser } from "../store/actions/user.action"
 import { Loader } from "../cmps/Loader"
 import { database } from "../firebase-setup/firebase"
 import { onValue, ref } from "firebase/database"
 import { tableService } from "../services/table.service"
-import { storageService } from "../services/local-storage.service"
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -37,7 +35,7 @@ export const Form = () => {
   }, [img])
 
   useEffect(() => {
-    const tableId = storageService.getFromStorage("tableId")
+    const tableId = tableService.getTableIdFromStorage()
     if (tableId) navigate(`table/${tableId}`)
     return
   }, [])
@@ -63,26 +61,25 @@ export const Form = () => {
     setIsLoading(true)
 
     //set up the user object and call the joinTable api
-    const user = { ...userDetails, id: utilService.makeId() }
     try {
-      user.imgUrl = img
+      userDetails.imgUrl = img
         ? await cloudinaryService.uploadImg(img)
         : defaultUserImg
 
-      await tableService.joinTable(user)
+      userDetails.id = await tableService.joinTable(userDetails)
 
       //sign up for the uuid ref
-      const uuidRef = ref(database, `/uuids/${user.id}`)
+      const uuidRef = ref(database, `/uuids/${userDetails.id}`)
       onValue(uuidRef, (snapshot) => {
         const tableId = snapshot.val()
         if (tableId) {
-          storageService.PutInStorage('tableId', tableId)
+          tableService.setTableIdInStorage(tableId)
           navigate(`table/${tableId}`)
         }
       })
 
       //dispatch the user
-      dispatch(setUser(user))
+      dispatch(setUser(userDetails))
     } catch (err) {
       setIsLoading(false)
       console.error(err)

@@ -1,3 +1,5 @@
+import { storageService } from "./local-storage.service"
+
 export const userService = {
   getUserFromStorage,
   setUserInStorage,
@@ -7,14 +9,14 @@ export const userService = {
 const STORAGE_KEY_LOGGEDIN = 'loggedInUser'
 
 function getUserFromStorage() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN)) || null
+  return storageService.getFromStorage(STORAGE_KEY_LOGGEDIN)
 }
 
 function setUserInStorage(user) {
-  if (user) localStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+  if(user) storageService.PutInStorage(STORAGE_KEY_LOGGEDIN, user)
 }
 
 function removeUserFromStorage() {
-  localStorage.removeItem(STORAGE_KEY_LOGGEDIN)
+  storageService.removeFromStorage(STORAGE_KEY_LOGGEDIN)
 }
 

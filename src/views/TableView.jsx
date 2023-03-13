@@ -5,7 +5,7 @@ import emptyChair from "../assets/imgs/empty-chair.svg"
 import { TablePreview } from "../cmps/TablePreview"
 import { off, onValue, ref } from "firebase/database"
 import { database } from "../firebase-setup/firebase"
-import { storageService } from "../services/local-storage.service"
+import { tableService } from "../services/table.service"
 
 export const TableView = () => {
   const [table, setTable] = useState(null)
@@ -22,7 +22,7 @@ export const TableView = () => {
         !user ||
         !table.users?.find((userInTable) => userInTable.id === user.id)
       ) {
-        storageService.removeFromStorage('tableId')
+        tableService.removeTableIdFromStorage()
         navigate("/")
       } else setTable(table)
     })
