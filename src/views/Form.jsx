@@ -22,7 +22,7 @@ export const Form = () => {
     lastName: "",
     portfolioStage: "",
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [img, setImg] = useState(null)
   const inputImageRef = useRef()
