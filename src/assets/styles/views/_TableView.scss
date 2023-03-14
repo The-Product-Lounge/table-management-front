@@ -19,7 +19,7 @@
 
   .table {
     position: relative;
-    background: #ffffff url('../../imgs/table-pattern.svg') 0% 0% no-repeat;
+    background: #ffffff url("../../imgs/table-pattern.svg") 0% 0% no-repeat;
     height: 152px;
     width: 275px;
     border: 0.5px solid #e0e0e0;
@@ -40,7 +40,7 @@
     .chair {
       position: absolute;
       height: 58px;
-      width: 61px;
+      width: 62px;
 
       .empty-chair {
         position: relative;
@@ -49,44 +49,11 @@
 
       .profile-img {
         position: absolute;
-        width: 54px;
-        height: 54px;
+        width: 55px;
+        height: 55px;
         border-radius: 12px;
         border: 1px solid #e0e0e0;
         object-fit: cover;
-      }
-
-      &._4 {
-        left: -12.5%;
-        top: 32%;
-        .profile-img {
-          left: 7px;
-          top: 2px;
-        }
-      }
-
-      &._3 {
-        bottom: -22%;
-        right: 62%;
-        .empty-chair {
-          transform: rotate(-90deg);
-        }
-        .profile-img {
-          left: 3px;
-          top: -1px;
-        }
-      }
-
-      &._2 {
-        bottom: -22%;
-        right: 16%;
-        .empty-chair {
-          transform: rotate(-90deg);
-        }
-        .profile-img {
-          left: 3px;
-          top: -1px;
-        }
       }
 
       &._1 {
@@ -97,6 +64,28 @@
         }
         .profile-img {
           top: 3px;
+        }
+      }
+
+      &._2 {
+        bottom: -22%;
+        right: 50%;
+        transform: translate(50%);
+        .empty-chair {
+          transform: rotate(-90deg);
+        }
+        .profile-img {
+          left: 3px;
+          top: -1px;
+        }
+      }
+
+      &._3 {
+        top: 32%;
+        left: -13%;
+        .profile-img {
+          left: 3px;
+          top: -1px;
         }
       }
     }

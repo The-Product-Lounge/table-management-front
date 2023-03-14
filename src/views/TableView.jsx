@@ -31,7 +31,7 @@ export const TableView = () => {
   }, [])
 
   if (!table) return
-  let tableParticipants = 4
+  let tableParticipants = 3
   return (
     <div className='table-view'>
       <h1 className='table-number'>Table Number</h1>
