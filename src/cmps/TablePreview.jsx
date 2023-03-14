@@ -2,19 +2,15 @@ import { useLocation } from "react-router-dom"
 import { tableService } from "../services/table.service"
 import { UserList } from "./UserList"
 
-export const TablePreview = ({ table, tableId }) => {
+export const TablePreview = ({ table }) => {
   const location = useLocation()
   const isLocationTableView = location.pathname.includes("/table")
 
   const onRemoveLounger = async (userId) => {
     table.users = table.users.filter((user) => user.id !== userId)
-    if (!table.users.length) await tableService.removeTable(tableId)
+    if (!table.users.length) await tableService.removeTable(table.id)
     else
-      await tableService.updateTable({
-        [tableId]: {
-          ...table,
-        },
-      })
+      await tableService.updateTable(table)
   }
 
   return (

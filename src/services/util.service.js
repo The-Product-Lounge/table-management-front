@@ -1,5 +1,6 @@
 export const utilService = {
   makeId,
+  reformatKeyValuePairToArray
 }
 
 function makeId(length = 6) {
@@ -12,4 +13,15 @@ function makeId(length = 6) {
   }
 
   return txt
+}
+
+function reformatKeyValuePairToArray(object, orderBy) {
+  if (!object) return []
+  const entityArray = []
+  for (const entityKey in object) {
+    const entity = object[entityKey];
+    entityArray.push({ id: entityKey, ...entity });
+  }
+  if (orderBy) entityArray.sort((a, b) => a[orderBy] - b[orderBy]);
+  return entityArray;
 }

@@ -30,8 +30,10 @@ async function joinTable(user) {
 async function updateTable(table) {
   return httpService.put(BASE_URL + table._id, table)
 }
-async function removeTable(tableId) {
-  return httpService.delete(BASE_URL + tableId)
+
+async function removeTable(id) {
+  console.log(id);
+  return httpService.delete(BASE_URL + id)
 }
 
 function getTableIdFromStorage() {
@@ -39,7 +41,7 @@ function getTableIdFromStorage() {
 }
 
 function setTableIdInStorage(tableId) {
-  if(tableId) storageService.PutInStorage(STORAGE_KEY_TABLE, tableId)
+  if (tableId) storageService.PutInStorage(STORAGE_KEY_TABLE, tableId)
 }
 
 function removeTableIdFromStorage() {

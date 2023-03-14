@@ -9,17 +9,19 @@ import { Loader } from "../cmps/Loader"
 import { off, onValue, ref } from "firebase/database"
 import { database } from "../firebase-setup/firebase"
 import { tableService } from "../services/table.service"
+import { utilService } from "../services/util.service"
 
 export const EventSettings = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [tables, setTables] = useState(null)
+  const [tables, setTables] = useState([])
 
   useEffect(() => {
     const tablesRef = ref(database, `/tables`)
     const listener = onValue(tablesRef, (snapshot) => {
       const data = snapshot.val()
-      setTables(data)
+      const tables = utilService.reformatKeyValuePairToArray(data, 'tableNumber')
+      setTables(tables)
     })
     setIsLoading(false)
     return () => off(tablesRef, "value", listener)
@@ -59,7 +61,7 @@ export const EventSettings = () => {
           </Link>
         </div>
       </header>
-      {tables && <TableList tables={tables} />}
+      <TableList tables={tables} />
       {isModalOpen && (
         <ClearModal onToggleModal={onToggleModal} onClearEvent={onClearEvent} />
       )}
