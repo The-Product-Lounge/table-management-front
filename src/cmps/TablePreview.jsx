@@ -26,7 +26,7 @@ export const TablePreview = ({ table }) => {
             <h2>Table #{table.tableNumber}</h2>
             <h4>{table.portfolioStage}</h4>
           </div>
-          <p>{table.users.length}/4</p>
+          <p>{table.users.length}/3</p>
         </div>
       )}
 
