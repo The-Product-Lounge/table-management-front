@@ -5,14 +5,20 @@ import "react-tooltip/dist/react-tooltip.css"
 import removeLounger from "../assets/imgs/remove-member.svg"
 import { useSelector } from "react-redux"
 import { utilService } from "../services/util.service"
+import { useMemo } from "react"
 
 export const UserPreview = ({ user, onRemoveLounger }) => {
   const location = useLocation()
   const isLocationTableView = location.pathname.includes("/table")
   const userFromState = useSelector((state) => state.userModule.user)
 
-  const firstNameIsInHebrew = utilService.isInHebrew(user.firstName)
-  const lastNameIsInHebrew = utilService.isInHebrew(user.lastName)
+  const firstNameIsInHebrew = useMemo(() => {
+    return utilService.isInHebrew(user.firstName)
+  }, [user.firstName])
+
+  const lastNameIsInHebrew = useMemo(() => {
+    return utilService.isInHebrew(user.lastName)
+  }, [user.lastName])
 
   return (
     <section className='user-preview'>

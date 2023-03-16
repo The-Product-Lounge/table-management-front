@@ -14,6 +14,7 @@ import { database } from "../firebase-setup/firebase"
 import { onValue, ref } from "firebase/database"
 import { tableService } from "../services/table.service"
 import { storageService } from "../services/local-storage.service"
+import { utilService } from "../services/util.service"
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -157,6 +158,22 @@ export const Form = () => {
   })
 
   const classes = useStyles()
+
+  const hebrewSettings = { fontFamily: "assistant-regular", direction: "rtl" }
+  const englishSettings = { fontFamily: "poppins-regular", direction: "ltr" }
+
+  const firstNameLangSettings = useMemo(() => {
+    return utilService.isInHebrew(userDetails.firstName)
+      ? hebrewSettings
+      : englishSettings
+  }, [userDetails.firstName])
+
+  const lastNameLangSettings = useMemo(() => {
+    return utilService.isInHebrew(userDetails.lastName)
+      ? hebrewSettings
+      : englishSettings
+  }, [userDetails.lastName])
+
   return (
     <section>
       {isLoading ? (
@@ -204,8 +221,9 @@ export const Form = () => {
                       height: "48px",
                       padding: "0px 16px",
                       color: "#28293D",
-                      fontFamily: "poppins-regular",
+                      fontFamily: `${firstNameLangSettings.fontFamily}`,
                       fontSize: "14px",
+                      direction: `${firstNameLangSettings.direction}`,
                     },
                   }}
                   fullWidth={true}
@@ -222,8 +240,9 @@ export const Form = () => {
                       height: "48px",
                       padding: "0px 16px",
                       color: "#28293D",
-                      fontFamily: "poppins-regular",
+                      fontFamily: `${lastNameLangSettings.fontFamily}`,
                       fontSize: "14px",
+                      direction: `${lastNameLangSettings.direction}`,
                     },
                   }}
                   fullWidth={true}
