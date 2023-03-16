@@ -18,7 +18,7 @@ export const TablePreview = ({ table }) => {
       {isLocationTableView ? (
         <div className='title table-view-title'>
           <p>Loungers At Your Table</p>
-          <p>{table.users.length}/4</p>
+          <p>{table.users.length}/3</p>
         </div>
       ) : (
         <div className='title event-info-title'>
