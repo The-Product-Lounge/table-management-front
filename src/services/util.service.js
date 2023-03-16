@@ -1,6 +1,7 @@
 export const utilService = {
   makeId,
-  reformatKeyValuePairToArray
+  reformatKeyValuePairToArray,
+  isInHebrew
 }
 
 function makeId(length = 6) {
@@ -24,4 +25,13 @@ function reformatKeyValuePairToArray(object, orderBy) {
   }
   if (orderBy) entityArray.sort((a, b) => a[orderBy] - b[orderBy]);
   return entityArray;
+}
+
+function isInHebrew(text) {
+  const regex = /^[\u0590-\u05FF\s]+$/; // Regex to match Hebrew characters and white spaces
+
+  if (regex.test(text)) {
+    return true
+  }
+  return false
 }

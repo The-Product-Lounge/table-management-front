@@ -4,11 +4,15 @@ import { Tooltip } from "react-tooltip"
 import "react-tooltip/dist/react-tooltip.css"
 import removeLounger from "../assets/imgs/remove-member.svg"
 import { useSelector } from "react-redux"
+import { utilService } from "../services/util.service"
 
 export const UserPreview = ({ user, onRemoveLounger }) => {
   const location = useLocation()
   const isLocationTableView = location.pathname.includes("/table")
   const userFromState = useSelector((state) => state.userModule.user)
+
+  const firstNameIsInHebrew = utilService.isInHebrew(user.firstName)
+  const lastNameIsInHebrew = utilService.isInHebrew(user.lastName)
 
   return (
     <section className='user-preview'>
@@ -17,10 +21,18 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
       </div>
       <div className='user-details'>
         <div className='user-name-and-you'>
-          <p>
-            <span className='first-name'>{user.firstName}</span> {user.lastName}
+          <p lang={lastNameIsInHebrew ? "he" : "en"}>
+            <span
+              className='first-name'
+              lang={firstNameIsInHebrew ? "he" : "en"}
+            >
+              {user.firstName}
+            </span>{" "}
+            {user.lastName}
           </p>
-          {( userFromState?.id === user.id && isLocationTableView) && <p className="you">You</p>}
+          {userFromState?.id === user.id && isLocationTableView && (
+            <p className='you'>You</p>
+          )}
         </div>
         {!isLocationTableView && (
           <img
