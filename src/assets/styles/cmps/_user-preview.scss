@@ -19,12 +19,12 @@
       flex-direction: column;
       gap: 4px;
       p:lang(he) {
-        font-family: assistant-regular !important;
+        font-family: assistant-regular;
       }
       .first-name {
         font-family: poppins-semi-bold;
         &:lang(he) {
-          font-family: assistant-semi-bold !important;
+          font-family: assistant-semi-bold;
         }
       }
 
