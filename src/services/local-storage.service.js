@@ -1,6 +1,6 @@
 export const storageService = {
     getFromStorage,
-    PutInStorage,
+    putInStorage,
     removeFromStorage,
 }
 
@@ -8,7 +8,7 @@ function getFromStorage(storageKey) {
     return JSON.parse(localStorage.getItem(storageKey)) || null
 }
 
-function PutInStorage(storageKey, entity) {
+function putInStorage(storageKey, entity) {
     localStorage.setItem(storageKey, JSON.stringify(entity))
 }
 

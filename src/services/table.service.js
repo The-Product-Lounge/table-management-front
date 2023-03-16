@@ -41,7 +41,7 @@ function getTableIdFromStorage() {
 }
 
 function setTableIdInStorage(tableId) {
-  if (tableId) storageService.PutInStorage(STORAGE_KEY_TABLE, tableId)
+  if (tableId) storageService.putInStorage(STORAGE_KEY_TABLE, tableId)
 }
 
 function removeTableIdFromStorage() {

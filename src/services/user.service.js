@@ -13,7 +13,7 @@ function getUserFromStorage() {
 }
 
 function setUserInStorage(user) {
-  if(user) storageService.PutInStorage(STORAGE_KEY_LOGGEDIN, user)
+  if(user) storageService.putInStorage(STORAGE_KEY_LOGGEDIN, user)
 }
 
 function removeUserFromStorage() {

@@ -13,6 +13,7 @@ import { Loader } from "../cmps/Loader"
 import { database } from "../firebase-setup/firebase"
 import { onValue, ref } from "firebase/database"
 import { tableService } from "../services/table.service"
+import { storageService } from "../services/local-storage.service"
 
 export const Form = () => {
   const [userDetails, setUserDetails] = useState({
@@ -36,8 +37,9 @@ export const Form = () => {
 
   useEffect(() => {
     const tableId = tableService.getTableIdFromStorage()
+    const uuid = storageService.getFromStorage("uuid")
     if (tableId) navigate(`table/${tableId}`)
-    return
+    else if (uuid) listenToUuid(uuid)
   }, [])
 
   const handleChange = ({ target: { name, value } }) => {
@@ -56,6 +58,19 @@ export const Form = () => {
     setImg(ev.target.files[0])
   }
 
+  const listenToUuid = (uuid) => {
+    storageService.putInStorage("uuid", uuid)
+    const uuidRef = ref(database, `/uuids/${uuid}`)
+    onValue(uuidRef, (snapshot) => {
+      const tableId = snapshot.val()
+      if (tableId) {
+        tableService.setTableIdInStorage(tableId)
+        storageService.removeFromStorage("uuid")
+        navigate(`table/${tableId}`)
+      }
+    })
+  }
+
   const onSubmit = async (ev) => {
     ev.preventDefault()
     setIsLoading(true)
@@ -69,14 +84,7 @@ export const Form = () => {
       userDetails.id = await tableService.joinTable(userDetails)
 
       //sign up for the uuid ref
-      const uuidRef = ref(database, `/uuids/${userDetails.id}`)
-      onValue(uuidRef, (snapshot) => {
-        const tableId = snapshot.val()
-        if (tableId) {
-          tableService.setTableIdInStorage(tableId)
-          navigate(`table/${tableId}`)
-        }
-      })
+      listenToUuid(userDetails.id)
 
       //dispatch the user
       dispatch(setUser(userDetails))

@@ -38,7 +38,7 @@ export const TableView = () => {
       <div className='table'>
         <h1>{table.tableNumber}</h1>
         {[...Array(tableParticipants)].map((participant, i) => (
-          <div className={`chair _${i + 1}`} key={`chair _${i + 1}`}>
+          <div className={`chair _${i + 1} ${table.users[i] ? 'occupied': ''}`} key={`chair _${i + 1}`}>
             {table.users[i] && (
               <img
                 src={table.users[i].imgUrl}
