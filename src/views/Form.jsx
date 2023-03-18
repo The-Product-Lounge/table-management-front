@@ -80,7 +80,9 @@ export const Form = () => {
     try {
       userDetails.imgUrl = img
         ? await cloudinaryService.uploadImg(img)
-        : defaultUserImg
+        : `https://api.dicebear.com/5.x/avataaars-neutral/svg?size=64&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc&eyebrows=default,defaultNatural,raisedExcited,raisedExcitedNatural,upDown,upDownNatural&eyes=closed,xDizzy,winkWacky,wink,surprised,squint,side,hearts,happy,default&mouth=twinkle,tongue,smile,serious,grimace,eating,default&seed=${utilService.makeId(
+            5
+          )}`
 
       userDetails.id = await tableService.joinTable(userDetails)
 

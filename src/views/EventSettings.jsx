@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import clearEvent from "../assets/imgs/clear-event.svg"
 import closePage from "../assets/imgs/close-event-info.svg"
 import { TableList } from "../cmps/TableList"
@@ -20,14 +20,17 @@ export const EventSettings = () => {
     const tablesRef = ref(database, `/tables`)
     const listener = onValue(tablesRef, (snapshot) => {
       const data = snapshot.val()
-      const tables = utilService.reformatKeyValuePairToArray(data, 'tableNumber')
+      const tables = utilService.reformatKeyValuePairToArray(
+        data,
+        "tableNumber"
+      )
       setTables(tables)
     })
     setIsLoading(false)
     return () => off(tablesRef, "value", listener)
   }, [])
 
-  const onClearEvent = async () => {
+  const onClearEvent = useCallback(async () => {
     try {
       await tableService.clearTables()
     } catch (err) {
@@ -35,7 +38,7 @@ export const EventSettings = () => {
     } finally {
       setIsModalOpen((prevState) => !prevState)
     }
-  }
+  }, [])
 
   const onToggleModal = () => {
     setIsModalOpen((prevState) => !prevState)

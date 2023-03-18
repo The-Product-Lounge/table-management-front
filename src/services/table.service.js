@@ -20,6 +20,7 @@ async function clearTables() {
 
 async function joinTable(user) {
   try {
+    console.log('h1');
     return await httpService.post(BASE_URL + 'join-table', user)
   } catch (err) {
     console.error(err)
@@ -47,3 +48,22 @@ function setTableIdInStorage(tableId) {
 function removeTableIdFromStorage() {
   storageService.removeFromStorage(STORAGE_KEY_TABLE)
 }
+
+// (async () => {
+//   console.log('h1');
+//   const promises = []
+//   let number = 1
+//   while (number < 50) {
+//     promises.push(joinTable({
+
+//       "firstName": "Yasmin",
+//       "lastName": "Gudha",
+//       "portfolioStage": "Brainstorming",
+//       "imgUrl": `https://api.dicebear.com/5.x/pixel-art/svg?seed=${number}`
+
+//     }))
+//     number++
+//   }
+
+//   Promise.all(promises).then(promises => console.log(promises))
+// })()
