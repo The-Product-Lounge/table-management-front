@@ -9,12 +9,19 @@
   z-index: 10;
 
   .table-number {
-    margin: 0;
-    text-align: center;
     font-size: 20px;
+    text-align: center;
     font-family: poppins-regular;
     color: #28293d;
+    margin: 0 0 10px;
+  }
+
+  .table-stage {
+    font-size: 14px;
+    color: #7d7d7f;
     margin-bottom: 32px;
+    text-align: center;
+    font-family: poppins-regular;
   }
 
   .table {
@@ -64,9 +71,11 @@
       &._1 {
         top: 32%;
         right: -13%;
+
         .empty-chair {
           transform: rotate(180deg);
         }
+
         .profile-img {
           top: 3px;
         }
@@ -76,9 +85,11 @@
         bottom: -22%;
         right: 50%;
         transform: translate(50%);
+
         .empty-chair {
           transform: rotate(-90deg);
         }
+
         .profile-img {
           left: 3px;
           top: -1px;
@@ -88,6 +99,7 @@
       &._3 {
         top: 32%;
         left: -13%;
+
         .profile-img {
           left: 7px;
           top: 2px;

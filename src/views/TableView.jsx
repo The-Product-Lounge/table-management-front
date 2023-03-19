@@ -34,7 +34,8 @@ export const TableView = () => {
   let tableParticipants = 3
   return (
     <div className='table-view'>
-      <h1 className='table-number'>Table Number</h1>
+      <h1 className='table-number'>Table #{table.tableNumber}</h1>
+      <div className='table-stage'>{table.portfolioStage}</div>
       <div className='table'>
         <h1>{table.tableNumber}</h1>
         {[...Array(tableParticipants)].map((participant, i) => (
