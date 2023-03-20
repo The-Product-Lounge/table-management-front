@@ -18,8 +18,9 @@ async function uploadImg(img) {
       body: FORM_DATA,
     })
     const { url } = await res.json()
+    const resizedUrl = `${url.replace('upload/', 'upload/w_128,h_128,c_fill/')}`
 
-    return url
+    return resizedUrl
   } catch (err) {
     console.error('ERROR!', err)
   }
