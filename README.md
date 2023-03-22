@@ -1,6 +1,6 @@
 # MySeat - A mobile seating app
 
-![Main page image](https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png)
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Main page image"/>
 
 ___
 
@@ -78,17 +78,17 @@ That's it! The App should open automatically, enjoy!
 ### Homepage
 The landing page in which the user can enter thier details.
 
-![Homepage image](https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png "Home-page")
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Homepage image"/>
 
 ### Table page
 The main table view.
 
-![Table page image](https://res.cloudinary.com/table-management/image/upload/v1679469080/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_091033_sw51zc.png "Table view page")
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Table page image"/>
 
 ### Event settings
 The damin page, allows you to view and manage all tables in your event.
 
-![Event settings page image](https://res.cloudinary.com/table-management/image/upload/v1679469216/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_091325_dvhyuf.png "Event settings page")
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Event settings page image"/>
 
 
 ### Authors
