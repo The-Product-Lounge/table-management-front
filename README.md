@@ -83,12 +83,12 @@ The landing page in which the user can enter thier details.
 ### Table page
 The main table view.
 
-<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Table page image"/>
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679469080/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_091033_sw51zc.png" height="800px" alt="Table page image"/>
 
 ### Event settings
 The damin page, allows you to view and manage all tables in your event.
 
-<img src ="https://res.cloudinary.com/table-management/image/upload/v1679467183/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_083930_xo7rzo.png" height="800px" alt="Event settings page image"/>
+<img src ="https://res.cloudinary.com/table-management/image/upload/v1679469216/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-03-22_091325_dvhyuf.png" height="800px" alt="Event settings page image"/>
 
 
 ### Authors
