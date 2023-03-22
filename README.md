@@ -33,7 +33,7 @@ The technology stack we used was:
 
 The API calls to the backend are done with the REST API method.
 </hr>
-An importent asspect of this project is that The API call "Join Table" is implemented as a queue because it relies on one person accessing and changing the table at a time.
+An important aspect of this project is that The API call "Join Table" is implemented as a queue because it relies on one person accessing and changing the table at a time.
 
 When a user requests to join a table, their request is added to the queue. The API processes each request in order, ensuring that only one person can join the table at a time. If another user tries to join the same table while the queue is processing a previous request, their request will be added to the queue and processed when it's their turn.
 
