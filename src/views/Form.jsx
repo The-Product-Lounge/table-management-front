@@ -30,7 +30,7 @@ export const Form = () => {
   const navigate = useNavigate()
 
   const defaultUserImg =
-    "https://res.cloudinary.com/table-management/image/upload/v1676989866/fk2uawnjgmj3tww02f4z.png"
+    "https://res.cloudinary.com/table-management/image/upload/v1680271751/New_Project_eub3nb.png"
 
   const imgUrl = useMemo(() => {
     return img ? URL.createObjectURL(img) : defaultUserImg
