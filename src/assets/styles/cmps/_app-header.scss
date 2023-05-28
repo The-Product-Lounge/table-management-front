@@ -1,0 +1,21 @@
+.app-header  {
+    height: 56px;
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.5px solid #0000001A;
+    border-bottom: 1px solid #0000001A;
+    .main-content {
+        width: 393px;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        .logo {
+            width: 36px;
+            height: 36px;
+        }
+    }
+}

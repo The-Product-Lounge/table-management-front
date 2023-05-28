@@ -16,8 +16,11 @@
 @import 'cmps/clear-modal';
 @import 'cmps/password-modal';
 @import 'cmps/loader';
+@import 'cmps/app-header';
+@import 'cmps/empty-event-list';
 
 //VIEWS
-@import 'views/Form';
-@import 'views/TableView';
-@import 'views/EventSettings';
+@import 'views/form';
+@import 'views/table-view';
+@import 'views/event-settings';
+@import 'views/events-view';
