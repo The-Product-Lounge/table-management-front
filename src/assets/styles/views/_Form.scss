@@ -4,7 +4,7 @@
   flex-direction: column;
   padding: 30px 24px;
   align-items: center;
-  background: #fafafa url('../../imgs/bgimage.svg') no-repeat fixed center;
+  background: #fafafa url("../../imgs/bgimage.svg") no-repeat fixed center;
 
   // The description text will disappear when portfolio stage is selected
   p.MuiTypography-body2 {
@@ -85,7 +85,7 @@
           }
 
           .pencil {
-            background-image: url('../../imgs/pencil.svg');
+            background-image: url("../../imgs/pencil.svg");
             background-repeat: no-repeat;
             background-position: center;
             background-color: white;
