@@ -7,14 +7,14 @@ import { EventsView } from './views/EventsView'
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        {/* <Route path="" element={<Form />} /> */}
-        <Route path="" element={<EventsView />} />
-        <Route path="event-settings" element={<EventSettings />} />
-        <Route path="table/:tableId" element={<TableView />} />
-      </Routes>
-    </div>
+      <div className="App">
+        <Routes>
+          {/* <Route path="" element={<Form />} /> */}
+          <Route path="" element={<EventsView />} />
+          <Route path="event-settings" element={<EventSettings />} />
+          <Route path="table/:tableId" element={<TableView />} />
+        </Routes>
+      </div>
   )
 }
 

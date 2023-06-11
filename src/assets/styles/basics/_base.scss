@@ -57,3 +57,14 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.pencil {
+  background-image: url("../../imgs/pencil.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  box-shadow: 0px 4px 8px #60617029;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
