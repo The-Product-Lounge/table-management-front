@@ -7,6 +7,8 @@ import { ReactComponent as CalendarIcon } from "../assets/imgs/calendar-icon.svg
 import { useStyles, inputProps } from "../material-ui-setup/customStyles"
 import { TextField, TextareaAutosize } from "@mui/material"
 import { InputAdornment } from "@material-ui/core"
+import { DatePicker, TimePicker } from "@mui/x-date-pickers"
+import dayjs from "dayjs"
 
 export const CreateEventModal = ({ toggleCreateModal }) => {
   const [event, setEvent] = useState({
@@ -90,6 +92,8 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
     setEvent((prevState) => ({ ...prevState, [name]: value }))
   }
 
+  console.log(event)
+
   return (
     <section className='create-event-modal'>
       <div className='border-box-header-summery'>
@@ -154,18 +158,45 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
       <div className='event-details'>
         {inputLabelArray.map((labelObject) => {
           const { property, label, icon } = labelObject
-          if (label === "Event Details")
+          if (label === "Event Details") {
             return (
               <TextareaAutosize
                 className={classes.textarea}
-                variant='outlined'
-                label="11111"
+                variant='inline'
+                label='11111'
                 onChange={handleChange}
                 name={property}
                 value={event[property]}
               />
             )
-          else {
+          } else if (label === "Date") {
+            return (
+              <DatePicker
+                minDate={dayjs(new Date())}
+                format='DD/MM/YYYY'
+                slots={{
+                  openPickerIcon: CalendarIcon,
+                }}
+                className={classes.datePicker}
+                label={label}
+                onChange={handleChange}
+                name={property}
+              />
+            )
+          } else if (label === "Time") {
+            return (
+              <TimePicker
+                ampm={false}
+                format='HH:mm'
+                slots={{
+                  openPickerIcon: ClockIcon,
+                }}
+                className={classes.datePicker}
+                label={label}
+                name={property}
+                />
+            )
+          } else {
             return (
               <TextField
                 className={classes.root}
@@ -181,7 +212,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
                     ? {
                         style: {
                           height: "48px",
-                          padding: "0px 10px",
+                          padding: "0px 10px 0px 0px",
                           color: "#28293D",
                           fontFamily: "poppins-regular",
                           fontSize: "14px",

@@ -42,10 +42,64 @@ export const useStyles = makeStyles({
     borderRadius: 8,
     border: "1px solid #EBEBEB",
     height: "53px",
-    minHeight:"98px",
+    minHeight: "98px",
     padding: "14px 16px"
   },
+
+  datePicker: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        padding: '0px',
+        border: "1px solid #EBEBEB",
+        fontFamily: "poppins-regular",
+        color: "#28293D",
+        fontSize: "14px",
+        borderRadius: 8,
+
+      },
+      '&.Mui-focused fieldset': {
+        border: "1px solid #1C1C29",
+      }
+    },
+    '& .MuiFormLabel-root': {
+      color: '#9899A6',
+      fontFamily: "poppins-regular",
+      '&.Mui-focused': {
+        color: '#28293D',
+      },
+    },
+    '& .MuiIconButton-root': {
+      '& svg': {
+        color: '#28293D',
+      },
+    },
+    '& .MuiButtonBase-root': {
+      border: 'none',
+      boxShadow: 'none',
+      borderRadius: '50%',
+      padding: '6px',
+      marginRight: '-12px',
+      // fontSize: '14px',
+    },
+    '.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root': {
+      fontFamily: "poppins-regular",
+
+    },
+    '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
+      height: '48px',
+      padding: "0 16px",
+
+    },
+
+    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+      top: '-2px'
+    }
+  }
 })
+
+export const customHeight = {
+  height: '48px'
+}
 
 export const inputProps = {
   style: {
