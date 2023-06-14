@@ -6,7 +6,7 @@ import openEye from "../assets/imgs/open-eye.svg";
 import redError from "../assets/imgs/red-error.svg";
 import closedEye from "../assets/imgs/closed-eye.svg";
 
-export const PasswordModal = ({ onToggleModal, classes }) => {
+export const PasswordModal = ({ onToggleModal, rootSx }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
@@ -50,7 +50,6 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
         <p className="subtitle">What is the secret word?</p>
         <form onSubmit={onCheckPassword}>
           <TextField
-            className={classes.root}
             error={wrongPassword}
             helperText={
               wrongPassword && (
@@ -91,6 +90,7 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
               ),
             }}
             sx={{
+              ...rootSx,
               "& .MuiFormHelperText-root": {
                 color: "#555770 !important",
                 position: "absolute",
