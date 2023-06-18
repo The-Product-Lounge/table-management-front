@@ -88,11 +88,19 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
       : setUploadedBackground(files[0])
   }
 
-  const handleChange = ({ target: { name, value } }) => {
-    setEvent((prevState) => ({ ...prevState, [name]: value }))
+  const handleChange = (event, name) => {
+    //if it is a time object
+    if (name) {
+      const selectedDate = new Date(event)
+      setEvent((prevState) => ({ ...prevState, [name]: selectedDate }))
+    } else {
+      //if it is other information about the event
+      const {
+        target: { name, value },
+      } = event
+      setEvent((prevState) => ({ ...prevState, [name]: value }))
+    }
   }
-
-  console.log(event)
 
   return (
     <section className='create-event-modal'>
@@ -143,10 +151,24 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
                 <div className='grey-place-holder primary'></div>
               )}
               {event.time || event.date ? (
-                <p className='event-time'>
-                  {event.time && event.time}
-                  {event.date && ` ${event.date}`}
-                </p>
+                <div className='event-time-div'>
+                  <div className='event-date'>
+                    {event.date &&
+                      event.date.toLocaleDateString(undefined, {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "2-digit",
+                      })}
+                  </div>
+                  <p className='event-time'>
+                    {event.time &&
+                      event.time.toLocaleTimeString(undefined, {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false,
+                      })}
+                  </p>
+                </div>
               ) : (
                 <div className='grey-place-holder secondary'></div>
               )}
@@ -173,13 +195,13 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             return (
               <DatePicker
                 minDate={dayjs(new Date())}
-                format='DD/MM/YYYY'
+                format='DD/MM/YY'
                 slots={{
                   openPickerIcon: CalendarIcon,
                 }}
                 className={classes.datePicker}
                 label={label}
-                onChange={handleChange}
+                onChange={(date) => handleChange(date, property)}
                 name={property}
               />
             )
@@ -192,9 +214,10 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
                   openPickerIcon: ClockIcon,
                 }}
                 className={classes.datePicker}
+                onChange={(date) => handleChange(date, property)}
                 label={label}
                 name={property}
-                />
+              />
             )
           } else {
             return (
@@ -229,7 +252,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
         })}
       </div>
       <div className='options'>
-        <button>Cancel</button>
+        <button onClick={toggleCreateModal}>Cancel</button>
         <button className='dark' disabled>
           Create
         </button>

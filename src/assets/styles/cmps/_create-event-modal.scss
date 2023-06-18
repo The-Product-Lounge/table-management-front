@@ -151,13 +151,16 @@
             font-weight: normal;
             margin-bottom: 4px;
             letter-spacing: -1px;
+            margin-bottom: 8px;
           }
 
-          .event-time {
+          .event-time-div {
+            gap: 6px;
+            display: flex;
             color: #777781;
             font-size: 12px;
             font-family: poppins-regular;
-            letter-spacing: -1px;
+            letter-spacing: 0.5px;
           }
         }
       }
