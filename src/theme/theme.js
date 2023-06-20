@@ -9,14 +9,24 @@ let theme = createTheme({
     },
     button: { textTransform: "none" },
   },
+  palette: {
+    primary: {
+      main: "#28293D",
+    },
+    error: {
+      main: "#FF3B3B",
+    },
+  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           borderRadius: "8px",
-          color: "#E4E4EB",
-          borderColor: "#EBEBEB",
-          border: "1px",
+          "&.Mui-disabled": {
+            backgroundColor: "#E4E4EB",
+            borderColor: "#EBEBEB",
+            border: "1px",
+          },
         },
       },
     },
