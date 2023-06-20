@@ -2,12 +2,15 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import logo from "../assets/imgs/logo@2x.png";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import bgImage from "../assets/imgs/bgimage.svg";
+import { LoginForm } from "../cmps/LoginForm";
 
-export const Login = () => {
+/**
+ * BackgroundComponent - A component that renders a background image
+ *
+ */
+const BackgroundComponent = ({ children }) => {
   return (
     <Box
       display="flex"
@@ -22,7 +25,80 @@ export const Login = () => {
         background: `#fafafa url(${bgImage}) center;`,
       }}
     >
+      {children}
+    </Box>
+  );
+};
+
+/**
+ * LogoCardComponent - A component that renders a card with the logo
+ */
+const LogoCardComponent = () => {
+  return (
+    <Card
+      elevation={5}
+      sx={{
+        borderRadius: "12px",
+        borderBlockColor: "#E0E0E0",
+        position: "absolute",
+        width: 68,
+        height: 68,
+        left: "50%",
+        right: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <img
+        src={logo}
+        alt="logo"
+        style={{
+          display: "block",
+          width: 26,
+          position: "relative",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+    </Card>
+  );
+};
+
+/**
+ * TitleComponent - A component that renders a title and subtitle
+ */
+const TitleComponent = () => {
+  return (
+    <>
+      <Typography
+        variant="h2"
+        fontSize={16}
+        fontFamily={"poppins-bold"}
+        align="center"
+        color={"#1C1C28"}
+      >
+        Wait!
+      </Typography>
+
+      <Typography
+        variant="subtitle1"
+        fontSize={14}
+        fontFamily={"poppins-regular"}
+        align="center"
+        color={"#555770"}
+      >
+        What is the secret word?
+      </Typography>
+    </>
+  );
+};
+
+export const Login = () => {
+  return (
+    <BackgroundComponent>
+      {/* Center elements to the middle of the screen horizontally */}
       <Grid container justifyContent={"center"} alignItems={"center"}>
+        {/* Keeping space from the screen border on the left and right side */}
         <Grid item xs={11}>
           <Card
             elevation={1}
@@ -33,32 +109,8 @@ export const Login = () => {
             }}
             square={false}
           >
-            <Card
-              elevation={5}
-              sx={{
-                borderRadius: "12px",
-                borderBlockColor: "#E0E0E0",
-                position: "absolute",
-                width: 68,
-                height: 68,
-                left: "50%",
-                right: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <img
-                src={logo}
-                alt="logo"
-                style={{
-                  display: "block",
-                  width: 26,
-                  position: "relative",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
-            </Card>
+            <LogoCardComponent />
+            {/* Grid of vertical positioning*/}
             <Grid
               height={1}
               container
@@ -66,74 +118,18 @@ export const Login = () => {
               justifyContent={"center"}
               alignItems={"center"}
             >
+              {/* Empty grid for spacing */}
               <Grid item xs={2}></Grid>
               <Grid item xs={2}>
-                <Typography
-                  variant="h2"
-                  fontSize={16}
-                  fontFamily={"poppins-bold"}
-                  align="center"
-                  color={"#1C1C28"}
-                >
-                  Wait!
-                </Typography>
-
-                <Typography
-                  variant="subtitle1"
-                  fontSize={14}
-                  fontFamily={"poppins-regular"}
-                  align="center"
-                  color={"#555770"}
-                >
-                  What is the secret word?
-                </Typography>
+                <TitleComponent />
               </Grid>
               <Grid item xs={8} width={1}>
-                <form>
-                  <Grid
-                    container
-                    direction={"column"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    spacing={4}
-                  >
-                    <Grid item xs={4} width={0.8}>
-                      <TextField
-                        label="Email"
-                        type="email"
-                        fullWidth
-                      ></TextField>
-                    </Grid>
-                    <Grid item xs={4} width={0.8}>
-                      <TextField
-                        label="Password"
-                        type="password"
-                        fullWidth
-                      ></TextField>
-                    </Grid>
-
-                    <Grid item xs={2}>
-                      <Button
-                        variant="contained"
-                        size="large"
-                        disabled
-                        sx={{
-                          fontFamily: "poppins-semi-bold",
-                          fontSize: "14px",
-                          px: "50px",
-                          py: "15px",
-                        }}
-                      >
-                        Open sesami!
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </form>
+                <LoginForm />
               </Grid>
             </Grid>
           </Card>
         </Grid>
       </Grid>
-    </Box>
+    </BackgroundComponent>
   );
 };
