@@ -33,7 +33,6 @@ const rootSx = {
     fontSize: "14px",
   },
   "& .MuiInputLabel-root": {
-    lineHeight: "unset",
     fontSize: 14,
     color: "#9899A6",
     fontFamily: "poppins-regular",
