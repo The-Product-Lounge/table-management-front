@@ -4,8 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Button } from "./inputs/Button";
 import { TextField } from "./inputs/TextField";
+import { useDispatch } from "react-redux";
+import { getJwt } from "../store/actions/auth.action";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
@@ -16,8 +22,21 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isDirty, isSubmitting },
   } = useForm({ resolver: yupResolver(validationSchema) });
+
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(getJwt(data));
+      navigate("/event-settings");
+    } catch (err) {
+      setError("password", {
+        type: "server",
+        message: "Incorrect password, are you a spy?",
+      });
+    }
+  };
 
   return (
     <form>
@@ -60,7 +79,7 @@ export const LoginForm = () => {
               py: "15px",
             }}
             disabled={!isDirty}
-            onClick={handleSubmit((data) => console.log(data, isDirty))}
+            onClick={handleSubmit(onSubmit)}
             label="Open sesami!"
             isLoading={isSubmitting}
           />
