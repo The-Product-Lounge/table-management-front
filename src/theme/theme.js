@@ -33,6 +33,11 @@ let theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
+          "& .MuiFormHelperText-root.Mui-error": {
+            color: "#555770",
+            fontFamily: "poppins-regular",
+            fontSize: "12px",
+          },
           "& label.Mui-focused": {
             color: "#1C1C29",
           },
