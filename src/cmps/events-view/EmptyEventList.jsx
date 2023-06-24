@@ -1,5 +1,5 @@
-import EventPreview from "../assets/imgs/event-preview.png"
-import { ReactComponent as CreateEvent } from "../assets/imgs/create-event.svg"
+import EventPreview from "../../assets/imgs/event-preview.png"
+import { ReactComponent as CreateEvent } from "../../assets/imgs/create-event.svg"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { CreateEventModal } from "./CreateEventModal"

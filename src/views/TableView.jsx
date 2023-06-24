@@ -17,6 +17,7 @@ export const TableView = () => {
     const tableRef = ref(database, `/tables/${params.tableId}`)
     const listener = onValue(tableRef, (snapshot) => {
       const table = snapshot.val()
+      console.log(table);
       if (
         !table ||
         !user ||

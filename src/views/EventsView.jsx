@@ -1,16 +1,56 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AppHeader } from "../cmps/AppHeader"
-import { EventList } from "../cmps/EventList"
-import { EmptyEventList } from "../cmps/EmptyEventList"
+import { EventList } from "../cmps/events-view/EventList"
+import { EmptyEventList } from "../cmps/events-view/EmptyEventList"
+import { events as eventsFromDB } from "../events.js"
+import { off, onValue, ref } from "firebase/database"
+import { database } from "../firebase-setup/firebase"
+import { utilService } from "../services/util.service"
 
 export const EventsView = () => {
   const [events, setEvents] = useState([])
+  const [tables, setTables] = useState([])
+  const [isFirstHookCompleted, setIsFirstHookCompleted] = useState(false)
+
+  useEffect(() => {
+    const eventsRef = ref(database, `/events`)
+    const listener = onValue(eventsRef, (snapshot) => {
+      const data = snapshot.val()
+      const events = utilService.reformatKeyValuePairToArray(data)
+      setEvents(events)
+      setIsFirstHookCompleted(true)
+    })
+
+    return () => off(eventsRef, "value", listener)
+  }, [])
+
+  useEffect(() => {
+    if (isFirstHookCompleted) {
+      const tablesRef = ref(database, `/tables`)
+      const listener = onValue(tablesRef, (snapshot) => {
+        const data = snapshot.val()
+        const tables = utilService.reformatKeyValuePairToArray(
+          data,
+          "tableNumber"
+        )
+        setTables(tables)
+      })
+
+      return () => off(tablesRef, "value", listener)
+    }
+  }, [events])
+
   return (
     <section className='events-view'>
       <AppHeader />
-      {
-        events.length > 0 ? <EventList events={events} /> : <EmptyEventList />
-      }
+      {events.length > 0 ? (
+        <div className='events'>
+          <h2 className='title'>Upcoming Events</h2>
+          <EventList events={events} tables={tables} />
+        </div>
+      ) : (
+        <EmptyEventList />
+      )}
     </section>
   )
 }

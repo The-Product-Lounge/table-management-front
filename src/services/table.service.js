@@ -29,6 +29,7 @@ async function joinTable(user) {
 }
 
 async function updateTable(table) {
+  console.log('front');
   return httpService.put(BASE_URL + table._id, table)
 }
 

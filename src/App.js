@@ -13,8 +13,8 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="App">
         <Routes>
-          {/* <Route path="" element={<Form />} /> */}
-          <Route path="" element={<EventsView />} />
+          <Route path="" element={<Form />} />
+          <Route path="/events" element={<EventsView />} />
           <Route path="event-settings" element={<EventSettings />} />
           <Route path="table/:tableId" element={<TableView />} />
         </Routes>

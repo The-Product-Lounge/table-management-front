@@ -40,9 +40,6 @@
       justify-content: center;
       position: relative;
       padding: 44px 20px;
-      &:hover {
-        cursor: pointer;
-      }
 
       .background-container {
         position: absolute;
@@ -51,31 +48,14 @@
         top: 0;
         right: 0;
         overflow: hidden;
-        svg {
-          position: absolute;
-          width: 100%;
-          z-index: 1;
-          object-fit: cover;
-          top: -50%;
-          opacity: 0.1;
-          scale: 1.5;
-          background-repeat:repeat
-        }
-        img {
-          position: relative;
-          bottom: 12.5%;
-          height: 125%;
-          width: 125%;
-          object-fit: cover;
-          filter: blur(2px);
-          outline: 5px solid transparent;
-        }
       }
 
       .pencil {
-        position: absolute;
-        top: 12px;
-        right: 22px;
+        &.top-right {
+          position: absolute;
+          right: 22px;
+          top: 12px;
+        }
       }
 
       .event-summery {
@@ -94,34 +74,6 @@
 
         &:hover {
           cursor: auto;
-        }
-
-        .img-container {
-          height: 45px;
-          width: 45px;
-          position: relative;
-          border-radius: 8px;
-          border: #ebebeb 1px solid;
-          box-shadow: 0px 0.5px 2px #0000001a;
-
-          &:hover {
-            cursor: pointer;
-          }
-
-          .pencil {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            right: -50%;
-            top: 0%;
-          }
-
-          // TODO: band aid solution, fix later
-          img {
-            border-radius: 8px;
-            height: 100%;
-            object-fit: cover;
-            background-color: #fff;
-          }
         }
 
         .summery-text {
@@ -175,7 +127,6 @@
     align-items: stretch;
     gap: 30px;
     border-bottom: 1px solid #e0e0e0;
-    
   }
 
   .options {

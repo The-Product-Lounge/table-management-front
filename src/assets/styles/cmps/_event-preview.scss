@@ -1,0 +1,116 @@
+.event-preview {
+  min-width: 353px;
+  border-radius: 12px;
+  border: solid #ebebeb 0.5px;
+  box-shadow: #0000001a 0px 0.5px 2px;
+  overflow: hidden;
+  color: #282941;
+  font-size: 13px;
+  font-family: poppins-regular;
+  color: #777781;
+
+  .images {
+    min-height: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details {
+    padding: 18px 20px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #0000001a;
+
+    .name {
+      color: #282941;
+      font-size: 16px;
+      font-family: poppins-semi-bold;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      padding-left: 2px;
+      position: relative;
+      display: flex;
+      margin-bottom: 6px;
+      &::before {
+        transform: translate(-7%, -10%);
+
+        margin-right: 3.75px;
+        content: "";
+        display: inline-block;
+        width: 16.09px;
+        height: 16.09px;
+        background-image: url("../../imgs/calendar-thicker.svg");
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    .location {
+      padding-left: 2px;
+      position: relative;
+      display: flex;
+      letter-spacing: 0.5px;
+      &::before {
+        transform: translate(-7%, -10%);
+        margin-right: 3.75px;
+        content: "";
+        display: inline-block;
+        width: 16.09px;
+        height: 16.09px;
+        background-image: url("../../imgs/location-filled-in.svg");
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+
+  .tables-info {
+    padding: 14px 22px;
+    display: flex;
+    gap: 5.5px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    color: #777781;
+
+    .loungers {
+      position: relative;
+      display: flex;
+      &::before {
+        transform: translate(-5%, 0%);
+        content: "";
+        display: inline-block;
+        width: 16.09px;
+        // height: 16.09px;
+        background-image: url("../../imgs/avatar-filled-in.svg");
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 3px;
+      }
+    }
+
+    .tables {
+      position: relative;
+      display: flex;
+      &::before {
+        transform: translate(-5%, 0%);
+
+        content: "";
+        display: inline-block;
+        width: 16.09px;
+        // height: 16.09px;
+        background-image: url("../../imgs/tables-icon.svg");
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 3px;
+      }
+    }
+  }
+  //   background-color: red;
+}
