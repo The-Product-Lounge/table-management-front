@@ -12,6 +12,10 @@ export const EventsView = () => {
   const [tables, setTables] = useState([])
   const [isFirstHookCompleted, setIsFirstHookCompleted] = useState(false)
 
+
+  //! doing this like this allows for UI rerendering when tables change but that means
+  //that there cant be two tables with the same table number in different events
+  
   useEffect(() => {
     const eventsRef = ref(database, `/events`)
     const listener = onValue(eventsRef, (snapshot) => {
@@ -43,7 +47,7 @@ export const EventsView = () => {
   return (
     <section className='events-view'>
       <AppHeader />
-      {events.length > 0 ? (
+      {events.length < 0 ? (
         <div className='events'>
           <h2 className='title'>Upcoming Events</h2>
           <EventList events={events} tables={tables} />

@@ -218,13 +218,16 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             const { property, label, icon } = labelObject
             if (label === "Event Details") {
               return (
-                <TextareaAutosize
-                  className={classes.textarea}
-                  variant='inline'
-                  label='11111'
+                <TextField
+                  className={[classes.root, classes.height]}
+                  // variant='inline'
+                  label={label}
                   onChange={handleChange}
                   name={property}
                   value={event[property]}
+                  multiline
+                  rows={3}
+                  maxRows={Infinity}
                 />
               )
             } else if (label === "Date") {

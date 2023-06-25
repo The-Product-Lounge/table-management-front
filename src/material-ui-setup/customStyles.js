@@ -38,13 +38,12 @@ export const useStyles = makeStyles({
     },
   },
 
-  textarea: {
-    borderRadius: 8,
-    border: "1px solid #EBEBEB",
-    height: "53px",
-    minHeight: "98px",
-    padding: "14px 16px"
+  height: {
+    [`& fieldset`]: {
+      height: "auto",
+    }
   },
+
 
   datePicker: {
     '& .MuiOutlinedInput-root': {

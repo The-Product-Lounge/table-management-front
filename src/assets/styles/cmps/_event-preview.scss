@@ -114,3 +114,31 @@
   }
   //   background-color: red;
 }
+
+.react-tooltip {
+  z-index: 10;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  
+
+  .tooltip-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .remove-event {
+      height: 15px;
+      width: 15px;
+      margin-right: 9px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+}
