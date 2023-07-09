@@ -1,8 +1,8 @@
-import { httpService } from './http.service.js'
-import { storageService } from './local-storage.service.js'
+import { httpService } from "./http.service.js";
+import { storageService } from "./local-storage.service.js";
 
-const BASE_URL = `table/`
-const STORAGE_KEY_TABLE = 'tableId'
+const BASE_URL = `table/`;
+const STORAGE_KEY_TABLE = "tableId";
 
 export const tableService = {
   joinTable,
@@ -11,42 +11,42 @@ export const tableService = {
   removeTable,
   getTableIdFromStorage,
   setTableIdInStorage,
-  removeTableIdFromStorage
-}
+  removeTableIdFromStorage,
+};
 
 async function clearTables() {
-  return httpService.delete(BASE_URL + 'delete-tables')
+  return httpService.delete(BASE_URL + "delete-tables");
 }
 
 async function joinTable(user) {
   try {
-    console.log('h1');
-    return await httpService.post(BASE_URL + 'join-table', user)
+    console.log("h1");
+    return await httpService.post(BASE_URL + "join-table", user);
   } catch (err) {
-    console.error(err)
-    throw err
+    console.error(err);
+    throw err;
   }
 }
 
 async function updateTable(table) {
-  return httpService.put(BASE_URL + table._id, table)
+  return httpService.put(BASE_URL + table._id, table);
 }
 
 async function removeTable(id) {
   console.log(id);
-  return httpService.delete(BASE_URL + id)
+  return httpService.delete(BASE_URL + id);
 }
 
 function getTableIdFromStorage() {
-  return storageService.getFromStorage(STORAGE_KEY_TABLE)
+  return storageService.getFromStorage(STORAGE_KEY_TABLE);
 }
 
 function setTableIdInStorage(tableId) {
-  if (tableId) storageService.putInStorage(STORAGE_KEY_TABLE, tableId)
+  if (tableId) storageService.putInStorage(STORAGE_KEY_TABLE, tableId);
 }
 
 function removeTableIdFromStorage() {
-  storageService.removeFromStorage(STORAGE_KEY_TABLE)
+  storageService.removeFromStorage(STORAGE_KEY_TABLE);
 }
 
 // (async () => {

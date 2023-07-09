@@ -1,36 +1,39 @@
 import Axios from "axios";
 
-const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://table-management-yr7r.onrender.com/api/"
-    : "http://localhost:3030/api/";
+const BASE_URL = process.env.REACT_APP_TABLE_SERVER_URL;
 
 var axios = Axios.create({
   withCredentials: true,
 });
 export const httpService = {
-  get(endpoint, data) {
-    return ajax(endpoint, "GET", data);
+  get(endpoint, data, auth) {
+    return ajax(endpoint, "GET", data, auth);
   },
-  post(endpoint, data) {
-    return ajax(endpoint, "POST", data);
+  post(endpoint, data, auth) {
+    return ajax(endpoint, "POST", data, auth);
   },
-  put(endpoint, data) {
-    return ajax(endpoint, "PUT", data);
+  put(endpoint, data, auth) {
+    return ajax(endpoint, "PUT", data, auth);
   },
-  delete(endpoint, data) {
-    return ajax(endpoint, "DELETE", data);
+  delete(endpoint, data, auth) {
+    return ajax(endpoint, "DELETE", data, auth);
   },
 };
 
-async function ajax(endpoint, method = "GET", data = null) {
+async function ajax(endpoint, method = "GET", data = null, auth = null) {
   try {
-    const res = await axios({
+    let axiosConfig = {
       url: `${BASE_URL}${endpoint}`,
       method,
       data,
       params: method === "GET" ? data : null,
-    });
+    };
+    if (auth) {
+      axiosConfig.headers = {
+        Authorization: "Bearer " + auth,
+      };
+    }
+    const res = await axios(axiosConfig);
     return res.data;
   } catch (err) {
     if (err.response && err.response.status === 401) {

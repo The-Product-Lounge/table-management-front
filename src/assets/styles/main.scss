@@ -1,23 +1,23 @@
 //BASICS
-@import 'basics/base';
+@import "basics/base";
 
 //SETUP
-@import 'setup/colors';
-@import 'setup/normalize';
-@import 'setup/typography';
-@import 'setup/variables';
-@import 'setup/mixins';
+@import "setup/colors";
+@import "setup/normalize";
+@import "setup/typography";
+@import "setup/variables";
+@import "setup/mixins";
 
 //CMPS
-@import 'cmps/table-list';
-@import 'cmps/table-preview';
-@import 'cmps/user-list';
-@import 'cmps/user-preview';
-@import 'cmps/clear-modal';
-@import 'cmps/password-modal';
-@import 'cmps/loader';
+@import "cmps/table-list";
+@import "cmps/table-preview";
+@import "cmps/user-list";
+@import "cmps/user-preview";
+@import "cmps/clear-modal";
+@import "cmps/password-modal";
+@import "cmps/loader";
 
 //VIEWS
-@import 'views/Form';
-@import 'views/TableView';
-@import 'views/EventSettings';
+@import "views/Form";
+@import "views/TableView";
+@import "views/EventSettings";

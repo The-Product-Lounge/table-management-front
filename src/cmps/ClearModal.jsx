@@ -15,5 +15,5 @@ export const ClearModal = ({ onToggleModal, onClearEvent }) => {
         </button>
       </section>
     </div>
-  )
-}
+  );
+};

@@ -10,12 +10,13 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyBpBDwmI88LI3mhdhW77DUNIl9ZmsFlUu8",
   authDomain: "table-management-lounge.firebaseapp.com",
-  databaseURL: "https://table-management-lounge-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL:
+    "https://table-management-lounge-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "table-management-lounge",
   storageBucket: "table-management-lounge.appspot.com",
   messagingSenderId: "284378515607",
   appId: "1:284378515607:web:f530de6965c37d355401d2",
-  measurementId: "G-JS3L2FZKJ6"
+  measurementId: "G-JS3L2FZKJ6",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

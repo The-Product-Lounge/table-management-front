@@ -1,43 +1,43 @@
-import { IconButton, InputAdornment, TextField } from '@mui/material'
-import { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import lock from '../assets/imgs/lock.svg'
-import openEye from '../assets/imgs/open-eye.svg'
-import redError from '../assets/imgs/red-error.svg'
-import closedEye from '../assets/imgs/closed-eye.svg'
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import lock from "../assets/imgs/lock.svg";
+import openEye from "../assets/imgs/open-eye.svg";
+import redError from "../assets/imgs/red-error.svg";
+import closedEye from "../assets/imgs/closed-eye.svg";
 
-export const PasswordModal = ({ onToggleModal, classes }) => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [passwordInput, setPasswordInput] = useState('')
-  const [wrongPassword, setWrongPassword] = useState(false)
-  const navigate = useNavigate()
-  const inputRef = useRef(null)
+export const PasswordModal = ({ onToggleModal, rootSx }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   const handleChange = (event) => {
-    setPasswordInput(event.target.value)
-  }
+    setPasswordInput(event.target.value);
+  };
 
   const onCheckPassword = (event) => {
-    event.preventDefault()
-    if (passwordInput === 'TPL!1995') {
-      navigate('/event-settings')
+    event.preventDefault();
+    if (passwordInput === "TPL!1995") {
+      navigate("/event-settings");
     } else {
-      setWrongPassword(true)
-      inputRef.current.blur()
+      setWrongPassword(true);
+      inputRef.current.blur();
     }
-  }
+  };
 
   const isButtonDisabled = () => {
-    return !passwordInput
-  }
+    return !passwordInput;
+  };
 
   return (
     <div className="screen" onClick={onToggleModal}>
@@ -50,7 +50,6 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
         <p className="subtitle">What is the secret word?</p>
         <form onSubmit={onCheckPassword}>
           <TextField
-            className={classes.root}
             error={wrongPassword}
             helperText={
               wrongPassword && (
@@ -61,7 +60,7 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
               )
             }
             name="password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             label="Password"
             variant="outlined"
             value={passwordInput}
@@ -69,11 +68,11 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
             inputRef={inputRef}
             InputProps={{
               style: {
-                height: '48px',
-                padding: '0px 10px',
-                color: '#28293D',
-                fontFamily: 'poppins-regular',
-                fontSize: '14px',
+                height: "48px",
+                padding: "0px 10px",
+                color: "#28293D",
+                fontFamily: "poppins-regular",
+                fontSize: "14px",
               },
               endAdornment: (
                 <InputAdornment position="end">
@@ -91,12 +90,13 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
               ),
             }}
             sx={{
-              '& .MuiFormHelperText-root': {
-                color: '#555770 !important',
-                position: 'absolute',
-                fontSize: '11px',
-                fontFamily: 'inter-regular !important',
-                bottom: '-21px',
+              ...rootSx,
+              "& .MuiFormHelperText-root": {
+                color: "#555770 !important",
+                position: "absolute",
+                fontSize: "11px",
+                fontFamily: "inter-regular !important",
+                bottom: "-21px",
               },
             }}
             fullWidth={true}
@@ -114,5 +114,5 @@ export const PasswordModal = ({ onToggleModal, classes }) => {
         </button>
       </section>
     </div>
-  )
-}
+  );
+};
