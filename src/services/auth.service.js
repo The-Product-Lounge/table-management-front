@@ -17,7 +17,7 @@ export const removeTokenFromStorage = () => {
 
 export const getJwtTokenFromServer = async (username, password) => {
   try {
-    const { access_token } = await httpService.post("/auth/login", {
+    const { access_token } = await httpService.post("auth/login", {
       username,
       password,
     });

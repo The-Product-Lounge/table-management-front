@@ -9,15 +9,21 @@
 @import "setup/mixins";
 
 //CMPS
-@import "cmps/table-list";
-@import "cmps/table-preview";
-@import "cmps/user-list";
-@import "cmps/user-preview";
-@import "cmps/clear-modal";
-@import "cmps/password-modal";
-@import "cmps/loader";
+@import 'cmps/table-list';
+@import 'cmps/table-preview';
+@import 'cmps/user-list';
+@import 'cmps/user-preview';
+@import 'cmps/clear-modal';
+@import 'cmps/password-modal';
+@import 'cmps/loader';
+@import 'cmps/app-header';
+@import 'cmps/empty-event-list';
+@import 'cmps/create-event-modal';
+@import 'cmps/event-list';
+@import 'cmps/event-preview';
 
 //VIEWS
-@import "views/Form";
-@import "views/TableView";
-@import "views/EventSettings";
+@import 'views/form';
+@import 'views/table-view';
+@import 'views/event-settings';
+@import 'views/events-view';
