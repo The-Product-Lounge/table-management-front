@@ -1,12 +1,12 @@
 //BASICS
-@import 'basics/base';
+@import "basics/base";
 
 //SETUP
-@import 'setup/colors';
-@import 'setup/normalize';
-@import 'setup/typography';
-@import 'setup/variables';
-@import 'setup/mixins';
+@import "setup/colors";
+@import "setup/normalize";
+@import "setup/typography";
+@import "setup/variables";
+@import "setup/mixins";
 
 //CMPS
 @import 'cmps/table-list';

@@ -1,4 +1,4 @@
-import { UserPreview } from './UserPreview'
+import { UserPreview } from "./UserPreview";
 
 export const UserList = ({ users, onRemoveLounger }) => {
   return (
@@ -10,8 +10,8 @@ export const UserList = ({ users, onRemoveLounger }) => {
             user={user}
             key={user.id}
           />
-        )
+        );
       })}
     </section>
-  )
-}
+  );
+};

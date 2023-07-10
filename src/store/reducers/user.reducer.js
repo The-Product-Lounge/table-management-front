@@ -1,20 +1,20 @@
-import { userService } from '../../services/user.service'
+import { userService } from "../../services/user.service";
 
 const initialState = {
   user: userService.getUserFromStorage(),
-}
+};
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
-    case 'SET_USER':
-      state = { ...state, user: action.user }
-      break
+    case "SET_USER":
+      state = { ...state, user: action.user };
+      break;
 
     default:
-      return state
+      return state;
   }
 
   // For debug:
-  window.userState = state
-  return state
+  window.userState = state;
+  return state;
 }
