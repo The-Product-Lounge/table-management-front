@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Close_icon" data-name="Close icon" transform="translate(-338 -86)">
+    <g id="Rectangle_18" data-name="Rectangle 18" transform="translate(338 86)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="24" height="24" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+    </g>
+    <g id="Close_remove" data-name="Close remove" transform="translate(338 86)">
+      <path id="Path_13" data-name="Path 13" d="M18,18.75a.748.748,0,0,1-.53-.22l-12-12A.75.75,0,0,1,6.53,5.47l12,12A.75.75,0,0,1,18,18.75Z" fill="#282941"/>
+      <path id="Path_14" data-name="Path 14" d="M6,18.75a.75.75,0,0,1-.53-1.28l12-12A.75.75,0,1,1,18.53,6.53l-12,12A.748.748,0,0,1,6,18.75Z" fill="#282941"/>
+    </g>
+  </g>
+</svg>

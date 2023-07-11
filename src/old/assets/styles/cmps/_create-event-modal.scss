@@ -1,0 +1,152 @@
+.create-event-modal {
+  position: absolute;
+  top: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  min-height: 100vh;
+
+  .border-box-header-summery {
+    border: 1px solid #e0e0e0;
+    border-left: 0;
+    border-right: 0;
+    header {
+      // width: 100%;
+      height: 56px;
+      color: #28293d;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      font-family: poppins-semi-bold;
+
+      .title {
+        flex: 1;
+        text-align: center;
+      }
+
+      svg {
+        justify-self: flex-end;
+        position: absolute;
+        right: 22px;
+      }
+    }
+
+    .event-summery-container {
+      position: relative;
+      background-color: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 44px 20px;
+
+      .background-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .pencil {
+        &.top-right {
+          position: absolute;
+          right: 22px;
+          top: 12px;
+        }
+      }
+
+      .event-summery {
+        z-index: 1;
+        width: 100%;
+        height: 86px;
+        background-color: #fff;
+        box-shadow: 0px 6px 12px #0000000f;
+        border-radius: 8px;
+        border: #e0e0e0 0.5px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        gap: 16px;
+
+        &:hover {
+          cursor: auto;
+        }
+
+        .summery-text {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          height: 100%;
+          .grey-place-holder {
+            height: 17px;
+            border-radius: 20px;
+            background-color: #f2f2f5;
+
+            &.primary {
+              width: 158px;
+              margin-bottom: 8px;
+            }
+
+            &.secondary {
+              width: 82px;
+            }
+          }
+
+          .event-name {
+            color: #282941;
+            font-family: poppins-medium;
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+          }
+
+          .event-time-div {
+            gap: 6px;
+            display: flex;
+            color: #777781;
+            font-size: 12px;
+            font-family: poppins-regular;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+    }
+  }
+
+  .event-details {
+    width: 100vw;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .options {
+    padding: 20px 24px;
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+      font-family: poppins-medium;
+      &.dark {
+        background-color: #28293d;
+        color: white;
+      }
+
+      &:disabled {
+        background-color: #e4e4eb;
+        color: #9899a7;
+        cursor: auto;
+      }
+    }
+  }
+}
