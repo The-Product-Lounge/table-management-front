@@ -1,6 +1,6 @@
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import lock from "../assets/imgs/lock.svg";
 import openEye from "../assets/imgs/open-eye.svg";
 import redError from "../assets/imgs/red-error.svg";
@@ -10,7 +10,7 @@ export const PasswordModal = ({ onToggleModal, rootSx }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const inputRef = useRef(null);
 
   const handleClickShowPassword = () => {
@@ -28,7 +28,7 @@ export const PasswordModal = ({ onToggleModal, rootSx }) => {
   const onCheckPassword = (event) => {
     event.preventDefault();
     if (passwordInput === "TPL!1995") {
-      navigate("/event-settings");
+      // navigate("/event-settings");
     } else {
       setWrongPassword(true);
       inputRef.current.blur();

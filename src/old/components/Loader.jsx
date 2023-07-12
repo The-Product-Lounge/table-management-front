@@ -1,4 +1,4 @@
-import Rive from "rive-react";
+import Rive from "@rive-app/react-canvas";
 import tplLoader from "../assets/imgs/TPL Loader.riv";
 
 export const Loader = ({ massage }) => {

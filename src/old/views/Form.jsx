@@ -1,14 +1,14 @@
+"use client";
 import { React, useMemo, useRef, useState } from "react";
 import logo from "../assets/imgs/logo@2x.png";
 import eventSettings from "../assets/imgs/event-settings.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { cloudinaryService } from "../services/cloudinary.service";
 import { Box, MenuItem, TextField, Typography } from "@mui/material";
-import { PasswordModal } from "../cmps/PasswordModal";
+import { PasswordModal } from "../components/PasswordModal";
 import { setUser } from "../store/actions/user.action";
-import { Loader } from "../cmps/Loader";
+import { Loader } from "../components/Loader";
 import { database } from "../firebase-setup/firebase";
 import { onValue, ref } from "firebase/database";
 import { tableService } from "../services/table.service";
@@ -58,7 +58,6 @@ export const Form = () => {
   const [img, setImg] = useState(null);
   const inputImageRef = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const defaultUserImg =
     "https://res.cloudinary.com/table-management/image/upload/v1680271751/New_Project_eub3nb.png";
@@ -70,8 +69,9 @@ export const Form = () => {
   useEffect(() => {
     const tableId = tableService.getTableIdFromStorage();
     const uuid = storageService.getFromStorage("uuid");
-    if (tableId) navigate(`table/${tableId}`);
-    else if (uuid) listenToUuid(uuid);
+    // TODO: change to nextjs navigate
+    // if (tableId) navigate(`table/${tableId}`);
+    // else if (uuid) listenToUuid(uuid);
   }, []);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -98,7 +98,8 @@ export const Form = () => {
       if (tableId) {
         tableService.setTableIdInStorage(tableId);
         storageService.removeFromStorage("uuid");
-        navigate(`table/${tableId}`);
+        // TODO: change to nextjs navigate
+        // navigate(`table/${tableId}`);
       }
     });
   };
@@ -174,7 +175,7 @@ export const Form = () => {
           <div className="main-content">
             <section className="welcome">
               <div className="logo-container">
-                <img src={logo} alt="logo" />
+                <img src={logo.src} alt="logo" />
               </div>
               <h1>
                 <span>Welcome</span>
@@ -288,7 +289,7 @@ export const Form = () => {
               </form>
             </div>
             <div className="event-settings-link" onClick={onToggleModal}>
-              <img src={eventSettings} alt="" />
+              <img src={eventSettings.src} alt="" />
               <p>Event Settings</p>
             </div>
           </div>
