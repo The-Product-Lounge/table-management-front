@@ -5,12 +5,12 @@ import { Tooltip } from "@mui/material";
 import removeLounger from "../assets/imgs/remove-member.svg";
 import { useSelector } from "react-redux";
 import { utilService } from "../services/util.service";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 export const UserPreview = ({ user, onRemoveLounger }) => {
-  const location = useLocation();
-  const isLocationTableView = location.pathname.includes("/table");
   const userFromState = useSelector((state) => state.userModule.user);
+  const [open, setOpen] = useState(false);
 
   const firstNameIsInHebrew = useMemo(() => {
     return utilService.isInHebrew(user.firstName);
@@ -19,6 +19,14 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
   const lastNameIsInHebrew = useMemo(() => {
     return utilService.isInHebrew(user.lastName);
   }, [user.lastName]);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <section className="user-preview">
@@ -36,42 +44,48 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
             </span>{" "}
             {user.lastName}
           </p>
-          {userFromState?.id === user.id && isLocationTableView && (
+          {userFromState?.id === user.id && !onRemoveLounger && (
             <p className="you">You</p>
           )}
         </div>
-        {!isLocationTableView && (
-          <img
-            id={`tooltip-${user.id}`}
-            className="member-menu"
-            src={tableMemberMenu}
-            alt="Table member menu"
-          />
-        )}
-        <Tooltip
-          title={
-            <div
-              className="tooltip-container"
-              onClick={() => onRemoveLounger(user.id)}
-            >
-              <img
-                className="remove-lounger"
-                src={removeLounger}
-                alt="remove lounger"
-              />
-              <span>Remove Lounger</span>
+        {onRemoveLounger && (
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <div>
+              <Tooltip
+                onClose={handleTooltipClose}
+                open={open}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title={
+                  <div className="react-tooltip">
+                    <div
+                      className="tooltip-container"
+                      onClick={() => onRemoveLounger(user.id)}
+                    >
+                      <img
+                        className="remove-lounger"
+                        src={removeLounger.src}
+                        alt="remove lounger"
+                      />
+                      <span>Remove Lounger</span>
+                    </div>
+                  </div>
+                }
+                placement="left"
+                arrow
+              >
+                <img
+                  onClick={handleTooltipOpen}
+                  id={`tooltip-${user.id}`}
+                  className="member-menu"
+                  src={tableMemberMenu.src}
+                  alt="Table member menu"
+                />
+              </Tooltip>
             </div>
-          }
-          placement="left"
-          arrow
-        >
-          <img
-            id={`tooltip-${user.id}`}
-            className="member-menu"
-            src={tableMemberMenu}
-            alt="Table member menu"
-          />
-        </Tooltip>
+          </ClickAwayListener>
+        )}
       </div>
     </section>
   );

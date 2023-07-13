@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_TABLE_SERVER_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_TABLE_SERVER_URL;
 
 var axios = Axios.create({
   withCredentials: true,

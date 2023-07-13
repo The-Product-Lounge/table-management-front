@@ -3,10 +3,7 @@
 import { tableService } from "../services/table.service";
 import { UserList } from "./UserList";
 
-export const TablePreview = ({ table }) => {
-  const location = useLocation();
-  const isLocationTableView = location.pathname.includes("/table");
-
+export const TablePreview = ({ table, ...props }) => {
   const onRemoveLounger = async (userId) => {
     table.users = table.users.filter((user) => user.id !== userId);
     if (!table.users.length) await tableService.removeTable(table.id);
@@ -15,7 +12,7 @@ export const TablePreview = ({ table }) => {
 
   return (
     <section className="table-preview">
-      {isLocationTableView ? (
+      {!props.key ? (
         <div className="title table-view-title">
           <p>Loungers At Your Table</p>
           <p>{table.users.length}/3</p>

@@ -54,14 +54,14 @@ export const EventSettings = () => {
         <div className="header-container">
           <img
             onClick={onToggleModal}
-            src={clearEvent}
+            src={clearEvent.src}
             className="clear-event"
             alt="clear event"
           />
           <h1>Event Settings</h1>
-          {/* <Link to="/">
-            <img src={closePage} className="close-page" alt="close page" />
-          </Link> */}
+          {/* <Link to="/"> */}
+          <img src={closePage.src} className="close-page" alt="close page" />
+          {/* </Link> */}
         </div>
       </header>
       <TableList tables={tables} />

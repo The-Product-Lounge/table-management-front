@@ -29,11 +29,10 @@ async function joinTable(user) {
 }
 
 async function updateTable(table) {
-  return httpService.put(BASE_URL + table._id, table);
+  return httpService.put(BASE_URL + table.id, table);
 }
 
 async function removeTable(id) {
-  console.log(id);
   return httpService.delete(BASE_URL + id);
 }
 
