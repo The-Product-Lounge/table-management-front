@@ -14,6 +14,7 @@ import { onValue, ref } from "firebase/database";
 import { tableService } from "../services/table.service";
 import { storageService } from "../services/local-storage.service";
 import { utilService } from "../services/util.service";
+import { useRouter } from "next/navigation";
 
 const rootSx = {
   "& label.Mui-focused": {
@@ -56,6 +57,7 @@ export const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [img, setImg] = useState(null);
+  const router = useRouter();
   const inputImageRef = useRef();
   const dispatch = useDispatch();
 
@@ -69,9 +71,8 @@ export const Form = () => {
   useEffect(() => {
     const tableId = tableService.getTableIdFromStorage();
     const uuid = storageService.getFromStorage("uuid");
-    // TODO: change to nextjs navigate
-    // if (tableId) navigate(`table/${tableId}`);
-    // else if (uuid) listenToUuid(uuid);
+    if (tableId) router.replace(`/table/${tableId}`);
+    else if (uuid) listenToUuid(uuid);
   }, []);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -98,8 +99,7 @@ export const Form = () => {
       if (tableId) {
         tableService.setTableIdInStorage(tableId);
         storageService.removeFromStorage("uuid");
-        // TODO: change to nextjs navigate
-        // navigate(`table/${tableId}`);
+        router.replace(`/table/${tableId}`);
       }
     });
   };

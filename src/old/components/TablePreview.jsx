@@ -28,7 +28,10 @@ export const TablePreview = ({ table, ...props }) => {
       )}
 
       {table.users.length !== 0 && (
-        <UserList users={table.users} onRemoveLounger={onRemoveLounger} />
+        <UserList
+          users={table.users}
+          onRemoveLounger={!props.isUserTable ? onRemoveLounger : undefined}
+        />
       )}
     </section>
   );
