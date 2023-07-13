@@ -1,3 +1,5 @@
+import { isBrowser } from "../../utils/is-browser";
+
 export const storageService = {
   getFromStorage,
   putInStorage,
@@ -5,13 +7,14 @@ export const storageService = {
 };
 
 function getFromStorage(storageKey) {
+  if (!isBrowser()) return null;
   return JSON.parse(localStorage.getItem(storageKey)) || null;
 }
 
 function putInStorage(storageKey, entity) {
-  localStorage.setItem(storageKey, JSON.stringify(entity));
+  if (isBrowser()) localStorage.setItem(storageKey, JSON.stringify(entity));
 }
 
 function removeFromStorage(storageKey) {
-  localStorage.removeItem(storageKey);
+  if (isBrowser()) localStorage.removeItem(storageKey);
 }
