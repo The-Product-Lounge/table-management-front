@@ -1,25 +1,7 @@
 // Import the functions you need from the SDKs you need
-//use dynamic import to avoid SSR errors
-import dynamic from "next/dynamic";
-
-const initializeApp = dynamic(
-  () => import("firebase/app").then((mod) => mod.initializeApp),
-  {
-    ssr: false,
-  }
-);
-const getAnalytics = dynamic(
-  () => import("firebase/analytics").then((mod) => mod.getAnalytics),
-  {
-    ssr: false,
-  }
-);
-const getDatabase = dynamic(
-  () => import("firebase/database").then((mod) => mod.getDatabase),
-  {
-    ssr: false,
-  }
-);
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,7 +18,6 @@ const firebaseConfig = {
   appId: "1:284378515607:web:f530de6965c37d355401d2",
   measurementId: "G-JS3L2FZKJ6",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
