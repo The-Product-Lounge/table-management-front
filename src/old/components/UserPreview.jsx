@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
+"use client";
+
 import tableMemberMenu from "../assets/imgs/table-member-menu.svg";
-import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "@mui/material";
 import removeLounger from "../assets/imgs/remove-member.svg";
 import { useSelector } from "react-redux";
 import { utilService } from "../services/util.service";
@@ -49,28 +49,28 @@ export const UserPreview = ({ user, onRemoveLounger }) => {
           />
         )}
         <Tooltip
-          anchorId={`tooltip-${user.id}`}
-          place="left"
-          events={["click"]}
-          style={{
-            backgroundColor: "white",
-            color: "#28293F",
-            boxShadow: "0px 4px 12px #60617029",
-            opacity: "1",
-            pointerEvents: "auto",
-          }}
+          title={
+            <div
+              className="tooltip-container"
+              onClick={() => onRemoveLounger(user.id)}
+            >
+              <img
+                className="remove-lounger"
+                src={removeLounger}
+                alt="remove lounger"
+              />
+              <span>Remove Lounger</span>
+            </div>
+          }
+          placement="left"
+          arrow
         >
-          <div
-            className="tooltip-container"
-            onClick={() => onRemoveLounger(user.id)}
-          >
-            <img
-              className="remove-lounger"
-              src={removeLounger}
-              alt="remove lounger"
-            />
-            <span>Remove Lounger</span>
-          </div>
+          <img
+            id={`tooltip-${user.id}`}
+            className="member-menu"
+            src={tableMemberMenu}
+            alt="Table member menu"
+          />
         </Tooltip>
       </div>
     </section>

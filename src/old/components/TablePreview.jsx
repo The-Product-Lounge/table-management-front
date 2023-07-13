@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom";
+"use client";
+
 import { tableService } from "../services/table.service";
 import { UserList } from "./UserList";
 

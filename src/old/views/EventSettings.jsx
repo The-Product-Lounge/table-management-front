@@ -1,11 +1,11 @@
+"use client";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import clearEvent from "../assets/imgs/clear-event.svg";
 import closePage from "../assets/imgs/close-event-info.svg";
-import { TableList } from "../cmps/TableList";
-import { ClearModal } from "../cmps/ClearModal";
-import { Loader } from "../cmps/Loader";
+import { TableList } from "../components/TableList";
+import { ClearModal } from "../components/ClearModal";
+import { Loader } from "../components/Loader";
 import { off, onValue, ref } from "firebase/database";
 import { database } from "../firebase-setup/firebase";
 import { tableService } from "../services/table.service";
@@ -59,9 +59,9 @@ export const EventSettings = () => {
             alt="clear event"
           />
           <h1>Event Settings</h1>
-          <Link to="/">
+          {/* <Link to="/">
             <img src={closePage} className="close-page" alt="close page" />
-          </Link>
+          </Link> */}
         </div>
       </header>
       <TableList tables={tables} />
