@@ -29,7 +29,8 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: { email: string; password: string }) => {
     try {
-      await dispatch(getJwt(data));
+      // TODO change getJwt to work with typescript
+      await dispatch(getJwt(data) as any);
       router.replace("/event-settings");
     } catch (err) {
       setError("password", {
