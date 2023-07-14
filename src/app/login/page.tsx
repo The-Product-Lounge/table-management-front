@@ -24,7 +24,7 @@ const BackgroundComponent = ({ children }: { children: ReactNode }) => {
         right: 0,
         left: 0,
         bottom: 0,
-        background: `#fafafa url(${bgImage}) center;`,
+        background: `#fafafa url(${bgImage.src}) center;`,
       }}
     >
       {children}
