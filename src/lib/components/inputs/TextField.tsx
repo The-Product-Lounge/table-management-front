@@ -10,7 +10,7 @@ import closedEye from "../../../old/assets/imgs/closed-eye.svg";
 import redError from "../../../old/assets/imgs/red-error.svg";
 import Image from "next/image";
 
-// TODO seprate this component to a new file
+// TODO separate this component to a new file
 const HelperTextError = ({ children }: { children: ReactNode }) => {
   return (
     <Stack direction="row" alignItems="center">
