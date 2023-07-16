@@ -5,9 +5,9 @@ import MuiTextField, {
 } from "@mui/material/TextField";
 import React, { ReactNode, useState } from "react";
 
-import openEye from "../../../old/assets/imgs/open-eye.svg";
-import closedEye from "../../../old/assets/imgs/closed-eye.svg";
-import redError from "../../../old/assets/imgs/red-error.svg";
+import openEye from "@/old/assets/imgs/open-eye.svg";
+import closedEye from "@/old/assets/imgs/closed-eye.svg";
+import redError from "@/old/assets/imgs/red-error.svg";
 import Image from "next/image";
 
 // TODO separate this component to a new file
@@ -28,11 +28,7 @@ const HelperTextError = ({ children }: { children: ReactNode }) => {
 };
 
 //extend mui textfield props
-type TextFieldProps = {
-  helperText?: ReactNode;
-  error?: boolean;
-  type?: string;
-} & MuiTextFieldProps;
+type TextFieldProps = {} & MuiTextFieldProps;
 
 /**
  * TextField - A component that renders a text field from material ui,
