@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import logo from "../../old/assets/imgs/logo@2x.png";
 import { Box } from "@mui/material";
-import bgImage from "../../old/assets/imgs/bgimage.svg";
+import bgImage from "../../old/assets/imgs/bgimage.svg?url";
 import { LoginForm } from "@/lib/components/LoginForm";
 import { ReactNode } from "react";
 import Image from "next/image";

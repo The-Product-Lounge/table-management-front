@@ -1,6 +1,7 @@
-import { useMemo } from "react"
-import { Tooltip } from "react-tooltip"
-import removeIcon from "../../assets/imgs/remove-member.svg"
+import { useMemo, useState } from "react";
+import { ClickAwayListener, Tooltip } from "@mui/material";
+import removeIcon from "@/old/assets/imgs/remove-member.svg?url";
+import Image from "next/image";
 
 //TODO: where to place the tables? place them higher than here and they will trigger rerendering of all events if one table changes
 
@@ -14,77 +15,93 @@ export const EventPreview = ({ event, tables }) => {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
-    })}`
-  }, [event.date, event.time])
+    })}`;
+  }, [event.date, event.time]);
+  const [open, setOpen] = useState(false);
 
   const numberOfLoungers = useMemo(() => {
     const loungers = tables.reduce((a, table) => {
-      return table.users.length + a
-    }, 0)
-    return loungers ? loungers : "No"
-  }, [tables])
+      return table.users.length + a;
+    }, 0);
+    return loungers ? loungers : "No";
+  }, [tables]);
 
   const numberOfTables = useMemo(() => {
-    return tables.length ? tables.length : "No"
-  }, [tables])
+    return tables.length ? tables.length : "No";
+  }, [tables]);
 
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
   return (
     <>
-      <Tooltip
-        anchorId={`tooltip-${event.id}`}
-        // placement = 'bottom'
-        place='top'
-        events={["click"]}
-        style={{
-          backgroundColor: "white",
-          color: "#28293F",
-          boxShadow: "0px 4px 12px #60617029",
-          opacity: "1",
-          pointerEvents: "auto",
-        }}
-      >
-        <div
-          className='tooltip-container'
-          // onClick={}
-        >
-          <img className='remove-event' src={removeIcon} alt='remove event' />
-          <span>Delete Event</span>
-        </div>
-      </Tooltip>
-      <section className='event-preview'>
-        <div className='images blur-with-lines'>
+      <section className="event-preview">
+        <div className="images blur-with-lines">
           <img
-            className='background-image'
+            className="background-image"
             src={event.backgroundImgUrl}
-            alt=''
+            alt=""
           />
-          <div className='img-container small'>
-            <img src={event.logoImgUrl} alt='' />
+          <div className="img-container small">
+            <img src={event.logoImgUrl} alt="" />
           </div>
-          <div
-            className='more-options clickable'
-            id={`tooltip-${event.id}`}
-          ></div>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <div>
+              <Tooltip
+                onClose={handleTooltipClose}
+                open={open}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title={
+                  <div
+                    className="tooltip-container"
+
+                    // onClick={}
+                  >
+                    <Image
+                      className="remove-event"
+                      src={removeIcon}
+                      alt="remove event"
+                    />
+                    <span>Delete Event</span>
+                  </div>
+                }
+                placement="left"
+                arrow
+              >
+                <div
+                  className="more-options clickable"
+                  id={`tooltip-${event.id}`}
+                  onClick={handleTooltipOpen}
+                ></div>
+              </Tooltip>
+            </div>
+          </ClickAwayListener>
         </div>
-        <div className='details'>
-          <h2 className='name'>{event.name}</h2>
-          <div className='date'>
+        <div className="details">
+          <h2 className="name">{event.name}</h2>
+          <div className="date">
             <p>{dateToBeDisplayed}</p>
           </div>
-          <div className='location'>
+          <div className="location">
             <p>{event.location}</p>
           </div>
         </div>
-        <div className='tables-info'>
-          <div className='loungers'>
+        <div className="tables-info">
+          <div className="loungers">
             <p>{`${numberOfLoungers} Loungers`}</p>
           </div>
           <p>&bull;</p>
-          <div className='tables'>
+          <div className="tables">
             <p>{`${numberOfTables} Tables`}</p>
           </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};

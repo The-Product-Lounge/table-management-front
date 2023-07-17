@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import emptyChair from "../assets/imgs/empty-chair.svg";
+import emptyChair from "../assets/imgs/empty-chair.svg?url";
 import { TablePreview } from "../components/TablePreview";
 import { off, onValue, ref } from "firebase/database";
 import { database } from "../firebase-setup/firebase";
