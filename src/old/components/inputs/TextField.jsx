@@ -68,3 +68,5 @@ export const TextField = React.forwardRef((props, ref) => {
     </>
   );
 });
+
+TextField.name = "TextField";

@@ -1,8 +1,8 @@
 "use client";
 
-import tableMemberMenu from "../assets/imgs/table-member-menu.svg";
+import tableMemberMenu from "../assets/imgs/table-member-menu.svg?url";
 import { Tooltip } from "@mui/material";
-import removeLounger from "../assets/imgs/remove-member.svg";
+import removeLounger from "../assets/imgs/remove-member.svg?url";
 import { useSelector } from "react-redux";
 import { utilService } from "../services/util.service";
 import { useMemo, useState } from "react";

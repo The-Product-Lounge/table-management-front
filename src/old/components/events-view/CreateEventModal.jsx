@@ -1,14 +1,15 @@
 import { useMemo, useRef, useState } from "react";
-import { ReactComponent as CloseIcon } from "../../assets/imgs/close-event-info.svg";
-import { ReactComponent as Pattern } from "../../assets/imgs/table-pattern.svg";
-import { ReactComponent as LocationIcon } from "../../assets/imgs/location-icon.svg";
-import { ReactComponent as ClockIcon } from "../../assets/imgs/clock-icon.svg";
-import { ReactComponent as CalendarIcon } from "../../assets/imgs/calendar-icon.svg";
+import CloseIcon from "@/old/assets/imgs/close-event-info.svg";
+import Pattern from "@/old/assets/imgs/table-pattern.svg";
+import LocationIcon from "@/old/assets/imgs/location-icon.svg";
+import ClockIcon from "@/old/assets/imgs/clock-icon.svg";
+import CalendarIcon from "@/old/assets/imgs/calendar-icon.svg";
 import { TextField, TextareaAutosize, InputAdornment } from "@mui/material";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { stylesX, inputProps } from "../../material-ui-setup/customStyles";
-import { cloudinaryService } from "../../services/cloudinary.service";
+import { stylesX, inputProps } from "@/old/material-ui-setup/customStyles";
+import { cloudinaryService } from "@/old/services/cloudinary.service";
+import Image from "next/image";
 
 export const CreateEventModal = ({ toggleCreateModal }) => {
   //state
@@ -186,7 +187,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
               onClick={() => inputLogoImageRef.current.click()}
             >
               <div className="pencil img-decorator"></div>
-              <img src={displayedLogo} alt="" className="event-img" />
+              <Image src={displayedLogol} alt="" className="event-img" />
             </div>
             <div className="summery-text">
               {event.name ? (
@@ -216,6 +217,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             if (label === "Event Details") {
               return (
                 <TextField
+                  key={property}
                   className={[stylesX.root, stylesX.height]}
                   // variant='inline'
                   label={label}
@@ -230,6 +232,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             } else if (label === "Date") {
               return (
                 <DatePicker
+                  key={property}
                   minDate={dayjs(new Date())}
                   format="DD/MM/YY"
                   slots={{
@@ -244,6 +247,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             } else if (label === "Time") {
               return (
                 <TimePicker
+                  key={property}
                   ampm={false}
                   format="HH:mm"
                   slots={{
@@ -258,6 +262,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
             } else {
               return (
                 <TextField
+                  key={property}
                   className={stylesX.root}
                   label={label}
                   variant="outlined"
