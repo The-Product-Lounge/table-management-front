@@ -1,10 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const OldEventView = dynamic(
+const OldEventSettings = dynamic(
   () => {
-    return import("../../old/views/EventsView").then(
-      (module) => module.EventsView
+    return import("@/old/views/EventSettings").then(
+      (module) => module.EventSettings
     );
   },
   {
@@ -15,7 +15,7 @@ const OldEventView = dynamic(
 export default function Home() {
   return (
     <>
-      <OldEventView />
+      <OldEventSettings />
     </>
   );
 }
