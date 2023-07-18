@@ -223,15 +223,11 @@ export const CreateEventModal = () => {
               return (
                 <TextField
                   key={property}
-                  // className={[stylesX.root, stylesX.height]}
-                  // variant='inline'
                   label={label}
                   onChange={handleChange}
                   name={property}
                   value={event[property]}
                   multiline
-                  // rows={3}
-                  // maxRows={Infinity}
                 />
               );
             } else if (label === "Date") {

@@ -44,7 +44,6 @@ let theme = createTheme({
           [`& fieldset`]: {
             borderRadius: "8px",
             border: "1px solid #EBEBEB",
-            height: "53px",
           },
           "& svg.MuiSvgIcon-root": {
             top: "calc(50% - 0.6em)",
