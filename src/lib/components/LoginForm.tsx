@@ -6,8 +6,8 @@ import * as Yup from "yup";
 import { Button } from "./inputs/Button";
 import { TextField } from "./inputs/TextField";
 import { useDispatch } from "react-redux";
-import { getJwt } from "../../old/store/actions/auth.action";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,13 @@ export const LoginForm = () => {
   const onSubmit = async (data: { email: string; password: string }) => {
     try {
       // TODO change getJwt to work with typescript
-      await dispatch(getJwt(data) as any);
+      // await dispatch(getJwt(data) as any);
+      await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+        // callbackUrl: `/event-settings`,
+      });
       router.replace("/event-settings");
     } catch (err) {
       setError("password", {
