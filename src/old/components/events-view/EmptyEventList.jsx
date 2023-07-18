@@ -1,14 +1,14 @@
 import EventPreview from "@/old/assets/imgs/event-preview.png";
 import CreateEvent from "@/old/assets/imgs/create-event.svg";
-import { useState } from "react";
-import { CreateEventModal } from "./CreateEventModal";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const EmptyEventList = () => {
-  const [isCreateEventModalOpen, setIsCreateModalOpen] = useState(false);
+  const router = useRouter();
 
   const onToggleCreateModal = () => {
-    setIsCreateModalOpen((state) => !state);
+    router.replace("/event-settings/create-event");
   };
 
   return (
@@ -23,9 +23,6 @@ export const EmptyEventList = () => {
         <CreateEvent />
         Create Event
       </button>
-      {isCreateEventModalOpen && (
-        <CreateEventModal toggleCreateModal={onToggleCreateModal} />
-      )}
     </section>
   );
 };
