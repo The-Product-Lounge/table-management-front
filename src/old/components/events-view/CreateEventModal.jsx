@@ -52,7 +52,6 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
 
   //functions
   const onUploadImg = ({ target: { name, files } }) => {
-    console.log(name, files);
     name === "logo"
       ? setUploadedLogo(files[0])
       : setUploadedBackground(files[0]);

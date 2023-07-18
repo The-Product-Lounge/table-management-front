@@ -20,7 +20,6 @@ async function clearTables() {
 
 async function joinTable(user) {
   try {
-    console.log("h1");
     return await httpService.post(BASE_URL + "join-table", user);
   } catch (err) {
     console.error(err);

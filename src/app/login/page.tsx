@@ -59,6 +59,7 @@ const LogoCardComponent = () => {
           position: "relative",
           top: "50%",
           left: "50%",
+          height: "auto",
           transform: "translate(-50%, -50%)",
         }}
       />
