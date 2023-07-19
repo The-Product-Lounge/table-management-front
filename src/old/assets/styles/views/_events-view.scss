@@ -1,0 +1,18 @@
+.events-view {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+
+    .events {
+        padding:  0 20px 24px 20px;
+
+        .title {
+            font-size: 14px;
+            color: #28293D;
+            text-align: start;
+            margin-top: 24px;
+            margin-bottom: 20px;
+        }
+    }
+}

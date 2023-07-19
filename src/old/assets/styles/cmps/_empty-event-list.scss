@@ -1,0 +1,39 @@
+.empty-event-list {
+  width: 243px;
+  // margin-top: 134px;
+  height: 100%;
+  // align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+
+  .table-preview {
+    width: 100%;
+    height: auto;
+    box-shadow: #0000001a 0px 0.5px 2px;
+  }
+
+  .description {
+    color: #777781;
+    font-size: 14px;
+    text-align: center;
+    line-height: 21px;
+    padding: 4px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #28293d;
+    padding: 14px 25px;
+    background-color: #fff;
+    border: 0.5px solid #ebebeb;
+    border-radius: 8px;
+    box-shadow: #0000001a 0px 0.5px 2px;
+  }
+}

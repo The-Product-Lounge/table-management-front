@@ -1,0 +1,133 @@
+.form {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px;
+  align-items: center;
+  background: #fafafa url("../../imgs/bgimage.svg") no-repeat fixed center;
+
+  // The description text will disappear when portfolio stage is selected
+  p.MuiTypography-body2 {
+    display: none;
+  }
+
+  .main-content {
+    width: 345px;
+    position: relative;
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 38px;
+
+      .logo-container {
+        position: absolute;
+        background-color: white;
+        border: 0.5px solid #ebebeb;
+        border-radius: 6px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 15px;
+        }
+      }
+      h1 {
+        line-height: 33px;
+        font-size: 22px;
+        color: #28293f;
+        font-weight: 400;
+        span {
+          font-family: poppins-semi-bold;
+        }
+      }
+    }
+
+    .form-container {
+      height: 445px;
+      border: #ebebeb 0.5px solid;
+      border-radius: 16px;
+      padding: 36px 24px;
+      display: flex;
+      background-color: white;
+      margin-bottom: 24px;
+      box-shadow: 0px 0.5px 2px #0000001a;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 16px;
+
+        .profile-image {
+          height: 74px;
+          width: 74px;
+          position: relative;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fcfcfc;
+          border-radius: 50%;
+          border: 1px solid #e0e0e0;
+          margin-bottom: 4px;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          img {
+            border-radius: 50%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .pencil {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+
+        input {
+          width: 100%;
+        }
+
+        .submit-btn {
+          height: 48px;
+          background-color: #1c1c28;
+          color: white;
+          width: 207px;
+          border: 1px solid #ebebeb;
+          border-radius: 8px;
+          font-family: poppins-regular;
+          font-size: 14px;
+          margin-top: 16px;
+
+          &:disabled {
+            background-color: #e4e4eb;
+            color: #9899a7;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .event-settings-link {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      color: #555770;
+      font-family: poppins-medium;
+      font-size: 14px;
+      cursor: pointer;
+      img {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}
