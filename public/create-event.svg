@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="Group_12388" data-name="Group 12388" transform="translate(-311 -58)">
+    <g id="Group_12386" data-name="Group 12386" transform="translate(1)">
+      <rect id="Rectangle_3715" data-name="Rectangle 3715" width="28" height="28" transform="translate(310 58)" fill="none" opacity="0"/>
+    </g>
+    <g id="Group_12387" data-name="Group 12387" transform="translate(1.032 1.146)">
+      <g id="Calendar_sticker_add" data-name="Calendar sticker add" transform="translate(316.9 63)">
+        <path id="Path_3935" data-name="Path 3935" d="M12.6,19.638H7.647a4.157,4.157,0,0,1-4.5-4.463V8.068a4.126,4.126,0,0,1,4.5-4.4H14.3a4.563,4.563,0,0,1,3.323,1.209A4.373,4.373,0,0,1,18.786,8.07v5.236a2.646,2.646,0,0,1-.74,1.84l-3.528,3.674A2.673,2.673,0,0,1,12.6,19.638ZM7.647,5.172c-2.477,0-3,1.575-3,2.9v7.107a2.964,2.964,0,0,0,.78,2.218,3.111,3.111,0,0,0,2.216.746H12.6a1.165,1.165,0,0,0,.836-.356l3.527-3.674a1.153,1.153,0,0,0,.322-.8V8.068a2.885,2.885,0,0,0-.729-2.128A3.115,3.115,0,0,0,14.3,5.172Z" transform="translate(-3.9 -3.181)" fill="#282941"/>
+        <path id="Path_3936" data-name="Path 3936" d="M14.387,20.945a.75.75,0,0,1-.75-.75V17.5a3.137,3.137,0,0,1,3.124-3.133h2.55a.75.75,0,0,1,0,1.5H16.763A1.634,1.634,0,0,0,15.137,17.5V20.2A.75.75,0,0,1,14.387,20.945Z" transform="translate(-5.237 -4.545)" fill="#282941"/>
+        <path id="Path_3940" data-name="Path 3940" d="M8.369,6.334a.75.75,0,0,1-.75-.75V3a.75.75,0,0,1,1.5,0V5.584A.75.75,0,0,1,8.369,6.334Z" transform="translate(-4.47 -3)" fill="#282941"/>
+        <path id="Path_3941" data-name="Path 3941" d="M8.369,6.334a.75.75,0,0,1-.75-.75V3a.75.75,0,0,1,1.5,0V5.584A.75.75,0,0,1,8.369,6.334Z" transform="translate(1.875 -3)" fill="#282941"/>
+      </g>
+      <path id="Path_3938" data-name="Path 3938" d="M11.639,14.727a.75.75,0,0,1-.75-.75V10.211a.75.75,0,1,1,1.5,0v3.766A.75.75,0,0,1,11.639,14.727Z" transform="translate(312.013 59.081)" fill="#282941"/>
+      <path id="Path_3939" data-name="Path 3939" d="M0,4.516a.75.75,0,0,1-.75-.75V0A.75.75,0,0,1,0-.75.75.75,0,0,1,.75,0V3.766A.75.75,0,0,1,0,4.516Z" transform="translate(325.535 71.175) rotate(90)" fill="#282941"/>
+    </g>
+  </g>
+</svg>

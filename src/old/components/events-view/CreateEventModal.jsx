@@ -9,10 +9,12 @@ import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { stylesX, inputProps } from "@/old/material-ui-setup/customStyles";
 import { cloudinaryService } from "@/old/services/cloudinary.service";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createEvent } from "@/old/services/events.service";
 
-export const CreateEventModal = ({ toggleCreateModal }) => {
+export const CreateEventModal = () => {
   //state
+  const router = useRouter();
   const [event, setEvent] = useState({
     name: "",
     date: "",
@@ -51,6 +53,10 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
   }, [uploadedBackground]);
 
   //functions
+  const onClose = () => {
+    router.replace("/event-settings");
+  };
+
   const onUploadImg = ({ target: { name, files } }) => {
     name === "logo"
       ? setUploadedLogo(files[0])
@@ -75,11 +81,15 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
   const onSubmit = async (ev) => {
     ev.preventDefault();
     //TODO: write submit logic
-    // try {
-    //   event.logoImgUrl = displayedLogo
-    //     ? await cloudinaryService.uploadImg(displayedLogo)
-    //     : `https://res.cloudinary.com/table-management/image/upload/v1685748386/img_icon_npfstv.png`
-    // } catch (error) {}
+    try {
+      await createEvent({
+        ...event,
+        logoImgUrl: uploadedLogo ? await cloudinaryService.uploadImg(uploadedLogo) : "",
+        backgroundImgUrl: uploadedBackground?await cloudinaryService.uploadImg(uploadedBackground):"",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //styling
@@ -148,7 +158,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
       <div className="border-box-header-summery">
         <header>
           <p className="title">Event Details</p>
-          <CloseIcon onClick={toggleCreateModal} className="clickable" />
+          <CloseIcon onClick={onClose} className="clickable" />
         </header>
         <div
           className="event-summery-container clickable"
@@ -186,7 +196,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
               onClick={() => inputLogoImageRef.current.click()}
             >
               <div className="pencil img-decorator"></div>
-              <Image src={displayedLogol} alt="" className="event-img" />
+              <img src={displayedLogo} alt="" className="event-img" />
             </div>
             <div className="summery-text">
               {event.name ? (
@@ -217,15 +227,11 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
               return (
                 <TextField
                   key={property}
-                  className={[stylesX.root, stylesX.height]}
-                  // variant='inline'
                   label={label}
                   onChange={handleChange}
                   name={property}
                   value={event[property]}
                   multiline
-                  rows={3}
-                  maxRows={Infinity}
                 />
               );
             } else if (label === "Date") {
@@ -234,8 +240,21 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
                   key={property}
                   minDate={dayjs(new Date())}
                   format="DD/MM/YY"
-                  slots={{
-                    openPickerIcon: CalendarIcon,
+                  slotProps={{
+                    textField: {
+                      InputProps: {
+                        style: {
+                          height: "48px",
+                          padding: "0px 10px 0px 0px",
+                          color: "#28293D",
+                          fontFamily: "poppins-regular",
+                          fontSize: "14px",
+                        },
+                        endAdornment: (
+                          <InputAdornment position="end">{icon}</InputAdornment>
+                        ),
+                      },
+                    },
                   }}
                   className={stylesX.datePicker}
                   label={label}
@@ -249,13 +268,26 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
                   key={property}
                   ampm={false}
                   format="HH:mm"
-                  slots={{
-                    openPickerIcon: ClockIcon,
-                  }}
                   className={stylesX.datePicker}
                   onChange={(date) => handleChange(date, property)}
                   label={label}
                   name={property}
+                  slotProps={{
+                    textField: {
+                      InputProps: {
+                        style: {
+                          height: "48px",
+                          padding: "0px 10px 0px 0px",
+                          color: "#28293D",
+                          fontFamily: "poppins-regular",
+                          fontSize: "14px",
+                        },
+                        endAdornment: (
+                          <InputAdornment position="end">{icon}</InputAdornment>
+                        ),
+                      },
+                    },
+                  }}
                 />
               );
             } else {
@@ -294,7 +326,7 @@ export const CreateEventModal = ({ toggleCreateModal }) => {
           })}
         </div>
         <div className="options">
-          <button onClick={toggleCreateModal} type="button">
+          <button onClick={onClose} type="button">
             Cancel
           </button>
           <button className="dark" type="submit" disabled={isButtonDisabled()}>

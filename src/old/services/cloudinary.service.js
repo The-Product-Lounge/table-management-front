@@ -4,8 +4,8 @@ export const cloudinaryService = {
 
 async function uploadImg(img) {
   // Defining our variables
-  const CLOUD_NAME = "table-management";
-  const UPLOAD_PRESET = "xrytcgrn";
+  const CLOUD_NAME = "the-product-lounge";
+  const UPLOAD_PRESET = "xrytcgrn2";
   const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
   const FORM_DATA = new FormData();
   // Building the request body
@@ -26,5 +26,6 @@ async function uploadImg(img) {
     return resizedUrl;
   } catch (err) {
     console.error("ERROR!", err);
+    throw err;
   }
 }
