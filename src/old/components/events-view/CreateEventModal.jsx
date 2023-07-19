@@ -84,18 +84,12 @@ export const CreateEventModal = () => {
     try {
       await createEvent({
         ...event,
-        logoImgUrl: await cloudinaryService.uploadImg(uploadedLogo),
-        backgroundImgUrl: await cloudinaryService.uploadImg(uploadedBackground),
+        logoImgUrl: uploadedLogo ? await cloudinaryService.uploadImg(uploadedLogo) : "",
+        backgroundImgUrl: uploadedBackground?await cloudinaryService.uploadImg(uploadedBackground):"",
       });
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //   event.logoImgUrl = displayedLogo
-    //     ? await cloudinaryService.uploadImg(displayedLogo)
-    //     : `https://res.cloudinary.com/table-management/image/upload/v1685748386/img_icon_npfstv.png`
-    // } catch (error) {}
   };
 
   //styling
