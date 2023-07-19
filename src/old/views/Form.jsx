@@ -149,7 +149,11 @@ export const Form = () => {
       value: "Refinement",
       text: "Polishing and perfecting the final project",
     },
-  ];
+    {
+      value: "Product Manager",
+      text: "Strategy, User Needs, Collaboration.",
+    },
+  ]
 
   const hebrewSettings = { fontFamily: "assistant-regular", direction: "rtl" };
   const englishSettings = { fontFamily: "poppins-regular", direction: "ltr" };
