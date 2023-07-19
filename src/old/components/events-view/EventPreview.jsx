@@ -7,11 +7,15 @@ import Image from "next/image";
 
 export const EventPreview = ({ event, tables }) => {
   const dateToBeDisplayed = useMemo(() => {
-    return `${new Date(event.date).toLocaleDateString(undefined, {
-      day: "2-digit",
-      month: "2-digit",
-      year: "2-digit",
-    })} ${new Date(event.time).toLocaleTimeString(undefined, {
+    if (!event.date || !event.time) return "Not set";
+    return `${new Date(event.date.seconds * 1000).toLocaleDateString(
+      undefined,
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+      }
+    )} ${new Date(event.time.seconds * 1000).toLocaleTimeString(undefined, {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
@@ -41,11 +45,18 @@ export const EventPreview = ({ event, tables }) => {
     <>
       <section className="event-preview">
         <div className="images blur-with-lines">
-          <img
-            className="background-image"
-            src={event.backgroundImgUrl}
-            alt=""
-          />
+          {event.backgroundImgUrl ? (
+            <img
+              className="background-image"
+              src={event.backgroundImgUrl}
+              alt=""
+            />
+          ) : (
+            <div
+              className="background-image"
+              style={{ backgroundColor: "#282828" }}
+            ></div>
+          )}
           <div className="img-container small">
             <img src={event.logoImgUrl} alt="" />
           </div>
@@ -84,12 +95,12 @@ export const EventPreview = ({ event, tables }) => {
           </ClickAwayListener>
         </div>
         <div className="details">
-          <h2 className="name">{event.name}</h2>
+          <h2 className="name">{event.title}</h2>
           <div className="date">
             <p>{dateToBeDisplayed}</p>
           </div>
           <div className="location">
-            <p>{event.location}</p>
+            <p>{event.location || "Not set"}</p>
           </div>
         </div>
         <div className="tables-info">
