@@ -11,12 +11,21 @@ import { stylesX, inputProps } from "@/old/material-ui-setup/customStyles";
 import { cloudinaryService } from "@/old/services/cloudinary.service";
 import { useRouter } from "next/navigation";
 import { createEvent } from "@/old/services/events.service";
+import { useSession } from "next-auth/react";
 
 export const CreateEventModal = () => {
+  const { data } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // The user is not authenticated, handle it here.
+      router.replace("/");
+    },
+  });
+
   //state
   const router = useRouter();
   const [event, setEvent] = useState({
-    name: "",
+    title: "",
     date: "",
     time: "",
     location: "",
@@ -29,10 +38,6 @@ export const CreateEventModal = () => {
   const [uploadedLogo, setUploadedLogo] = useState(null);
   const [uploadedBackground, setUploadedBackground] = useState(null);
 
-  //variables
-  const defaultLogoImg =
-    "https://res.cloudinary.com/table-management/image/upload/v1685748386/img_icon_npfstv.png";
-
   //refs
   const inputLogoImageRef = useRef();
   const inputBackgroundImageRef = useRef();
@@ -42,7 +47,7 @@ export const CreateEventModal = () => {
     const logo = uploadedLogo
       ? URL.createObjectURL(uploadedLogo)
       : null || event.logoImgUrl;
-    return logo ? logo : defaultLogoImg;
+    return logo;
   }, [uploadedLogo]);
 
   const displayedBackground = useMemo(() => {
@@ -82,11 +87,18 @@ export const CreateEventModal = () => {
     ev.preventDefault();
     //TODO: write submit logic
     try {
-      await createEvent({
-        ...event,
-        logoImgUrl: uploadedLogo ? await cloudinaryService.uploadImg(uploadedLogo) : "",
-        backgroundImgUrl: uploadedBackground?await cloudinaryService.uploadImg(uploadedBackground):"",
-      });
+      await createEvent(
+        {
+          ...event,
+          logoImgUrl: uploadedLogo
+            ? await cloudinaryService.uploadImg(uploadedLogo)
+            : "",
+          backgroundImgUrl: uploadedBackground
+            ? await cloudinaryService.uploadImg(uploadedBackground)
+            : "",
+        },
+        data.access_token
+      );
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +108,7 @@ export const CreateEventModal = () => {
   const inputLabelArray = [
     {
       label: "Title",
-      property: "name",
+      property: "title",
     },
     {
       label: "Date",
@@ -128,13 +140,7 @@ export const CreateEventModal = () => {
   ];
 
   const isButtonDisabled = () => {
-    return !(
-      event.name &&
-      event.date &&
-      event.time &&
-      event.location &&
-      event.details
-    );
+    return !event.title;
   };
 
   const dateToDisplay =

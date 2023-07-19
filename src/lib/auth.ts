@@ -1,6 +1,11 @@
 import { getJwtTokenFromServer } from "@/old/services/auth.service";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import type { User } from "next-auth";
+
+type CustomUser = User & {
+  access_token: string;
+};
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -39,17 +44,13 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      if (account) {
-        token.account = {
-          ...account,
-          access_token: (user as typeof user & { access_token: string })
-            .access_token, // <-- add token to JWT (Next's) object
-        };
+      if (user) {
+        token.access_token = (user as CustomUser).access_token;
       }
       return token;
     },
     async session({ session, token }) {
-      return { ...session };
+      return { ...session, access_token: token.access_token };
     },
   },
 };
