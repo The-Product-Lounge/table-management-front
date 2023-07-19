@@ -117,6 +117,10 @@ export const Form = () => {
       value: "Refinement",
       text: "Polishing and perfecting the final project",
     },
+    {
+      value: "Product Manager",
+      text: "Strategy, User Needs, Collaboration.",
+    },
   ]
 
   const useStyles = makeStyles({
