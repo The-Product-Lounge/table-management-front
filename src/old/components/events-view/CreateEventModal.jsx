@@ -9,8 +9,8 @@ import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { stylesX, inputProps } from "@/old/material-ui-setup/customStyles";
 import { cloudinaryService } from "@/old/services/cloudinary.service";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { createEvent } from "@/old/services/events.service";
 
 export const CreateEventModal = () => {
   //state
@@ -81,6 +81,16 @@ export const CreateEventModal = () => {
   const onSubmit = async (ev) => {
     ev.preventDefault();
     //TODO: write submit logic
+    try {
+      await createEvent({
+        ...event,
+        logoImgUrl: await cloudinaryService.uploadImg(uploadedLogo),
+        backgroundImgUrl: await cloudinaryService.uploadImg(uploadedBackground),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     // try {
     //   event.logoImgUrl = displayedLogo
     //     ? await cloudinaryService.uploadImg(displayedLogo)
