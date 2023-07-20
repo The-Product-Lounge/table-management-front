@@ -35,7 +35,6 @@ export const EventSettings = ({ eventId }) => {
         return { id: tableId, ...data[tableId] };
       });
       setTables(tables);
-      console.log(tables);
       if (!tables) setIsLoading(false);
     });
     return () => off(tablesRef, "value", listenerTable);
