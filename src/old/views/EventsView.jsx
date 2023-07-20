@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 
 export const EventsView = () => {
   const [events, setEvents] = useState([]);
-  const [tables, setTables] = useState([]);
 
   //! doing this like this allows for UI rerendering when tables change but that means
   //that there cant be two tables with the same table number in different events
@@ -28,11 +27,6 @@ export const EventsView = () => {
     const tablesRef = ref(database, `/tables`);
     const listener = onValue(tablesRef, (snapshot) => {
       const data = snapshot.val();
-      const tables = utilService.reformatKeyValuePairToArray(
-        data,
-        "tableNumber"
-      );
-      setTables(tables);
     });
 
     return () => off(tablesRef, "value", listener);
@@ -44,7 +38,7 @@ export const EventsView = () => {
       {events.length > 0 ? (
         <div className="events">
           <h2 className="title">Upcoming Events</h2>
-          <EventList events={events} tables={tables} />
+          <EventList events={events} />
         </div>
       ) : (
         <EmptyEventList />

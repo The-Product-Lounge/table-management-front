@@ -3,9 +3,7 @@ import { ClickAwayListener, Tooltip } from "@mui/material";
 import removeIcon from "@/old/assets/imgs/remove-member.svg?url";
 import Image from "next/image";
 
-//TODO: where to place the tables? place them higher than here and they will trigger rerendering of all events if one table changes
-
-export const EventPreview = ({ event, tables }) => {
+export const EventPreview = ({ event }) => {
   const dateToBeDisplayed = useMemo(() => {
     if (!event.date || !event.time) return "Not set";
     return `${new Date(event.date.seconds * 1000).toLocaleDateString(
@@ -22,17 +20,6 @@ export const EventPreview = ({ event, tables }) => {
     })}`;
   }, [event.date, event.time]);
   const [open, setOpen] = useState(false);
-
-  const numberOfLoungers = useMemo(() => {
-    const loungers = tables.reduce((a, table) => {
-      return table.users.length + a;
-    }, 0);
-    return loungers ? loungers : "No";
-  }, [tables]);
-
-  const numberOfTables = useMemo(() => {
-    return tables.length ? tables.length : "No";
-  }, [tables]);
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -105,11 +92,11 @@ export const EventPreview = ({ event, tables }) => {
         </div>
         <div className="tables-info">
           <div className="loungers">
-            <p>{`${numberOfLoungers} Loungers`}</p>
+            <p>{`${event.loungersNum ?? "No"} Loungers`}</p>
           </div>
           <p>&bull;</p>
           <div className="tables">
-            <p>{`${numberOfTables} Tables`}</p>
+            <p>{`${event.tableIds?.length || "No"} Tables`}</p>
           </div>
         </div>
       </section>
