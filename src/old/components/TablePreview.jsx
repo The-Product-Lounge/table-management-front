@@ -12,7 +12,7 @@ export const TablePreview = ({ table, ...props }) => {
 
   return (
     <section className="table-preview">
-      {!props.key ? (
+      {props.isUserTable ? (
         <div className="title table-view-title">
           <p>Loungers At Your Table</p>
           <p>{table.users.length}/3</p>
