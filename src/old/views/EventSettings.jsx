@@ -23,7 +23,6 @@ export const EventSettings = ({ eventId }) => {
       setEvent(data);
     });
 
-    setIsLoading(false);
     return () => off(eventRef, "value", listenerEvent);
   }, []);
 
@@ -31,10 +30,13 @@ export const EventSettings = ({ eventId }) => {
     const tablesRef = ref(database, `/tables`);
     const listenerTable = onValue(tablesRef, (snapshot) => {
       let data = snapshot.val();
+      if (!data) return;
       const tables = event.tableIds?.map((tableId) => {
         return { id: tableId, ...data[tableId] };
       });
       setTables(tables);
+      console.log(tables);
+      if (!tables) setIsLoading(false);
     });
     return () => off(tablesRef, "value", listenerTable);
   }, [event]);

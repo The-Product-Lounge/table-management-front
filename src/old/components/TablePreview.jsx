@@ -7,7 +7,7 @@ export const TablePreview = ({ table, ...props }) => {
   const onRemoveLounger = async (userId) => {
     table.users = table.users.filter((user) => user.id !== userId);
     if (!table.users.length) await tableService.removeTable(table.id);
-    else await tableService.updateTable(table);
+    else await tableService.removeUserFromTable({ ...table, userId });
   };
 
   return (
