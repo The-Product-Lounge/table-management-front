@@ -48,7 +48,7 @@ const rootSx = {
   },
 };
 
-export const Form = () => {
+export const Form = ({ eventId }) => {
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -115,7 +115,10 @@ export const Form = () => {
         : `https://api.dicebear.com/5.x/avataaars-neutral/svg?size=64&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc&eyebrows=default,defaultNatural,raisedExcited,raisedExcitedNatural,upDown,upDownNatural&eyes=closed,xDizzy,winkWacky,wink,surprised,squint,side,hearts,happy,default&mouth=twinkle,tongue,smile,serious,grimace,eating,default&seed=${utilService.makeId(
             5
           )}`;
-      userDetails.id = await tableService.joinTable(userDetails);
+      userDetails.id = await tableService.joinTable({
+        ...userDetails,
+        eventId,
+      });
 
       //sign up for the uuid ref
       listenToUuid(userDetails.id);
@@ -153,7 +156,7 @@ export const Form = () => {
       value: "Product Manager",
       text: "Strategy, User Needs, Collaboration.",
     },
-  ]
+  ];
 
   const hebrewSettings = { fontFamily: "assistant-regular", direction: "rtl" };
   const englishSettings = { fontFamily: "poppins-regular", direction: "ltr" };
@@ -291,10 +294,6 @@ export const Form = () => {
                   Lets go!
                 </button>
               </form>
-            </div>
-            <div className="event-settings-link" onClick={onToggleModal}>
-              <img src={eventSettings.src} alt="" />
-              <p>Event Settings</p>
             </div>
           </div>
           {isModalOpen && (
