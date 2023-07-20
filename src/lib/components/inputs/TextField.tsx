@@ -41,6 +41,15 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     let reProps = { ...props };
     const helperText = reProps.helperText;
 
+    reProps = {
+      ...reProps,
+      FormHelperTextProps: {
+        ...reProps.FormHelperTextProps,
+        // @ts-expect-error https://github.com/mui/material-ui/issues/33339
+        component: "div",
+      },
+    };
+
     if (helperText && props.error) {
       reProps.helperText = <HelperTextError>{helperText}</HelperTextError>;
     }

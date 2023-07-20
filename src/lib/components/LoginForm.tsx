@@ -28,22 +28,17 @@ export const LoginForm = () => {
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    try {
-      // TODO change getJwt to work with typescript
-      // await dispatch(getJwt(data) as any);
-      await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-        // callbackUrl: `/event-settings`,
-      });
-      router.replace("/event-settings");
-    } catch (err) {
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+    if (res?.error)
       setError("password", {
         type: "server",
         message: "Incorrect password, are you a spy?",
       });
-    }
+    else router.replace("/event-settings");
   };
 
   return (
