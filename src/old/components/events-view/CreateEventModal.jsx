@@ -38,6 +38,10 @@ export const CreateEventModal = () => {
   const [uploadedLogo, setUploadedLogo] = useState(null);
   const [uploadedBackground, setUploadedBackground] = useState(null);
 
+  //variables
+  const defaultLogoImg =
+    "https://res.cloudinary.com/table-management/image/upload/v1685748386/img_icon_npfstv.png";
+
   //refs
   const inputLogoImageRef = useRef();
   const inputBackgroundImageRef = useRef();
@@ -47,7 +51,7 @@ export const CreateEventModal = () => {
     const logo = uploadedLogo
       ? URL.createObjectURL(uploadedLogo)
       : null || event.logoImgUrl;
-    return logo;
+    return logo ? logo : defaultLogoImg;
   }, [uploadedLogo]);
 
   const displayedBackground = useMemo(() => {

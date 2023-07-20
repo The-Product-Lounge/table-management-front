@@ -5,16 +5,16 @@ import eventSettings from "../assets/imgs/event-settings.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { cloudinaryService } from "../services/cloudinary.service";
-import { Box, MenuItem, TextField, Typography } from "@mui/material";
-import { PasswordModal } from "../components/PasswordModal";
+import { Box, MenuItem, Typography } from "@mui/material";
 import { setUser } from "../store/actions/user.action";
 import { Loader } from "../components/Loader";
 import { database } from "../firebase-setup/firebase";
-import { onValue, ref } from "firebase/database";
+import { onValue, ref, set } from "firebase/database";
 import { tableService } from "../services/table.service";
 import { storageService } from "../services/local-storage.service";
 import { utilService } from "../services/util.service";
 import { useRouter } from "next/navigation";
+import { TextField } from "@/lib/components/inputs/TextField";
 
 const rootSx = {
   "& label.Mui-focused": {
@@ -48,14 +48,14 @@ const rootSx = {
   },
 };
 
-export const Form = () => {
+export const Form = ({ eventId }) => {
+  const [error, setError] = useState(null);
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
     portfolioStage: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [img, setImg] = useState(null);
   const router = useRouter();
   const inputImageRef = useRef();
@@ -93,10 +93,13 @@ export const Form = () => {
 
   const listenToUuid = (uuid) => {
     storageService.putInStorage("uuid", uuid);
-    const uuidRef = ref(database, `/uuids/${uuid}`);
+    const uuidRef = ref(database, `events/${eventId}/uuids/${uuid}`);
     onValue(uuidRef, (snapshot) => {
       const tableId = snapshot.val();
-      if (tableId) {
+      if (tableId == "error") {
+        setIsLoading(false);
+        setError("There was an error please contact the event manager");
+      } else if (tableId) {
         tableService.setTableIdInStorage(tableId);
         storageService.removeFromStorage("uuid");
         router.replace(`/table/${tableId}`);
@@ -115,7 +118,10 @@ export const Form = () => {
         : `https://api.dicebear.com/5.x/avataaars-neutral/svg?size=64&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc&eyebrows=default,defaultNatural,raisedExcited,raisedExcitedNatural,upDown,upDownNatural&eyes=closed,xDizzy,winkWacky,wink,surprised,squint,side,hearts,happy,default&mouth=twinkle,tongue,smile,serious,grimace,eating,default&seed=${utilService.makeId(
             5
           )}`;
-      userDetails.id = await tableService.joinTable(userDetails);
+      userDetails.id = await tableService.joinTable({
+        ...userDetails,
+        eventId,
+      });
 
       //sign up for the uuid ref
       listenToUuid(userDetails.id);
@@ -126,10 +132,6 @@ export const Form = () => {
       setIsLoading(false);
       console.error(err);
     }
-  };
-
-  const onToggleModal = () => {
-    setIsModalOpen((prevState) => !prevState);
   };
 
   const menuItems = [
@@ -153,7 +155,7 @@ export const Form = () => {
       value: "Product Manager",
       text: "Strategy, User Needs, Collaboration.",
     },
-  ]
+  ];
 
   const hebrewSettings = { fontFamily: "assistant-regular", direction: "rtl" };
   const englishSettings = { fontFamily: "poppins-regular", direction: "ltr" };
@@ -258,6 +260,8 @@ export const Form = () => {
                     label="Portfolio stage"
                     placeholder="Portfolio stage"
                     fullWidth={true}
+                    error={error ? true : false}
+                    helperText={error}
                   >
                     {menuItems.map((item) => (
                       <MenuItem
@@ -292,14 +296,7 @@ export const Form = () => {
                 </button>
               </form>
             </div>
-            <div className="event-settings-link" onClick={onToggleModal}>
-              <img src={eventSettings.src} alt="" />
-              <p>Event Settings</p>
-            </div>
           </div>
-          {isModalOpen && (
-            <PasswordModal rootSx={rootSx} onToggleModal={onToggleModal} />
-          )}
         </div>
       )}
     </section>
