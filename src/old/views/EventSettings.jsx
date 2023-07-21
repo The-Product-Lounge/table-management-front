@@ -9,8 +9,10 @@ import { off, onValue, ref } from "firebase/database";
 import { database } from "../firebase-setup/firebase";
 import { tableService } from "../services/table.service";
 import { utilService } from "../services/util.service";
+import { useRouter } from "next/navigation";
 
 export const EventSettings = ({ eventId }) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tables, setTables] = useState([]);
@@ -30,7 +32,7 @@ export const EventSettings = ({ eventId }) => {
     const tablesRef = ref(database, `/tables`);
     const listenerTable = onValue(tablesRef, (snapshot) => {
       let data = snapshot.val();
-      if (!data) return;
+      if (!data) return setIsLoading(false);
       const tables = event.tableIds?.map((tableId) => {
         return { id: tableId, ...data[tableId] };
       });
@@ -69,9 +71,14 @@ export const EventSettings = ({ eventId }) => {
             alt="clear event"
           />
           <h1>Event Settings</h1>
-          {/* <Link to="/"> */}
-          <img src={closePage.src} className="close-page" alt="close page" />
-          {/* </Link> */}
+          <img
+            onClick={() => {
+              router.back();
+            }}
+            src={closePage.src}
+            className="close-page"
+            alt="close page"
+          />
         </div>
       </header>
       <TableList tables={tables} />

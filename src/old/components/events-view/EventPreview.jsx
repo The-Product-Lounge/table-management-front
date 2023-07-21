@@ -2,8 +2,10 @@ import { useMemo, useState } from "react";
 import { ClickAwayListener, Tooltip } from "@mui/material";
 import removeIcon from "@/old/assets/imgs/remove-member.svg?url";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const EventPreview = ({ event }) => {
+  const router = useRouter();
   const dateToBeDisplayed = useMemo(() => {
     if (!event.date || !event.time) return "Not set";
     return `${new Date(event.date.seconds * 1000).toLocaleDateString(
@@ -25,12 +27,16 @@ export const EventPreview = ({ event }) => {
     setOpen(false);
   };
 
-  const handleTooltipOpen = () => {
+  const handleTooltipOpen = (e) => {
+    e.stopPropagation();
     setOpen(true);
   };
   return (
     <>
-      <section className="event-preview">
+      <section
+        className="event-preview"
+        onClick={() => router.push(`event-settings/event/${event.id}`)}
+      >
         <div className="images blur-with-lines">
           {event.backgroundImgUrl ? (
             <img
