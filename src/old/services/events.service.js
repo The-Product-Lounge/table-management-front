@@ -9,3 +9,13 @@ export const createEvent = async (event, auth) => {
     throw err;
   }
 };
+
+export const removeTables = async (eventId, auth) => {
+  try {
+    await httpService.delete(`event/${eventId}/tables`, null, auth);
+  } catch (err) {
+    // TODO - handle login error
+    console.log(err);
+    throw err;
+  }
+};
