@@ -1,19 +1,20 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CloseIcon from "@/old/assets/imgs/close-event-info.svg";
-import Pattern from "@/old/assets/imgs/table-pattern.svg";
 import LocationIcon from "@/old/assets/imgs/location-icon.svg";
 import ClockIcon from "@/old/assets/imgs/clock-icon.svg";
 import CalendarIcon from "@/old/assets/imgs/calendar-icon.svg";
-import { TextField, TextareaAutosize, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment } from "@mui/material";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { stylesX, inputProps } from "@/old/material-ui-setup/customStyles";
+import { inputProps } from "@/old/material-ui-setup/customStyles";
 import { cloudinaryService } from "@/old/services/cloudinary.service";
 import { useRouter } from "next/navigation";
-import { createEvent } from "@/old/services/events.service";
+import { createEvent, updateEvent } from "@/old/services/events.service";
 import { useSession } from "next-auth/react";
+import { off, onValue, ref, set } from "firebase/database";
+import { database } from "@/old/firebase-setup/firebase";
 
-export const CreateEventModal = () => {
+export const CreateEventModal = ({ eventId = null }) => {
   const { data } = useSession({
     required: true,
     onUnauthenticated() {
@@ -37,10 +38,26 @@ export const CreateEventModal = () => {
   });
   const [uploadedLogo, setUploadedLogo] = useState(null);
   const [uploadedBackground, setUploadedBackground] = useState(null);
+  const [isLogoChanged, setIsLogoChanged] = useState(false);
+  const [isBackgroundChanged, setIsBackgroundChanged] = useState(false);
 
   //variables
   const defaultLogoImg =
     "https://res.cloudinary.com/table-management/image/upload/v1685748386/img_icon_npfstv.png";
+
+  useEffect(() => {
+    if (eventId) {
+      const eventsRef = ref(database, `/events/${eventId}`);
+      const listener = onValue(eventsRef, (snapshot) => {
+        const event = snapshot.val();
+        event.date = event.date ? new Date(event.date.seconds * 1000) : "";
+        event.time = event.time ? new Date(event.time.seconds * 1000) : "";
+        setEvent(event);
+      });
+
+      return () => off(eventsRef, "value", listener);
+    }
+  }, [eventId]);
 
   //refs
   const inputLogoImageRef = useRef();
@@ -52,14 +69,14 @@ export const CreateEventModal = () => {
       ? URL.createObjectURL(uploadedLogo)
       : null || event.logoImgUrl;
     return logo ? logo : defaultLogoImg;
-  }, [uploadedLogo]);
+  }, [event.logoImgUrl, uploadedLogo]);
 
   const displayedBackground = useMemo(() => {
     const background = uploadedBackground
       ? URL.createObjectURL(uploadedBackground)
       : null || event.backgroundImgUrl;
     return background;
-  }, [uploadedBackground]);
+  }, [event.backgroundImgUrl, uploadedBackground]);
 
   //functions
   const onClose = () => {
@@ -67,9 +84,13 @@ export const CreateEventModal = () => {
   };
 
   const onUploadImg = ({ target: { name, files } }) => {
-    name === "logo"
-      ? setUploadedLogo(files[0])
-      : setUploadedBackground(files[0]);
+    if (name === "logo") {
+      setIsLogoChanged(true);
+      setUploadedLogo(files[0]);
+    } else {
+      setIsBackgroundChanged(true);
+      setUploadedBackground(files[0]);
+    }
   };
 
   const handleChange = (ev, name) => {
@@ -91,18 +112,34 @@ export const CreateEventModal = () => {
     ev.preventDefault();
     //TODO: write submit logic
     try {
-      await createEvent(
-        {
-          ...event,
-          logoImgUrl: uploadedLogo
-            ? await cloudinaryService.uploadImg(uploadedLogo)
-            : "",
-          backgroundImgUrl: uploadedBackground
-            ? await cloudinaryService.uploadImg(uploadedBackground)
-            : "",
-        },
-        data.access_token
-      );
+      if (eventId) {
+        await updateEvent(
+          {
+            ...event,
+            logoImgUrl: isLogoChanged
+              ? await cloudinaryService.uploadImg(uploadedLogo)
+              : event.logoImgUrl,
+            backgroundImgUrl: isBackgroundChanged
+              ? await cloudinaryService.uploadImg(uploadedBackground)
+              : event.backgroundImgUrl,
+          },
+          eventId,
+          data.access_token
+        );
+      } else {
+        await createEvent(
+          {
+            ...event,
+            logoImgUrl: uploadedLogo
+              ? await cloudinaryService.uploadImg(uploadedLogo)
+              : "",
+            backgroundImgUrl: uploadedBackground
+              ? await cloudinaryService.uploadImg(uploadedBackground)
+              : "",
+          },
+          data.access_token
+        );
+      }
     } catch (error) {
       console.log(error);
     }
@@ -209,8 +246,8 @@ export const CreateEventModal = () => {
               <img src={displayedLogo} alt="" className="event-img" />
             </div>
             <div className="summery-text">
-              {event.name ? (
-                <h2 className="event-name">{event.name}</h2>
+              {event.title ? (
+                <h2 className="event-name">{event.title}</h2>
               ) : (
                 <div className="grey-place-holder primary"></div>
               )}
@@ -266,8 +303,9 @@ export const CreateEventModal = () => {
                       },
                     },
                   }}
-                  className={stylesX.datePicker}
                   label={label}
+                  //set default value to be the event date if it exists or to be the current date, and format it to be DD/MM/YY
+                  value={event.date ? dayjs(event.date) : null}
                   onChange={(date) => handleChange(date, property)}
                   name={property}
                 />
@@ -278,10 +316,10 @@ export const CreateEventModal = () => {
                   key={property}
                   ampm={false}
                   format="HH:mm"
-                  className={stylesX.datePicker}
                   onChange={(date) => handleChange(date, property)}
                   label={label}
                   name={property}
+                  value={event.time ? dayjs(event.time) : null}
                   slotProps={{
                     textField: {
                       InputProps: {
@@ -304,7 +342,6 @@ export const CreateEventModal = () => {
               return (
                 <TextField
                   key={property}
-                  className={stylesX.root}
                   label={label}
                   variant="outlined"
                   inputProps={inputProps}
@@ -340,7 +377,7 @@ export const CreateEventModal = () => {
             Cancel
           </button>
           <button className="dark" type="submit" disabled={isButtonDisabled()}>
-            Create
+            {eventId ? "Save" : "Create"}
           </button>
         </div>
       </form>

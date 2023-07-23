@@ -93,7 +93,7 @@ export const Form = ({ eventId }) => {
 
   const listenToUuid = (uuid) => {
     storageService.putInStorage("uuid", uuid);
-    const uuidRef = ref(database, `events/${eventId}/uuids/${uuid}`);
+    const uuidRef = ref(database, `uuids/${eventId}/${uuid}`);
     onValue(uuidRef, (snapshot) => {
       const tableId = snapshot.val();
       if (tableId == "error") {

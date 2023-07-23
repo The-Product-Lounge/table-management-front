@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Edit_icon" data-name="Edit icon" transform="translate(3.563 1.83)">
+    <rect id="Rectangle_1492" data-name="Rectangle 1492" width="16" height="16" transform="translate(-3.563 -1.83)" fill="none"/>
+    <g id="Pencil" transform="translate(-0.229 0.837)">
+      <path id="Path_3584" data-name="Path 3584" d="M11.426,6.975,15.09,9.667" transform="translate(-7.585 -4.992)" fill="none" stroke="#28293f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
+      <path id="Path_3585" data-name="Path 3585" d="M7.311,14.615l1.111-.323A2.739,2.739,0,0,0,9.9,13.238l4.259-5.906a1.566,1.566,0,0,0-.343-2.189L12.657,4.3a1.568,1.568,0,0,0-2.189.343L6.162,10.616a2.742,2.742,0,0,0-.5,1.6L5.675,13.4A1.279,1.279,0,0,0,7.311,14.615Z" transform="translate(-5.664 -4)" fill="none" stroke="#28293f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"/>
+    </g>
+  </g>
+</svg>

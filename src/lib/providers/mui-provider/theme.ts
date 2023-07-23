@@ -30,6 +30,23 @@ let theme = createTheme({
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: "#ffffff",
+          color: "#28293F",
+          borderColor: "#F3F3F3",
+
+          boxShadow: "0px 4px 12px #60617029",
+        },
+        arrow: {
+          "&:before": {
+            backgroundColor: "#ffffff",
+            filter: "drop-shadow(0px -2px 12px #60617029)",
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {

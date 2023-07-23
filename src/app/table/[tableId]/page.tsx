@@ -3,9 +3,7 @@ import dynamic from "next/dynamic";
 
 const TableView = dynamic(
   () => {
-    return import("../../../old/views/TableView").then(
-      (module) => module.TableView
-    );
+    return import("@/old/views/TableView").then((module) => module.TableView);
   },
   {
     ssr: false,

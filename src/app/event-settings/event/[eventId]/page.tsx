@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const OldEventSettings = dynamic(
+const EventSettings = dynamic(
   () => {
     return import("@/old/views/EventSettings").then(
       (module) => module.EventSettings
@@ -12,10 +12,10 @@ const OldEventSettings = dynamic(
   }
 );
 
-export default function Home() {
+export default function Page({ params }: { params: { eventId: string } }) {
   return (
     <>
-      <OldEventSettings />
+      <EventSettings eventId={params.eventId} />
     </>
   );
 }

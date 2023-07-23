@@ -12,6 +12,7 @@ export const tableService = {
   getTableIdFromStorage,
   setTableIdInStorage,
   removeTableIdFromStorage,
+  removeUserFromTable,
 };
 
 async function clearTables() {
@@ -25,6 +26,10 @@ async function joinTable(user) {
     console.error(err);
     throw err;
   }
+}
+
+async function removeUserFromTable(table) {
+  return httpService.put(BASE_URL + "remove/" + table.id, table);
 }
 
 async function updateTable(table) {
