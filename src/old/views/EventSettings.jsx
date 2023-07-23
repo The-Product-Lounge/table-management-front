@@ -6,7 +6,6 @@ import { ClearModal } from "../components/ClearModal";
 import { Loader } from "../components/Loader";
 import { off, onValue, ref } from "firebase/database";
 import { database } from "../firebase-setup/firebase";
-import { tableService } from "../services/table.service";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useRouter } from "next/navigation";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -30,6 +29,7 @@ import { removeTables } from "../services/events.service";
 import { QRCodeSVG } from "qrcode.react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useSession } from "next-auth/react";
+import EndEvent from "@/../public/end-event.svg";
 
 export const EventSettings = ({ eventId }) => {
   const session = useSession({
@@ -132,6 +132,10 @@ export const EventSettings = ({ eventId }) => {
     setSnackBarOpen(false);
   };
 
+  const handleEditEvent = () => {
+    router.push(`/event-settings/update-event/${eventId}`);
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -197,15 +201,30 @@ export const EventSettings = ({ eventId }) => {
                 disableHoverListener
                 disableTouchListener
                 title={
-                  <MenuList>
-                    <MenuItem onClick={() => {}}>
+                  <MenuList sx={{ fontSize: "16px" }}>
+                    <MenuItem
+                      sx={{ minHeight: "40px" }}
+                      onClick={handleEditEvent}
+                    >
                       <ListItemIcon>
                         <EditIcon />
                       </ListItemIcon>
                       <ListItemText>Edit event</ListItemText>
                     </MenuItem>
                     <Divider />
-                    <MenuItem onClick={onToggleModal}>
+                    <MenuItem
+                      sx={{ minHeight: "40px" }}
+                      onClick={onToggleModal}
+                    >
+                      <ListItemIcon>
+                        <EndEvent />
+                      </ListItemIcon>
+                      <ListItemText>End event</ListItemText>
+                    </MenuItem>
+                    <MenuItem
+                      sx={{ minHeight: "40px" }}
+                      onClick={onToggleModal}
+                    >
                       <ListItemIcon>
                         <ClearEvent />
                       </ListItemIcon>

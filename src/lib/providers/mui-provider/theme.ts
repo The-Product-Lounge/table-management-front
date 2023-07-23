@@ -36,11 +36,13 @@ let theme = createTheme({
           backgroundColor: "#ffffff",
           color: "#28293F",
           borderColor: "#F3F3F3",
-          filter: "drop-shadow(0px 4px 12px #60617029)",
+
+          boxShadow: "0px 4px 12px #60617029",
         },
         arrow: {
           "&:before": {
             backgroundColor: "#ffffff",
+            filter: "drop-shadow(0px -2px 12px #60617029)",
           },
         },
       },

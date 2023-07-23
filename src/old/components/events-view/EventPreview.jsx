@@ -1,10 +1,26 @@
 import { useMemo, useState } from "react";
-import { ClickAwayListener, Tooltip } from "@mui/material";
-import removeIcon from "@/old/assets/imgs/remove-member.svg?url";
+import {
+  ClickAwayListener,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  MenuList,
+  Tooltip,
+} from "@mui/material";
+import RemoveIcon from "@/old/assets/imgs/remove-member.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { removeEvent } from "@/old/services/events.service";
+import { useSession } from "next-auth/react";
 
 export const EventPreview = ({ event }) => {
+  const { data } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // The user is not authenticated, handle it here.
+      router.replace("/");
+    },
+  });
   const router = useRouter();
   const dateToBeDisplayed = useMemo(() => {
     if (!event.date || !event.time) return "Not set";
@@ -22,6 +38,11 @@ export const EventPreview = ({ event }) => {
     })}`;
   }, [event.date, event.time]);
   const [open, setOpen] = useState(false);
+
+  const handleDeleteEvent = (e) => {
+    e.stopPropagation();
+    removeEvent(event.id, data.access_token);
+  };
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -62,20 +83,19 @@ export const EventPreview = ({ event }) => {
                 disableHoverListener
                 disableTouchListener
                 title={
-                  <div
-                    className="tooltip-container"
-
-                    // onClick={}
-                  >
-                    <Image
-                      className="remove-event"
-                      src={removeIcon}
-                      alt="remove event"
-                    />
-                    <span>Delete Event</span>
-                  </div>
+                  <MenuList sx={{ fontSize: "16px" }}>
+                    <MenuItem
+                      sx={{ minHeight: "40px" }}
+                      onClick={handleDeleteEvent}
+                    >
+                      <ListItemIcon>
+                        <RemoveIcon />
+                      </ListItemIcon>
+                      <ListItemText>Delete Event</ListItemText>
+                    </MenuItem>
+                  </MenuList>
                 }
-                placement="left"
+                placement="top-end"
                 arrow
               >
                 <div
