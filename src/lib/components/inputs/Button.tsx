@@ -1,5 +1,10 @@
-import MuiButton from "@mui/material/Button";
+import MuiButton, { ButtonProps as MuiButtonProps } from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
+
+interface ButtonProps extends MuiButtonProps {
+  isLoading?: boolean;
+  label?: string;
+}
 
 /**
  * Button - A component that renders a button from material ui with a loading state
@@ -8,7 +13,7 @@ import { CircularProgress } from "@mui/material";
  * @param {any} rest - The rest of the props for material ui button
  * @returns {JSX.Element}
  */
-export const Button = ({ isLoading, label, ...rest }) => {
+export const Button = ({ isLoading, label, ...rest }: ButtonProps) => {
   return (
     <MuiButton {...rest} disabled={isLoading || rest.disabled}>
       {isLoading ? <CircularProgress size={24} /> : label}

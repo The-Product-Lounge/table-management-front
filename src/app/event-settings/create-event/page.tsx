@@ -15,7 +15,7 @@ const CreateEventModal = dynamic(
 export default function Home() {
   return (
     <>
-      <CreateEventModal />
+      <CreateEventModal eventId={null} />
     </>
   );
 }

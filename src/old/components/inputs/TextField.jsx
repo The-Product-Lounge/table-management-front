@@ -26,7 +26,7 @@ const HelperTextError = ({ children }) => {
  * TextField - A component that renders a text field from material ui,
  * with a show password icon for password fields
  */
-export const TextField = React.forwardRef((props, ref) => {
+const TextField = React.forwardRef((props, ref) => {
   const [showPassword, setShowPassword] = useState(false);
 
   let reProps = { ...props };
@@ -69,4 +69,5 @@ export const TextField = React.forwardRef((props, ref) => {
   );
 });
 
-TextField.name = "TextField";
+TextField.displayName = "TextField";
+export { TextField };

@@ -14,7 +14,7 @@ import { useSession } from "next-auth/react";
 import { off, onValue, ref, set } from "firebase/database";
 import { database } from "@/old/firebase-setup/firebase";
 
-export const CreateEventModal = ({ eventId = null }) => {
+export const CreateEventModal = ({ eventId }) => {
   const { data } = useSession({
     required: true,
     onUnauthenticated() {

@@ -12,10 +12,10 @@ const CreateEventModal = dynamic(
   }
 );
 
-export default function App({ params }: { params: { eventId: string } }) {
+export default function App({ params }: { params?: { eventId?: string } }) {
   return (
     <>
-      <CreateEventModal eventId={params.eventId} />
+      <CreateEventModal eventId={params?.eventId} />
     </>
   );
 }
