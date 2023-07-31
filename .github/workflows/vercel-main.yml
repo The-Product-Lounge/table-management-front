@@ -1,5 +1,7 @@
 # vercel-merge.yml
 name: Deploy to vercel on merge
+permissions:
+  pull-requests: write
 on:
   push:
     branches:
