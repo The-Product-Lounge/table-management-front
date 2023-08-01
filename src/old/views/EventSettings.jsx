@@ -30,6 +30,7 @@ import { QRCodeSVG } from "qrcode.react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useSession } from "next-auth/react";
 import EndEvent from "@/../public/end-event.svg";
+import Link from "next/link";
 
 export const EventSettings = ({ eventId }) => {
   const session = useSession({
@@ -132,10 +133,6 @@ export const EventSettings = ({ eventId }) => {
     setSnackBarOpen(false);
   };
 
-  const handleEditEvent = () => {
-    router.push(`/event-settings/update-event/${eventId}`);
-  };
-
   if (isLoading) {
     return <Loader />;
   }
@@ -202,15 +199,14 @@ export const EventSettings = ({ eventId }) => {
                 disableTouchListener
                 title={
                   <MenuList sx={{ fontSize: "16px" }}>
-                    <MenuItem
-                      sx={{ minHeight: "40px" }}
-                      onClick={handleEditEvent}
-                    >
-                      <ListItemIcon>
-                        <EditIcon />
-                      </ListItemIcon>
-                      <ListItemText>Edit event</ListItemText>
-                    </MenuItem>
+                    <Link href={`/event-settings/update-event/${eventId}`}>
+                      <MenuItem sx={{ minHeight: "40px" }}>
+                        <ListItemIcon>
+                          <EditIcon />
+                        </ListItemIcon>
+                        <ListItemText>Edit event</ListItemText>
+                      </MenuItem>
+                    </Link>
                     <Divider />
                     <MenuItem
                       sx={{ minHeight: "40px" }}

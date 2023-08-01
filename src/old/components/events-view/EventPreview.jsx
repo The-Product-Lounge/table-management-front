@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { removeEvent } from "@/old/services/events.service";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export const EventPreview = ({ event }) => {
   const { data } = useSession({
@@ -53,11 +54,8 @@ export const EventPreview = ({ event }) => {
     setOpen(true);
   };
   return (
-    <>
-      <section
-        className="event-preview"
-        onClick={() => router.push(`event-settings/event/${event.id}`)}
-      >
+    <Link href={`event-settings/event/${event.id}`}>
+      <section className="event-preview">
         <div className="images blur-with-lines">
           {event.backgroundImgUrl ? (
             <img
@@ -126,6 +124,6 @@ export const EventPreview = ({ event }) => {
           </div>
         </div>
       </section>
-    </>
+    </Link>
   );
 };
