@@ -71,7 +71,7 @@ export const Form = ({ eventId }) => {
   useEffect(() => {
     const tableId = tableService.getTableIdFromStorage();
     const uuid = storageService.getFromStorage("uuid");
-    if (tableId) router.replace(`/table/${tableId}`);
+    if (tableId) router.push(`/table/${tableId}`);
     else if (uuid) listenToUuid(uuid);
   }, []);
 

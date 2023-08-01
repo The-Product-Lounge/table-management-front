@@ -38,7 +38,7 @@ export const LoginForm = () => {
         type: "server",
         message: "Incorrect password, are you a spy?",
       });
-    else router.replace("/event-settings");
+    else router.push("/event-settings");
   };
 
   return (

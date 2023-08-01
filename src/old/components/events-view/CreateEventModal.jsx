@@ -80,7 +80,7 @@ export const CreateEventModal = ({ eventId }) => {
 
   //functions
   const onClose = () => {
-    router.replace("/event-settings");
+    router.back();
   };
 
   const onUploadImg = ({ target: { name, files } }) => {
@@ -110,7 +110,6 @@ export const CreateEventModal = ({ eventId }) => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault();
-    //TODO: write submit logic
     try {
       if (eventId) {
         await updateEvent(
@@ -143,6 +142,8 @@ export const CreateEventModal = ({ eventId }) => {
     } catch (error) {
       console.log(error);
     }
+    console.log("event created");
+    router.back();
   };
 
   //styling
