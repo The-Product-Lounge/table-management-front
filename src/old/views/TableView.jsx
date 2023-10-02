@@ -22,7 +22,7 @@ export const TableView = ({ tableId }) => {
         !table.users?.find((userInTable) => userInTable.id === user.id)
       ) {
         tableService.removeTableIdFromStorage();
-        router.replace(`/${tableId}`);
+        router.replace(`/${table.eventId}`);
       } else setTable(table);
     });
 
